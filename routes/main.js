@@ -10,5 +10,7 @@ router.post('/login', authController.postLogin)
 router.get('/logout', authController.logout)
 router.get('/signup', authController.getSignup)
 router.post('/signup', authController.postSignup)
+// Route for updating user profiles
+router.put('/update-profile', ensureAuth, userController.updateProfile)
 
 module.exports = router
