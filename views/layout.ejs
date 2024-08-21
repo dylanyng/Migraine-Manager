@@ -4,10 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title><%= typeof title != 'undefined' ? title : 'Migraine Manager' %></title>
 </head>
 <body>
-    <h1>H1</h1>
-    
+    <header>
+        <nav>
+            <a href="/">
+                <h1>Migraine Manager</h1>
+            </a>
+            <div>
+                <% if(user){ %>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/migraines">Migraine Events</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } else { %>
+                    <a href="/login"><span>Login</span></a>
+                    <a href="/signup"><span>Create Account</span></a>
+                <% } %>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Container for flash messages -->
+    <div class="container">
+        <% if (messages.error) { %>
+            <div class="alert alert-danger"><%= messages.error %></div>
+        <% } %>
+        <% if (messages.success) { %>
+            <div class="alert alert-success"><%= messages.success %></div>
+        <% } %>
+    </div>
+
+    <main>
+        <%- body %>
+    </main>
+
+    <footer>
+        <ul>
+            <% if(user){ %>
+                <li class="nav-item"><a href= "/">Home</a></li>
+                <li class="nav-item"><a href= "/logout">Logout</a></li>
+            <% } else { %>
+                <li class="nav-item"><a href= "/login">Login</a></li>
+                <li class="nav-item"><a href= "/signup">Create Account</a></li>
+            <% } %>
+        </ul>
+        <span>© Dylan Young</span>
+    </footer>
+
+    <script src="/js/main.js" type="text/javascript"></script>
 </body>
 </html>
