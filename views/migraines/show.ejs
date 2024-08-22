@@ -1,0 +1,36 @@
+<h2>Recorded Episode</h2>
+
+<h3 class="episode-header"><%= migraineEvent.date.toLocaleDateString() %></h3>
+
+<section class="episode-container">
+    <div class="episode-highlights">
+        <p class="migraine-type"><%= migraineEvent.attackType %></p>
+        <p class="migraine-pain">Pain Level: <%= migraineEvent.painLevel %></p>
+        <p class="migraine-duration">Duration: <%= formatDuration(event.duration) %></p>
+        <p class="migraine-location">Location: <%= migraineEvent.painLocation %></p>
+    </div>
+
+    <div class="episode-medication">
+    <p class="migraine-medication">Medication taken: <%= event.medication ? 'Yes' : 'No' %></p>
+    <% if (event.medications && event.medications.length > 0) { %>
+        <p class="migraine-medication-details">Medication details:</p>
+        <ul>
+    <% event.medications.forEach(function(med) { %>
+        <li><%= med.name %> - Dose: <%= med.dose %>, Quantity: <%= med.quantity %></li>
+    <% }); %>
+        </ul>
+    <% } else { %>
+        <p class="migraine-medication-details">No medication details provided.</p>
+    <% } %>
+    </div>
+
+    <p class="migraine-triggers">Triggers: <%= migraineEvent.triggers %></p>
+    <p class="migraine-notes">Notes: <%= migraineEvent.notes %></p>
+    <div class="action-buttons">
+        <!-- Revisit 0.2 -->
+        <a href="/migraines/<%= event._id %>/edit" class="btn btn-secondary">Edit Event</a>
+        <form action="/migraines/<%= event._id %>/delete" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this event?');">Delete Event</button>
+        </form>
+    </div>
+</section>

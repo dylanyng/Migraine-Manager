@@ -1,5 +1,19 @@
 const MigraineEvent = require('../models/MigraineEvent')
 
+function formatDuration(minutes) {
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+  let result = '';
+  if (hours > 0) {
+    result += `${hours} hour${hours > 1 ? 's' : ''}`;
+  }
+  if (remainingMinutes > 0) {
+    if (result) result += ' ';
+    result += `${remainingMinutes} minute${remainingMinutes > 1 ? 's' : ''}`;
+  }
+  return result || 'Less than a minute';
+}
+
 exports.getMigraineEvents = async (req, res) => {
   try {
       const migraineEvents = await MigraineEvent.find({ userId: req.user.id })
@@ -26,7 +40,12 @@ exports.getMigraineEvent = async (req, res) => {
     if (!migraineEvent) {
       return res.render('error', { error: 'Migraine event not found' })
     }
-    res.render('migraines/show', { title: 'Migraine Event Details', user: req.user, migraineEvent: migraineEvent })
+    res.render('migraines/show', { 
+      title: 'Migraine Event Details', 
+      user: req.user, 
+      migraineEvent: migraineEvent,
+      formatDuration: formatDuration
+    })
   } catch (err) {
     console.error(err)
     res.render('error', { error: err })
