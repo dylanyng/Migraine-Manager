@@ -1,0 +1,87 @@
+<h2>Record Episodes</h2>
+
+<section>
+    <form action="/migraines" method="POST">
+        <div>
+            <label for="attackType">Type of Attack:</label>
+            <select id="attackType" name="attackType" required>
+                <option value="headache">Headache</option>
+                <option value="migraine">Migraine</option>
+                <option value="misc symptoms">Misc Symptoms</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+
+        <div>
+            <label for="duration">Duration (minutes):</label>
+            <input type="number" id="duration" name="duration" min="0">
+        </div>
+
+        <div>
+            <label for="painLevel">Pain Level:</label>
+            <input type="range" id="painLevel" name="painLevel" min="0" max="4" step="1">
+        </div>
+
+        <div>
+            <label>Pain Location:</label>
+            <div>
+                <input type="checkbox" id="left" name="painLocation" value="left">
+                <label for="left">Left</label>
+            </div>
+            <div>
+                <input type="checkbox" id="right" name="painLocation" value="right">
+                <label for="right">Right</label>
+            </div>
+            <div>
+                <input type="checkbox" id="front" name="painLocation" value="front">
+                <label for="front">Front</label>
+            </div>
+            <div>
+                <input type="checkbox" id="back" name="painLocation" value="back">
+                <label for="back">Back</label>
+            </div>
+            <div>
+                <input type="checkbox" id="entireHead" name="painLocation" value="entire head">
+                <label for="entireHead">Entire Head</label>
+            </div>
+        </div>
+
+        <div>
+            <label for="notes">Notes:</label>
+            <textarea id="notes" name="notes"></textarea>
+        </div>
+
+        <div>
+            <label for="medication">Medication Taken:</label>
+            <input type="checkbox" id="medication" name="medication">
+        </div>
+
+        <div id="medicationDetails" style="display: none;">
+            <h3>Medication Details</h3>
+            <div>
+                <label for="medName">Name:</label>
+                <input type="text" id="medName" name="medications[0][name]">
+            </div>
+            <div>
+                <label for="medDose">Dose:</label>
+                <input type="text" id="medDose" name="medications[0][dose]">
+            </div>
+            <div>
+                <label for="medQuantity">Quantity:</label>
+                <input type="number" id="medQuantity" name="medications[0][quantity]" min="0">
+            </div>
+        </div>
+
+        <div>
+            <label for="triggers">Triggers:</label>
+            <input type="text" id="triggers" name="triggers">
+        </div>
+
+        <button type="submit">Record Migraine Event</button>
+    </form>
+
+</section>

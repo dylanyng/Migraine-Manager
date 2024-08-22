@@ -14,6 +14,11 @@ Array.from(todoComplete).forEach((el)=>{
     el.addEventListener('click', markIncomplete)
 })
 
+document.getElementById('medication').addEventListener('change', function() {
+    document.getElementById('medicationDetails').style.display = this.checked ? 'block' : 'none';
+});
+
+
 async function deleteTodo(){
     const todoId = this.parentNode.dataset.id
     try{
