@@ -24,19 +24,57 @@ exports.getMigraineEvents = async (req, res) => {
   }
 }
 
+exports.getMigraineForm = (req, res) => {
+  try {
+    res.render('migraines/new', {
+      title: 'Record New Migraine Event',
+      user: req.user,
+      layout: 'layout'
+    })
+  } catch (err) {
+    console.error(err)
+    req.flash('error', 'An error occurred while loading the form.')
+    res.redirect('/migraines')
+  }
+}
+
 exports.createMigraineEvent = async (req, res) => {
   try {
+    // Convert medication checkbox value to boolean
+    req.body.medication = req.body.medication === 'on';
+
+    // If medication is not checked, set medications to an empty array
+    if (!req.body.medication) {
+      req.body.medications = [];
+    }
+
+    // Convert painLocation to an array if it's not already
+    if (typeof req.body.painLocation === 'string') {
+      req.body.painLocation = [req.body.painLocation];
+    }
+
+    // Convert triggers to an array if it's not already
+    if (typeof req.body.triggers === 'string') {
+      req.body.triggers = req.body.triggers.split(',').map(item => item.trim());
+    }
+
     await MigraineEvent.create({ ...req.body, userId: req.user.id })
+    req.flash('success', 'Migraine event recorded successfully')
     res.redirect('/migraines')
   } catch (err) {
       console.error(err)
-      res.render('error', { error: err })
+      req.flash('error', 'An error occurred while recording the migraine event')
+      res.redirect('/migraines/new')
+      // res.render('error', { error: err })
   }
 }
 
 exports.getMigraineEvent = async (req, res) => {
   try {
-    const migraineEvent = await MigraineEvent.findOne({ _id: req.params.id, userId: req.user.id })
+    const migraineEvent = await MigraineEvent.findOne({   
+      _id: req.params.id, 
+      userId: req.user.id 
+    })
     if (!migraineEvent) {
       return res.render('error', { error: 'Migraine event not found' })
     }
@@ -48,7 +86,8 @@ exports.getMigraineEvent = async (req, res) => {
     })
   } catch (err) {
     console.error(err)
-    res.render('error', { error: err })
+    req.flash('error', 'An error occurred while retrieving the migraine event.')
+    res.redirect('/migraines')
   }
 }
 
@@ -71,7 +110,10 @@ exports.updateMigraineEvent = async (req, res) => {
 
 exports.deleteMigraineEvent = async (req, res) => {
   try {
-    const migraineEvent = await MigraineEvent.findOneAndDelete({ _id: req.params.id, userId: req.user.id })
+    const migraineEvent = await MigraineEvent.findOneAndDelete({ 
+      _id: req.params.id, 
+      userId: req.user.id 
+    })
     if (!migraineEvent) {
       return res.render('error', { error: 'Migraine event not found' })
     }

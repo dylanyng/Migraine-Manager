@@ -1,3 +1,5 @@
+<%- contentFor('body') %>
+
 <h2>Record Episodes</h2>
 
 <section>
@@ -59,7 +61,7 @@
             <label for="medication">Medication Taken:</label>
             <input type="checkbox" id="medication" name="medication">
         </div>
-
+    
         <div id="medicationDetails" style="display: none;">
             <h3>Medication Details</h3>
             <div>
@@ -85,3 +87,19 @@
     </form>
 
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const medicationCheckbox = document.getElementById('medication');
+      const medicationDetails = document.getElementById('medicationDetails');
+    
+      function toggleMedicationDetails() {
+        medicationDetails.style.display = medicationCheckbox.checked ? 'block' : 'none';
+      }
+    
+      medicationCheckbox.addEventListener('change', toggleMedicationDetails);
+    
+      // Initial check in case the checkbox is checked by default
+      toggleMedicationDetails();
+    });
+</script>

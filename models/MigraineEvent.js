@@ -4,6 +4,7 @@ const MigraineEventSchema = new mongoose.Schema({
   attackType: {
     type: String,
     enum: ['headache', 'migraine', 'misc symptoms'],
+    default: 'migraine',
     required: true
   },
   date: {
@@ -31,12 +32,14 @@ const MigraineEventSchema = new mongoose.Schema({
   },
   medication: {
     type: Boolean,
-    required: false
+    default: false,
+    // required: false
   },
   medications: [{
     name: String,
     dose: String,
-    quantity: Number
+    quantity: Number,
+    // required: false
   }],
   triggers: {
     type: [String],
