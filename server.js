@@ -21,11 +21,13 @@ connectDB()
 
 app.set('layout', 'layout');
 app.set('view engine', 'ejs')
+// DEBUG index crash
+app.use(expressLayouts)
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-app.use(expressLayouts)
 app.use(logger('dev'))
+app.use(express.json())
+
 // Sessions
 app.use(
     session({
