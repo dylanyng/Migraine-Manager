@@ -20,7 +20,6 @@ connectDB()
 
 app.set('layout', 'layout');
 app.set('view engine', 'ejs')
-// DEBUG index crash
 app.use(expressLayouts)
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
@@ -42,6 +41,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash())
+// Make flash messages available in all views
+app.use((req, res, next) => {
+  res.locals.messages = req.flash()
+  next()
+})
   
 app.use('/', mainRoutes)
 app.use('/migraines', migraineRoutes)

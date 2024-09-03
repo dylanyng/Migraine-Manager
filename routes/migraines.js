@@ -4,6 +4,7 @@ const migraineController = require('../controllers/migraines')
 const { ensureAuth } = require('../middleware/auth')
 
 router.get('/', ensureAuth, migraineController.getMigraineEvents)
+router.get('/index', ensureAuth, migraineController.getMigraineEvents)
 router.get('/new', ensureAuth, migraineController.getMigraineForm)
 router.post('/', ensureAuth, migraineController.createMigraineEvent)
 router.get('/:id', ensureAuth, migraineController.getMigraineEvent)

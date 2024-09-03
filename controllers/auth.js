@@ -32,7 +32,7 @@ const User = require('../models/User')
       req.logIn(user, (err) => {
         if (err) { return next(err) }
         req.flash('success', { msg: 'Success! You are logged in.' })
-        res.redirect(req.session.returnTo || '/migraines/index')
+        res.redirect(req.session.returnTo || '/migraines')
       })
     })(req, res, next)
   }

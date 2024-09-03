@@ -24,7 +24,8 @@ exports.getMigraineEvents = async (req, res) => {
       })
   } catch (err) {
       console.error(err)
-      res.render('error', { error: err })
+      req.flash('error', 'An error occurred while retrieving migraine events.')
+      res.redirect('/')
   }
 }
 
