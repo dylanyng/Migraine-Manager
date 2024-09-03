@@ -17,7 +17,11 @@ function formatDuration(minutes) {
 exports.getMigraineEvents = async (req, res) => {
   try {
       const migraineEvents = await MigraineEvent.find({ userId: req.user.id })
-      res.render('migraines/index', { title: 'Migraine Events', user: req.user, migraineEvents: migraineEvents })
+      res.render('migraines/index', { 
+        title: 'Migraine Events', 
+        user: req.user, 
+        migraineEvents: migraineEvents 
+      })
   } catch (err) {
       console.error(err)
       res.render('error', { error: err })
