@@ -63,6 +63,14 @@ exports.createMigraineEvent = async (req, res) => {
       req.body.triggers = req.body.triggers.split(',').map(item => item.trim());
     }
 
+    // Change later when allowing user to set timezone
+    // Adjust the date to account for timezone
+    if (req.body.date) {
+      const date = new Date(req.body.date);
+      date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+      req.body.date = date;
+    }
+
     await MigraineEvent.create({ ...req.body, userId: req.user.id })
     req.flash('success', 'Migraine event recorded successfully')
     res.redirect('/migraines')
@@ -151,6 +159,14 @@ exports.updateMigraineEvent = async (req, res) => {
     // Convert triggers to an array if it's not already
     if (typeof req.body.triggers === 'string') {
       req.body.triggers = req.body.triggers.split(',').map(item => item.trim());
+    }
+
+    // Change later when allowing user to set timezone
+    // Adjust the date to account for timezone
+    if (req.body.date) {
+      const date = new Date(req.body.date);
+      date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+      req.body.date = date;
     }
 
     const updatedMigraineEvent = await MigraineEvent.findOneAndUpdate(
