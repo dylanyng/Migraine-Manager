@@ -1,0 +1,75 @@
+<%- contentFor('body') %>
+
+<h2>Edit Migraine Event</h2>
+
+<section>
+    <form action="/migraines/<%= migraineEvent._id %>?_method=PUT" method="POST">
+        <div>
+            <label for="attackType">Type of Attack:</label>
+            <select id="attackType" name="attackType" required>
+                <option value="headache" <%= migraineEvent.attackType === 'headache' ? 'selected' : '' %>>Headache</option>
+                <option value="migraine" <%= migraineEvent.attackType === 'migraine' ? 'selected' : '' %>>Migraine</option>
+                <option value="misc symptoms" <%= migraineEvent.attackType === 'misc symptoms' ? 'selected' : '' %>>Misc Symptoms</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" value="<%= migraineEvent.date.toISOString().split('T')[0] %>" required>
+        </div>
+
+        <div>
+            <label for="duration">Duration (minutes):</label>
+            <input type="number" id="duration" name="duration" min="0" value="<%= migraineEvent.duration %>">
+        </div>
+
+        <div>
+            <label for="painLevel">Pain Level:</label>
+            <input type="range" id="painLevel" name="painLevel" min="0" max="4" step="1" value="<%= migraineEvent.painLevel %>">
+        </div>
+
+        <div>
+            <label>Pain Location:</label>
+            <% ['left', 'right', 'front', 'back', 'entire head'].forEach(function(location) { %>
+                <div>
+                    <input type="checkbox" id="<%= location %>" name="painLocation" value="<%= location %>"
+                           <%= migraineEvent.painLocation.includes(location) ? 'checked' : '' %>>
+                    <label for="<%= location %>"><%= location.charAt(0).toUpperCase() + location.slice(1) %></label>
+                </div>
+            <% }); %>
+        </div>
+
+        <div>
+            <label for="notes">Notes:</label>
+            <textarea id="notes" name="notes"><%= migraineEvent.notes %></textarea>
+        </div>
+
+        <div>
+            <label for="medication">Medication Taken:</label>
+            <input type="checkbox" id="medication" name="medication" <%= migraineEvent.medication ? 'checked' : '' %>>
+        </div>
+    
+        <div id="medicationDetails" style="display: block">
+            <h3>Medication Details</h3>
+            <div>
+                <label for="medName">Name:</label>
+                <input type="text" id="medName" name="medications[0][name]" value="<%= migraineEvent.medications[0] ? migraineEvent.medications[0].name : '' %>">
+            </div>
+            <div>
+                <label for="medDose">Dose:</label>
+                <input type="text" id="medDose" name="medications[0][dose]" value="<%= migraineEvent.medications[0] ? migraineEvent.medications[0].dose : '' %>">
+            </div>
+            <div>
+                <label for="medQuantity">Quantity:</label>
+                <input type="number" id="medQuantity" name="medications[0][quantity]" min="0" value="<%= migraineEvent.medications[0] ? migraineEvent.medications[0].quantity : '' %>">
+            </div>
+        </div>
+
+        <div>
+            <label for="triggers">Triggers:</label>
+            <input type="text" id="triggers" name="triggers" value="<%= migraineEvent.triggers.join(', ') %>">
+        </div>
+
+        <button type="submit">Update Migraine Event</button>
+    </form>
+</section>

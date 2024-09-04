@@ -9,6 +9,8 @@ router.get('/new', ensureAuth, migraineController.getMigraineForm)
 router.post('/', ensureAuth, migraineController.createMigraineEvent)
 router.get('/:id', ensureAuth, migraineController.getMigraineEvent)
 router.put('/:id', ensureAuth, migraineController.updateMigraineEvent)
+router.get('/edit/:id', ensureAuth, migraineController.getEditMigraineForm)
+router.put('/:id', ensureAuth, migraineController.updateMigraineEvent)
 router.delete('/delete/:id', ensureAuth, migraineController.deleteMigraineEvent)
 
 module.exports = router
