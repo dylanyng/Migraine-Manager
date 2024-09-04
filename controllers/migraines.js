@@ -122,9 +122,11 @@ exports.deleteMigraineEvent = async (req, res) => {
     if (!migraineEvent) {
       return res.render('error', { error: 'Migraine event not found' })
     }
+    req.flash('success', 'Migraine event deleted successfully')
     res.redirect('/migraines')
   } catch (err) {
     console.error(err)
-    res.render('error', { error: err })
+    req.flash('error', 'An error occurred while deleting the migraine event')
+    res.redirect('/migraines')
   }
 }

@@ -1,9 +1,9 @@
 /* ALL */
 
-body {
+/* body {
   background-color: #121212;
   color: #f3f3f3;
-}
+} */
 
 body * {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -19,7 +19,7 @@ header {
 
 header * {
   text-decoration: none;
-  color: #e2e2e2;
+  /* color: #e2e2e2; */
 }
 
 header > nav {
@@ -65,7 +65,7 @@ h2 {
 }
 
 .migraine-item {
-  background-color: rgb(37, 37, 37);
+  /* background-color: rgb(37, 37, 37); */
   padding: 15px;
   max-width: 35%;
   min-width: 280px;
@@ -77,11 +77,11 @@ h2 {
   text-transform: capitalize;
 }
 
-.btn-secondary {
+/* .btn-secondary {
   text-decoration: none;
   color: rgb(145, 145, 145);
-}
+} */
 
-.btn-secondary:hover {
+/* .btn-secondary:hover {
   color: rgb(161, 161, 161)
-}
+} */
