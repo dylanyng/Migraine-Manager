@@ -1,7 +1,7 @@
 const User = require('../models/User')
 
 // Updates a user's profile information in the database
-exports.updateProfile = async (req, res) => {
+exports.updateProfile = async (req, res, next) => {
   try {
     const updates = {
       preferences: req.body.preferences,
@@ -14,6 +14,6 @@ exports.updateProfile = async (req, res) => {
 
     res.json({ message: 'Profile updated successfully', user })
   } catch (err) {
-    res.status(400).json({ error: err.message })
+    next(err);
   }
 }
