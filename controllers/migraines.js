@@ -14,7 +14,7 @@ function formatDuration(minutes) {
   return result || 'Less than a minute';
 }
 
-exports.getMigraineEvents = async (req, res) => {
+exports.getMigraineEvents = async (req, res, next) => {
   try {
       const migraineEvents = await MigraineEvent.find({ userId: req.user.id })
       res.render('migraines/index', { 
@@ -30,7 +30,7 @@ exports.getMigraineEvents = async (req, res) => {
   }
 }
 
-exports.getMigraineForm = (req, res) => {
+exports.getMigraineForm = (req, res, next) => {
   try {
     res.render('migraines/new', {
       title: 'Record New Migraine Event',
@@ -45,7 +45,7 @@ exports.getMigraineForm = (req, res) => {
   }
 }
 
-exports.createMigraineEvent = async (req, res) => {
+exports.createMigraineEvent = async (req, res, next) => {
   try {
     // Convert medication checkbox value to boolean
     req.body.medication = req.body.medication === 'on';
@@ -85,7 +85,7 @@ exports.createMigraineEvent = async (req, res) => {
   }
 }
 
-exports.getMigraineEvent = async (req, res) => {
+exports.getMigraineEvent = async (req, res, next) => {
   try {
     const migraineEvent = await MigraineEvent.findOne({   
       _id: req.params.id, 
@@ -108,25 +108,7 @@ exports.getMigraineEvent = async (req, res) => {
   }
 }
 
-exports.updateMigraineEvent = async (req, res) => {
-  try {
-    const migraineEvent = await MigraineEvent.findOneAndUpdate(
-      { _id: req.params.id, userId: req.user.id },
-      req.body,
-      { new: true, runValidators: true }
-    )
-    if (!migraineEvent) {
-      return res.render('error', { error: 'Migraine event not found' })
-    }
-    res.redirect(`/migraines/${migraineEvent._id}`)
-  } catch (err) {
-    console.error(err)
-    next(err);
-    res.render('error', { error: err })
-  }
-}
-
-exports.getEditMigraineForm = async (req, res) => {
+exports.getEditMigraineForm = async (req, res, next) => {
   try {
     const migraineEvent = await MigraineEvent.findOne({ _id: req.params.id, userId: req.user.id })
     if (!migraineEvent) {
@@ -146,7 +128,7 @@ exports.getEditMigraineForm = async (req, res) => {
   }
 }
 
-exports.updateMigraineEvent = async (req, res) => {
+exports.updateMigraineEvent = async (req, res, next) => {
   try {
     // Same logic to createMigraineEvent for handling form data
     // Convert medication checkbox value to boolean
@@ -194,7 +176,7 @@ exports.updateMigraineEvent = async (req, res) => {
   }
 }
 
-exports.deleteMigraineEvent = async (req, res) => {
+exports.deleteMigraineEvent = async (req, res, next) => {
   try {
     const migraineEvent = await MigraineEvent.findOneAndDelete({ 
       _id: req.params.id, 
