@@ -31,7 +31,13 @@
     <!-- Container for flash messages -->
     <div class="container">
         <% if (messages.error) { %>
-            <div class="alert alert-danger"><%= messages.error %></div>
+            <% if (Array.isArray(messages.error)) { %>
+                <% messages.error.forEach(function(err) { %>
+                    <div class="alert alert-danger"><%= err %></div>
+                <% }); %>
+            <% } else { %>
+                <div class="alert alert-danger"><%= messages.error %></div>
+            <% } %>
         <% } %>
         <% if (messages.success) { %>
             <div class="alert alert-success"><%= messages.success %></div>

@@ -24,6 +24,7 @@ exports.getMigraineEvents = async (req, res) => {
       })
   } catch (err) {
       console.error(err)
+      next(err);
       req.flash('error', 'An error occurred while retrieving migraine events.')
       res.redirect('/')
   }
@@ -38,6 +39,7 @@ exports.getMigraineForm = (req, res) => {
     })
   } catch (err) {
     console.error(err)
+    next(err);
     req.flash('error', 'An error occurred while loading the form.')
     res.redirect('/migraines')
   }
@@ -76,6 +78,7 @@ exports.createMigraineEvent = async (req, res) => {
     res.redirect('/migraines')
   } catch (err) {
       console.error(err)
+      next(err);
       req.flash('error', 'An error occurred while recording the migraine event')
       res.redirect('/migraines/new')
       // res.render('error', { error: err })
@@ -99,6 +102,7 @@ exports.getMigraineEvent = async (req, res) => {
     })
   } catch (err) {
     console.error(err)
+    next(err);
     req.flash('error', 'An error occurred while retrieving the migraine event.')
     res.redirect('/migraines')
   }
@@ -117,6 +121,7 @@ exports.updateMigraineEvent = async (req, res) => {
     res.redirect(`/migraines/${migraineEvent._id}`)
   } catch (err) {
     console.error(err)
+    next(err);
     res.render('error', { error: err })
   }
 }
@@ -135,6 +140,7 @@ exports.getEditMigraineForm = async (req, res) => {
     })
   } catch (err) {
     console.error(err)
+    next(err);
     req.flash('error', 'An error occurred while retrieving the migraine event.')
     res.redirect('/migraines')
   }
@@ -182,6 +188,7 @@ exports.updateMigraineEvent = async (req, res) => {
     res.redirect(`/migraines/${updatedMigraineEvent._id}`)
   } catch (err) {
     console.error(err)
+    next(err);
     req.flash('error', 'An error occurred while updating the migraine event')
     res.redirect(`/migraines/${req.params.id}/edit`)
   }
@@ -200,6 +207,7 @@ exports.deleteMigraineEvent = async (req, res) => {
     res.redirect('/migraines')
   } catch (err) {
     console.error(err)
+    next(err);
     req.flash('error', 'An error occurred while deleting the migraine event')
     res.redirect('/migraines')
   }
