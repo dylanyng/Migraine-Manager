@@ -1,5 +1,7 @@
 # Migraine Manager
 
+WIP, README coming soon.
+
 ## Install
 
 `npm install`
