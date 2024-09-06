@@ -1,0 +1,87 @@
+/* ALL */
+
+/* body {
+  background-color: #121212;
+  color: #f3f3f3;
+} */
+
+body * {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+/* Core layout */
+
+header {
+  width: 100%;
+  font-style: none;
+}
+
+header * {
+  text-decoration: none;
+  /* color: #e2e2e2; */
+}
+
+header > nav {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+nav > ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
+
+ul > li {
+  margin: auto;
+}
+
+
+/* Sub pages */
+
+h2 {
+  font-size: 1.2rem;
+}
+
+
+/* migraines/index */
+
+.migraine-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: baseline;
+  list-style: none;
+  padding: 0 0 0 15px;
+}
+
+.migraine-item * {
+  padding: auto;
+  margin: auto;
+  margin-bottom: 7px;
+}
+
+.migraine-item {
+  /* background-color: rgb(37, 37, 37); */
+  padding: 15px;
+  max-width: 35%;
+  min-width: 280px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.migraine-type {
+  text-transform: capitalize;
+}
+
+/* .btn-secondary {
+  text-decoration: none;
+  color: rgb(145, 145, 145);
+} */
+
+/* .btn-secondary:hover {
+  color: rgb(161, 161, 161)
+} */

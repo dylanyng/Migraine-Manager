@@ -1,6 +1,6 @@
 # Migraine Manager
 
-WIP, README coming soon.
+WIP - README coming soon.
 
 ## Install
 

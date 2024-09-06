@@ -1,8 +1,21 @@
-<h1>Migraine Management App Index Page</h1>
+<!-- <h1>Migraine Management App Index Page</h1>
 <% if (!user) { %>
     <a href="/login">Login</a>
     <a href="/signup">Signup</a>
 <% } else { %>
     <p>Welcome, <%= user.userName %>!</p>
     <a href="/migraines">View Migraine Logs</a>
+<% } %> -->
+
+<h1 class="text-4xl font-bold text-center my-8">Migraine Manager</h1>
+<% if (!user) { %>
+    <div class="flex justify-center space-x-4">
+        <a href="/login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</a>
+        <a href="/signup" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Signup</a>
+    </div>
+<% } else { %>
+    <p class="text-xl text-center my-4">Welcome, <%= user.userName %>!</p>
+    <div class="text-center">
+        <a href="/migraines" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">View Migraine Logs</a>
+    </div>
 <% } %>

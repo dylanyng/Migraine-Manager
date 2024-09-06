@@ -9,6 +9,7 @@ function convertToUTC(dateString, timezone) {
 
 // Format date in user's timezone
 function formatInUserTimezone(date, timezone) {
+  // MM-DD-YYYY formatting
   const options = { 
     year: 'numeric', 
     month: '2-digit', 
@@ -19,6 +20,7 @@ function formatInUserTimezone(date, timezone) {
   return formatted;
 }
 
+// Format migraine duration time
 function formatDuration(minutes) {
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
