@@ -31,6 +31,12 @@ const User = require('../models/User')
       }
       req.logIn(user, (err) => {
         if (err) { return next(err) }
+        // Update user's timezone if changed
+        if (req.body.timezone && user.preferences.timezone !== req.body.timezone) {
+          User.findByIdAndUpdate(user._id, { 'preferences.timezone': req.body.timezone }, (err) => {
+            if (err) console.error('Error updating timezone:', err)
+          })
+        }
         req.flash('success', { msg: 'Success! You are logged in.' })
         res.redirect(req.session.returnTo || '/migraines')
       })
@@ -78,7 +84,7 @@ const User = require('../models/User')
       preferences: {
         defaultPainScale: 0,
         reminderFrequency: 'none',
-        timezone: 'UTC'
+        timezone: req.body.timezone || 'UTC'
       },
       commonMedications: [],
       commonTriggers: [],

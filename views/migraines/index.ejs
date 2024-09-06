@@ -4,7 +4,8 @@
   <ul class="migraine-list">
     <% migraineEvents.forEach(function(event) { %>
       <li class="migraine-item">
-        <h3 class="migraine-date"><%= event.date.toLocaleDateString() %></h3>
+        <!-- <h3 class="migraine-date"><%= event.date.toLocaleDateString() %></h3> -->
+        <h3 class="migraine-date"><%= event.formattedDate %></h3>
         <p class="migraine-type"><%= event.attackType %></p>
         <p class="migraine-pain">Pain Level: <%= event.painLevel %></p>
         <a href="/migraines/<%= event._id %>" class="btn btn-secondary">Details</a>

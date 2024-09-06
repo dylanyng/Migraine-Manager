@@ -1,6 +1,13 @@
 function detectTimezone() {
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  document.getElementById('timezone').value = timezone;
+  const timezoneInput = document.getElementById('timezone');
+  if (timezoneInput) {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    timezoneInput.value = timezone;
+  }
 }
 
-window.onload = detectTimezone;
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', detectTimezone);
+} else {
+  detectTimezone();
+}

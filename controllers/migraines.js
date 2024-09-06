@@ -1,5 +1,25 @@
 const MigraineEvent = require('../models/MigraineEvent')
 
+// Convert date to UTC
+function convertToUTC(dateString, timezone) {
+  const date = new Date(dateString);
+  const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+  return utcDate;
+}
+
+// Format date in user's timezone
+function formatInUserTimezone(date, timezone) {
+  const options = { 
+    year: 'numeric', 
+    month: '2-digit', 
+    day: '2-digit', 
+    timeZone: timezone 
+  };
+  const formatted = new Intl.DateTimeFormat('en-US', options).format(date);
+  return formatted;
+}
+
+
 function formatDuration(minutes) {
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
@@ -17,16 +37,31 @@ function formatDuration(minutes) {
 exports.getMigraineEvents = async (req, res, next) => {
   try {
       const migraineEvents = await MigraineEvent.find({ userId: req.user.id })
+      const userTimezone = req.user.preferences.timezone || 'UTC';
+
+      // const formattedEvents = migraineEvents.map(event => ({
+      //   ...event.toObject(),
+      //   formattedDate: formatInUserTimezone(event.date, userTimezone)
+      // }))
+
+      const formattedEvents = migraineEvents.map(event => {
+        const formattedDate = formatInUserTimezone(event.date, userTimezone);
+        return {
+          ...event.toObject(),
+          formattedDate
+        };
+      });
+
       res.render('migraines/index', { 
         title: 'Migraine Events', 
         user: req.user, 
-        migraineEvents: migraineEvents 
+        // migraineEvents: migraineEvents
+        migraineEvents: formattedEvents 
       })
   } catch (err) {
       console.error(err)
-      next(err);
       req.flash('error', 'An error occurred while retrieving migraine events.')
-      res.redirect('/')
+      next(err);
   }
 }
 
@@ -39,9 +74,8 @@ exports.getMigraineForm = (req, res, next) => {
     })
   } catch (err) {
     console.error(err)
-    next(err);
     req.flash('error', 'An error occurred while loading the form.')
-    res.redirect('/migraines')
+    next(err);
   }
 }
 
@@ -65,12 +99,12 @@ exports.createMigraineEvent = async (req, res, next) => {
       req.body.triggers = req.body.triggers.split(',').map(item => item.trim());
     }
 
-    // Change later when allowing user to set timezone
-    // Adjust the date to account for timezone
+    // Convert and store the user-input date in UTC, using the user's timezone preference
     if (req.body.date) {
-      const date = new Date(req.body.date);
-      date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-      req.body.date = date;
+      const userTimezone = req.user.preferences.timezone || 'UTC';
+      
+      // Convert user's time zone to UTC before saving it to the database
+      req.body.date = convertToUTC(req.body.date, userTimezone);
     }
 
     await MigraineEvent.create({ ...req.body, userId: req.user.id })
@@ -102,9 +136,8 @@ exports.getMigraineEvent = async (req, res, next) => {
     })
   } catch (err) {
     console.error(err)
-    next(err);
     req.flash('error', 'An error occurred while retrieving the migraine event.')
-    res.redirect('/migraines')
+    next(err);
   }
 }
 
@@ -122,9 +155,8 @@ exports.getEditMigraineForm = async (req, res, next) => {
     })
   } catch (err) {
     console.error(err)
-    next(err);
     req.flash('error', 'An error occurred while retrieving the migraine event.')
-    res.redirect('/migraines')
+    next(err);
   }
 }
 
@@ -149,12 +181,11 @@ exports.updateMigraineEvent = async (req, res, next) => {
       req.body.triggers = req.body.triggers.split(',').map(item => item.trim());
     }
 
-    // Change later when allowing user to set timezone
-    // Adjust the date to account for timezone
+    // Convert and store the user-input date in UTC, using the user's timezone preference
     if (req.body.date) {
-      const date = new Date(req.body.date);
-      date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-      req.body.date = date;
+      const userTimezone = req.user.preferences.timezone || 'UTC';
+      // Convert user's time zone to UTC before saving it to the database
+      req.body.date = convertToUTC(req.body.date, userTimezone);
     }
 
     const updatedMigraineEvent = await MigraineEvent.findOneAndUpdate(
@@ -170,8 +201,8 @@ exports.updateMigraineEvent = async (req, res, next) => {
     res.redirect(`/migraines/${updatedMigraineEvent._id}`)
   } catch (err) {
     console.error(err)
-    next(err);
     req.flash('error', 'An error occurred while updating the migraine event')
+    next(err);
     res.redirect(`/migraines/${req.params.id}/edit`)
   }
 }
