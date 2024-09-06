@@ -1,5 +1,6 @@
 <%- contentFor('body') %>
 <form action="/login" method="POST">
+    <input type="hidden" id="timezone" name="timezone">
     <input type="email" name="email" placeholder="Email">
     <input type="password" name="password" placeholder="Password">
     <input type="submit">
