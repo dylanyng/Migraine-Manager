@@ -19,7 +19,6 @@ function formatInUserTimezone(date, timezone) {
   return formatted;
 }
 
-
 function formatDuration(minutes) {
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
@@ -39,11 +38,6 @@ exports.getMigraineEvents = async (req, res, next) => {
       const migraineEvents = await MigraineEvent.find({ userId: req.user.id })
       const userTimezone = req.user.preferences.timezone || 'UTC';
 
-      // const formattedEvents = migraineEvents.map(event => ({
-      //   ...event.toObject(),
-      //   formattedDate: formatInUserTimezone(event.date, userTimezone)
-      // }))
-
       const formattedEvents = migraineEvents.map(event => {
         const formattedDate = formatInUserTimezone(event.date, userTimezone);
         return {
@@ -55,7 +49,6 @@ exports.getMigraineEvents = async (req, res, next) => {
       res.render('migraines/index', { 
         title: 'Migraine Events', 
         user: req.user, 
-        // migraineEvents: migraineEvents
         migraineEvents: formattedEvents 
       })
   } catch (err) {
@@ -115,7 +108,6 @@ exports.createMigraineEvent = async (req, res, next) => {
       next(err);
       req.flash('error', 'An error occurred while recording the migraine event')
       res.redirect('/migraines/new')
-      // res.render('error', { error: err })
   }
 }
 
