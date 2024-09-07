@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="/css/style.css">
     <title><%= typeof title != 'undefined' ? title : 'Migraine Manager' %></title>
 </head>
-<body class="bg-green-500">
-    <header>
+<body class="bg-neutral-900">
+    <header class="text-slate-50">
         <nav>
             <a href="/">
                 <h1>Migraine Manager</h1>
@@ -48,8 +48,8 @@
         <%- defineContent('body') %>
     </main>
 
-    <footer>
-        <ul>
+    <footer class="fixed bottom-0 text-center w-full text-slate-50">
+        <ul class="flex flex-row justify-around">
             <% if(user){ %>
                 <li class="nav-item"><a href= "/">Home</a></li>
                 <li class="nav-item"><a href= "/logout">Logout</a></li>
