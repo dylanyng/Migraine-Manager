@@ -30,6 +30,8 @@ The dashboard provides an overview of recent migraine activity, helping users id
 While the current version of Migraine Manager is functional and user-friendly, there are several optimizations planned for future iterations:
 
 - [ ] Implement data visualization features to help users better understand their migraine patterns and trends over time.
+- [ ] Add a user settings page for updating user preferences
+- [ ] Implement a reminder system for logging migraines
 - [ ] Optimize database queries for faster data retrieval, especially for users with extensive migraine history.
 - [ ] Implement caching strategies to reduce server load and improve application responsiveness.
 
