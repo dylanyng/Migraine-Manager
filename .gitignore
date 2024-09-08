@@ -4,3 +4,4 @@ config/.env
 .vscode/*
 settings.json
 repopack-output.txt
+.DS_Store
