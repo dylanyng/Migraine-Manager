@@ -37,7 +37,7 @@ function formatDuration(minutes) {
 
 exports.getMigraineEvents = async (req, res, next) => {
   try {
-      const migraineEvents = await MigraineEvent.find({ userId: req.user.id })
+      const migraineEvents = await MigraineEvent.find({ userId: req.user.id }).sort({ date: -1 })
       const userTimezone = req.user.preferences.timezone || 'UTC';
 
       const formattedEvents = migraineEvents.map(event => {
