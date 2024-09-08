@@ -1,19 +1,26 @@
-<h2>Recorded Episodes</h2>
+<%- contentFor('body') %>
 
-<% if (migraineEvents.length > 0) { %>
-  <ul class="migraine-list">
-    <% migraineEvents.forEach(function(event) { %>
-      <li class="migraine-item">
-        <!-- <h3 class="migraine-date"><%= event.date.toLocaleDateString() %></h3> -->
-        <h3 class="migraine-date"><%= event.formattedDate %></h3>
-        <p class="migraine-type"><%= event.attackType %></p>
-        <p class="migraine-pain">Pain Level: <%= event.painLevel %></p>
-        <a href="/migraines/<%= event._id %>" class="btn btn-secondary">Details</a>
-      </li>
-    <% }); %>
-  </ul>
-<% } else { %>
-  <p class="no-events">No migraine events recorded yet.</p>
-<% } %>
+<div class="container mx-auto px-6 py-8">
+  <h2 class="text-3xl font-bold mb-8 text-center">Recorded Episodes</h2>
 
-<a href="/migraines/new" class="btn btn-primary">Record New Episode</a>
+  <% if (migraineEvents.length > 0) { %>
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% migraineEvents.forEach(function(event) { %>
+        <li class="migraine-item rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg
+                   <%= event.attackType === 'migraine' ? 'bg-red-900/50' : 
+                      event.attackType === 'headache' ? 'bg-orange-900/50' : 'bg-yellow-900/50' %>">
+          <h3 class="text-xl font-semibold mb-2"><%= event.formattedDate %></h3>
+          <p class="text-lg mb-2 capitalize"><%= event.attackType %></p>
+          <p class="mb-4">Pain Level: <%= event.painLevel %></p>
+          <a href="/migraines/<%= event._id %>" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-500 transition-colors duration-300">View Details</a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p class="text-center text-xl">No migraine events recorded yet.</p>
+  <% } %>
+
+  <div class="mt-12 text-center">
+    <a href="/migraines/new" class="bg-indigo-600 text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-indigo-500 transition-colors duration-300">Record New Episode</a>
+  </div>
+</div>
