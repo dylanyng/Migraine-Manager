@@ -25,7 +25,7 @@ The application features a clean, intuitive UI with color-coded migraine events 
 
 The dashboard provides an overview of recent migraine activity, helping users identify patterns and potential triggers.
 
-## Future Optimizations & Features
+## Future Optimizations & Features:
 
 While the current version of Migraine Manager is functional and user-friendly, there are several optimizations planned for future iterations:
 
