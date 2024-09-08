@@ -1,75 +1,98 @@
 <%- contentFor('body') %>
 
-<h2>Edit Migraine Event</h2>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">Edit Migraine Episode</h2>
+    </div>
 
-<section>
-    <form action="/migraines/<%= migraineEvent._id %>?_method=PUT" method="POST">
-        <div>
-            <label for="attackType">Type of Attack:</label>
-            <select id="attackType" name="attackType" required>
-                <option value="headache" <%= migraineEvent.attackType === 'headache' ? 'selected' : '' %>>Headache</option>
-                <option value="migraine" <%= migraineEvent.attackType === 'migraine' ? 'selected' : '' %>>Migraine</option>
-                <option value="misc symptoms" <%= migraineEvent.attackType === 'misc symptoms' ? 'selected' : '' %>>Misc Symptoms</option>
-            </select>
-        </div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form class="space-y-6" action="/migraines/<%= migraineEvent._id %>?_method=PUT" method="POST">
+            <div>
+                <label for="attackType" class="block text-sm font-medium leading-6">Type of Attack</label>
+                <select id="attackType" name="attackType" required class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <option value="headache" <%= migraineEvent.attackType === 'headache' ? 'selected' : '' %>>Headache</option>
+                    <option value="migraine" <%= migraineEvent.attackType === 'migraine' ? 'selected' : '' %>>Migraine</option>
+                    <option value="misc symptoms" <%= migraineEvent.attackType === 'misc symptoms' ? 'selected' : '' %>>Misc Symptoms</option>
+                </select>
+            </div>
 
-        <div>
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" value="<%= migraineEvent.date.toISOString().split('T')[0] %>" required>
-        </div>
+            <div>
+                <label for="date" class="block text-sm font-medium leading-6">Date</label>
+                <input type="date" id="date" name="date" value="<%= migraineEvent.date.toISOString().split('T')[0] %>" required class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
 
-        <div>
-            <label for="duration">Duration (minutes):</label>
-            <input type="number" id="duration" name="duration" min="0" value="<%= migraineEvent.duration %>">
-        </div>
+            <div>
+                <label for="duration" class="block text-sm font-medium leading-6">Duration (minutes)</label>
+                <input type="number" id="duration" name="duration" min="0" value="<%= migraineEvent.duration %>" class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
 
-        <div>
-            <label for="painLevel">Pain Level:</label>
-            <input type="range" id="painLevel" name="painLevel" min="0" max="4" step="1" value="<%= migraineEvent.painLevel %>">
-        </div>
+            <div>
+                <label for="painLevel" class="block text-sm font-medium leading-6">Pain Level</label>
+                <input type="range" id="painLevel" name="painLevel" min="0" max="4" step="1" value="<%= migraineEvent.painLevel %>" class="mt-2 block w-full">
+            </div>
 
-        <div>
-            <label>Pain Location:</label>
-            <% ['left', 'right', 'front', 'back', 'entire head'].forEach(function(location) { %>
-                <div>
-                    <input type="checkbox" id="<%= location %>" name="painLocation" value="<%= location %>"
-                           <%= migraineEvent.painLocation.includes(location) ? 'checked' : '' %>>
-                    <label for="<%= location %>"><%= location.charAt(0).toUpperCase() + location.slice(1) %></label>
+            <div>
+                <span class="block text-sm font-medium leading-6 mb-2">Pain Location</span>
+                <div class="space-y-2">
+                    <% ['left', 'right', 'front', 'back', 'entire head'].forEach(function(location) { %>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="<%= location %>" name="painLocation" value="<%= location %>" 
+                                   <%= migraineEvent.painLocation.includes(location) ? 'checked' : '' %>
+                                   class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                            <label for="<%= location %>" class="ml-2 block text-sm"><%= location.charAt(0).toUpperCase() + location.slice(1) %></label>
+                        </div>
+                    <% }); %>
                 </div>
-            <% }); %>
-        </div>
+            </div>
 
-        <div>
-            <label for="notes">Notes:</label>
-            <textarea id="notes" name="notes"><%= migraineEvent.notes %></textarea>
-        </div>
+            <div>
+                <label for="notes" class="block text-sm font-medium leading-6">Notes</label>
+                <textarea id="notes" name="notes" rows="3" class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"><%= migraineEvent.notes %></textarea>
+            </div>
 
-        <div>
-            <label for="medication">Medication Taken:</label>
-            <input type="checkbox" id="medication" name="medication" <%= migraineEvent.medication ? 'checked' : '' %>>
-        </div>
+            <div class="flex items-center">
+                <input type="checkbox" id="medication" name="medication" <%= migraineEvent.medication ? 'checked' : '' %> class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                <label for="medication" class="ml-2 block text-sm">Medication Taken</label>
+            </div>
     
-        <div id="medicationDetails" style="display: block">
-            <h3>Medication Details</h3>
-            <div>
-                <label for="medName">Name:</label>
-                <input type="text" id="medName" name="medications[0][name]" value="<%= migraineEvent.medications[0] ? migraineEvent.medications[0].name : '' %>">
+            <div id="medicationDetails" class="space-y-4">
+                <h3 class="text-lg font-medium leading-6">Medication Details</h3>
+                <div>
+                    <label for="medName" class="block text-sm font-medium leading-6">Name</label>
+                    <input type="text" id="medName" name="medications[0][name]" value="<%= migraineEvent.medications[0] ? migraineEvent.medications[0].name : '' %>" class="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+                <div>
+                    <label for="medDose" class="block text-sm font-medium leading-6">Dose</label>
+                    <input type="text" id="medDose" name="medications[0][dose]" value="<%= migraineEvent.medications[0] ? migraineEvent.medications[0].dose : '' %>" class="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+                <div>
+                    <label for="medQuantity" class="block text-sm font-medium leading-6">Quantity</label>
+                    <input type="number" id="medQuantity" name="medications[0][quantity]" min="0" value="<%= migraineEvent.medications[0] ? migraineEvent.medications[0].quantity : '' %>" class="mt-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
             </div>
-            <div>
-                <label for="medDose">Dose:</label>
-                <input type="text" id="medDose" name="medications[0][dose]" value="<%= migraineEvent.medications[0] ? migraineEvent.medications[0].dose : '' %>">
-            </div>
-            <div>
-                <label for="medQuantity">Quantity:</label>
-                <input type="number" id="medQuantity" name="medications[0][quantity]" min="0" value="<%= migraineEvent.medications[0] ? migraineEvent.medications[0].quantity : '' %>">
-            </div>
-        </div>
 
-        <div>
-            <label for="triggers">Triggers:</label>
-            <input type="text" id="triggers" name="triggers" value="<%= migraineEvent.triggers.join(', ') %>">
-        </div>
+            <div>
+                <label for="triggers" class="block text-sm font-medium leading-6">Triggers</label>
+                <input type="text" id="triggers" name="triggers" value="<%= migraineEvent.triggers.join(', ') %>" class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
 
-        <button type="submit">Update Migraine Event</button>
-    </form>
-</section>
+            <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update Migraine Event</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const medicationCheckbox = document.getElementById('medication');
+      const medicationDetails = document.getElementById('medicationDetails');
+    
+      function toggleMedicationDetails() {
+        medicationDetails.classList.toggle('hidden', !medicationCheckbox.checked);
+      }
+    
+      medicationCheckbox.addEventListener('change', toggleMedicationDetails);
+    
+      // Initial check to set the correct state
+      toggleMedicationDetails();
+    });
+</script>
