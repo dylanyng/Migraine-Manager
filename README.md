@@ -4,6 +4,8 @@ Migraine Manager is a web application designed to help users track and manage th
 
 **Link to project:** COMING SOON
 
+![Landing Page](public/assets/images/jpeg/landing.jpeg)
+
 ---
 
 ## How It's Made:
