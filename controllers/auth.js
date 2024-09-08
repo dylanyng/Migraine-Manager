@@ -8,7 +8,8 @@ const User = require('../models/User')
     }
     res.render('login', {
       title: 'Login',
-      user: req.user
+      user: req.user,
+      layout: false // Do not use layout.ejs
     })
   }
   
@@ -60,7 +61,8 @@ const User = require('../models/User')
     }
     res.render('signup', {
       title: 'Create Account',
-      user: req.user
+      user: req.user,
+      layout: false // Do not use layour.ejs
     })
   }
   

@@ -1,67 +1,91 @@
-<div class="flex flex-col min-h-screen">
-    <!-- Hero Section -->
-    <header class="py-16 md:py-24">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-center justify-between">
-          <div class="md:w-1/2 mb-8 md:mb-0">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Manage Your Migraines with Ease</h1>
-            <p class="text-xl mb-8">Track, analyze, and take control of your migraine symptoms with our intuitive app.</p>
-            <div class="flex space-x-4">
-              <a href="/signup" class="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-2 px-4 rounded-md transition duration-300">Get Started</a>
-              <a href="/login" class="bg-transparent hover:bg-indigo-500 text-indigo-500 hover:text-white font-semibold py-2 px-4 rounded-md border border-indigo-500 transition duration-300">Log In</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Migraine Manager</title>
+</head>
+<body class="text-slate-100 bg-midnight">
+    <header class="bg-midnight py-4 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+          <div class="flex items-center space-x-1">
+            <img src="/assets/images/svg/logo.svg" alt="Migraine Manager App" class="h-16 w-auto">
+            <span class="text-white text-xl font-semibold">Migraine Manager</span>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/login" class="bg-transparent hover:bg-indigo-500 text-indigo-500 hover:text-white font-semibold py-2 px-4 rounded-md border border-indigo-500 transition duration-300">Log In</a>
+            <a href="/signup" class="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-2 px-4 rounded-md transition duration-300">Sign Up</a>
+          </div>
+        </div>
+      </header>
+
+    <div class="flex flex-col min-h-screen">
+        <!-- Hero Section -->
+        <header class="py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Manage Your Migraines with Ease</h1>
+                <p class="text-xl mb-8">Track, analyze, and take control of your migraine symptoms with our intuitive app.</p>
+                <div class="flex space-x-4">
+                <a href="/signup" class="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-3 px-20 rounded-md transition duration-300">Get Started</a>
+                </div>
             </div>
-          </div>
-          <div class="md:w-1/2">
-            <img src="/assets/images/svg/logo.svg" alt="Migraine Manager App" class="w-full max-w-sm mx-auto">
-          </div>
+            <div class="md:w-1/2">
+                <img src="/assets/images/svg/logo.svg" alt="Migraine Manager App" class="w-full max-w-sm mx-auto">
+            </div>
+            </div>
         </div>
-      </div>
-    </header>
-  
-    <!-- Features Section -->
-    <section class="py-16 bg-gray-800">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-12 text-center">Key Features</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <svg class="w-12 h-12 mx-auto mb-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-            <h3 class="text-xl font-semibold mb-2">Easy Tracking</h3>
-            <p>Log your migraine events quickly and effortlessly.</p>
-          </div>
-          <div class="text-center">
-            <svg class="w-12 h-12 mx-auto mb-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-            <h3 class="text-xl font-semibold mb-2">Insightful Analytics</h3>
-            <p>Gain valuable insights from your migraine data.</p>
-          </div>
-          <div class="text-center">
-            <svg class="w-12 h-12 mx-auto mb-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-            <h3 class="text-xl font-semibold mb-2">Smart Reminders</h3>
-            <p>Set customized alerts for medication and triggers.</p>
-          </div>
+        </header>
+    
+        <!-- Features Section -->
+        <section class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center">Key Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <svg class="w-12 h-12 mx-auto mb-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                <h3 class="text-xl font-semibold mb-2">Easy Tracking</h3>
+                <p>Log your migraine events quickly and effortlessly.</p>
+            </div>
+            <div class="text-center">
+                <svg class="w-12 h-12 mx-auto mb-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                <h3 class="text-xl font-semibold mb-2">Insightful Analytics</h3>
+                <p>Gain valuable insights from your migraine data.</p>
+            </div>
+            <div class="text-center">
+                <svg class="w-12 h-12 mx-auto mb-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                <h3 class="text-xl font-semibold mb-2">Smart Reminders</h3>
+                <p>Set customized alerts for medication and triggers.</p>
+            </div>
+            </div>
         </div>
-      </div>
-    </section>
-  
-    <!-- CTA Section -->
-    <section class="py-16">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-4">Ready to Take Control?</h2>
-        <p class="text-xl mb-8">Join thousands of users who have improved their quality of life with Migraine Manager.</p>
-        <a href="/signup" class="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-3 px-6 rounded-md transition duration-300">Create An Account</a>
-      </div>
-    </section>
-  
-    <!-- Footer -->
-    <footer class="py-8 mt-auto">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <p>&copy; 2024 Migraine Manager. All rights reserved.</p>
-          <nav class="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" class="hover:text-indigo-400 transition duration-300">Privacy Policy</a>
-            <a href="#" class="hover:text-indigo-400 transition duration-300">Terms of Service</a>
-            <a href="#" class="hover:text-indigo-400 transition duration-300">Contact Us</a>
-          </nav>
+        </section>
+    
+        <!-- CTA Section -->
+        <section class="py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Take Control?</h2>
+            <p class="text-xl mb-8">Join thousands of users who have improved their quality of life with Migraine Manager.</p>
+            <a href="/signup" class="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-3 px-6 rounded-md transition duration-300">Create An Account</a>
         </div>
-      </div>
-    </footer>
-  </div>
+        </section>
+    
+        <!-- Footer -->
+        <footer class="py-8 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2024 Migraine Manager</p>
+            <nav class="flex space-x-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-indigo-400 transition duration-300" hidden>Privacy Policy</a>
+                <a href="#" class="hover:text-indigo-400 transition duration-300" hidden>Terms of Service</a>
+                <a href="#" class="hover:text-indigo-400 transition duration-300">Contact Us</a>
+            </nav>
+            </div>
+        </div>
+        </footer>
+    </div>
+</body>
+</html>
