@@ -10,7 +10,7 @@ Migraine Manager is a web application designed to help users track and manage th
 
 ## How It's Made:
 
-**Tech used:** HTML, CSS, JavaScript, Node.js, Express.js, MongoDB, EJS, Tailwind CSS
+**Tech used:** HTML, EJS, JavaScript, Tailwind CSS, Node.js, Express.js, MongoDB
 
 Migraine Manager is built on a robust full-stack architecture:
 
