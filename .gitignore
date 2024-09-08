@@ -1,10 +1,10 @@
 node_modules
+.DS_Store
 config/.env
 .env
 .vscode/*
 settings.json
 repopack-output.txt
-.DS_Store
 public/.DS_Store
 public/assets/.DS_Store
 public/assets/images/.DS_Store
