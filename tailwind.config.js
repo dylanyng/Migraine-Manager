@@ -9,6 +9,9 @@ module.exports = {
       colors: {
         midnight: 'rgb(17, 24, 39)',
       },
+      screens: {
+        'xs': '375px',  // Target iPhone SE and other small devices
+      },
     },
   },
   plugins: [],
