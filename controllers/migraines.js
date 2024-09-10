@@ -219,3 +219,51 @@ exports.deleteMigraineEvent = async (req, res, next) => {
     res.redirect('/migraines')
   }
 }
+
+exports.getVisualizations = async (req, res) => {
+  try {
+    const attackTypes = await MigraineEvent.aggregate([
+      { $match: { userId: req.user.id } },
+      { $group: { _id: '$attackType', count: { $sum: 1 } } }
+    ]);
+
+    const sixMonthsAgo = new Date();
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+
+    const monthlyAttacks = await MigraineEvent.aggregate([
+      { $match: { 
+          userId: req.user.id,
+          date: { $gte: sixMonthsAgo }
+        } 
+      },
+      { $group: {
+          _id: { $dateToString: { format: "%Y-%m", date: "$date" } },
+          count: { $sum: 1 }
+        }
+      },
+      { $sort: { _id: 1 } }
+    ]);
+
+    const topTriggers = await MigraineEvent.aggregate([
+      { $match: { userId: req.user.id } },
+      { $unwind: '$triggers' },
+      { $group: { _id: '$triggers', count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $limit: 6 }
+    ]);
+
+    res.render('migraines/visualizations', {
+      title: 'Migraine Visualizations',
+      user: req.user,
+      attackTypes,
+      monthlyAttacks,
+      topTriggers
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).render('error', { 
+      error: err,
+      message: 'An error occurred while retrieving visualization data.'
+    });
+  }
+};

@@ -3,6 +3,8 @@ const router = express.Router()
 const migraineController = require('../controllers/migraines')
 const { ensureAuth } = require('../middleware/auth')
 
+router.get('/visualizations', ensureAuth, migraineController.getVisualizations);
+
 router.get('/', ensureAuth, (req, res, next) => migraineController.getMigraineEvents(req, res, next));
 router.get('/index', ensureAuth, (req, res, next) => migraineController.getMigraineEvents(req, res, next));
 router.get('/new', ensureAuth, (req, res, next) => migraineController.getMigraineForm(req, res, next));

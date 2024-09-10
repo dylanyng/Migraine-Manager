@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title><%= typeof title != 'undefined' ? title : 'Migraine Manager' %></title>
 </head>
 <body class="flex flex-col min-h-full bg-midnight text-slate-100">
@@ -12,23 +13,17 @@
         <header class="bg-midnight py-4 px-6">
             <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
                 <div class="flex items-center space-x-1 mb-4 sm:mb-0">
-                    <% if (user) { %>
                         <a href="/migraines/" class="flex items-center space-x-1">
-                    <% } else { %>
-                        <a href="/" class="flex items-center space-x-1">
-                    <% } %>
                         <img src="/assets/images/svg/logo.svg" alt="Migraine Manager App" class="h-16 w-auto">
                         <span class="text-white text-xl font-semibold">Migraine Manager</span>
                     </a>
                 </div>
-                <% if (user) { %>
                     <nav class="flex flex-wrap items-center justify-center space-x-2 sm:space-x-4">
                         <a href="/migraines" class="bg-indigo-800 hover:bg-indigo-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-md transition duration-300 text-sm sm:text-base mb-2 sm:mb-0">Episodes</a>
                         <a href="/migraines/visualizations" class="bg-indigo-800 hover:bg-indigo-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-md transition duration-300 text-sm sm:text-base mb-2 sm:mb-0">Reflect</a>
                         <a href="/migraines/new" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-3 sm:px-4 rounded-md transition duration-300 text-sm sm:text-base mb-2 sm:mb-0">Record</a>
                         <a href="/logout" class="hidden sm:inline-block text-indigo-300 hover:text-indigo-400 transition duration-300 text-sm sm:text-base">Logout</a>
                     </nav>
-                <% } %>
             </div>
         </header>
     
