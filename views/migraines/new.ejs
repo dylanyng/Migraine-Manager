@@ -124,9 +124,16 @@
     toggleMedicationDetails();
     });
 
-    // Restrict future dates from selection
-    // Get today's date in YYYY-MM-DD format
-    const today = new Date().toISOString().split('T')[0];
-    // Set the max attribute to today's date
-    document.getElementById('date').setAttribute('max', today);
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('date');
+        
+        // Get today's date in YYYY-MM-DD format
+        const today = new Date().toISOString().split('T')[0];
+        
+        // Set the default value to today's date
+        dateInput.value = today;
+        
+        // Set the max attribute to today's date
+        dateInput.setAttribute('max', today);
+    });
 </script>
