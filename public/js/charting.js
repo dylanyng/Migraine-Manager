@@ -1,17 +1,24 @@
-// Pass data from server to client-side JavaScript
-const attackTypesData = <%- JSON.stringify(attackTypes) %>;
-const monthlyAttacksData = <%- JSON.stringify(monthlyAttacks) %>;
-const topTriggersData = <%- JSON.stringify(topTriggers) %>;
+// Custom colors to match tailwind colors from list view
+const tRed = 'rgba(116, 42, 42, 1)';
+const tOrange = 'rgba(123, 52, 30, 1)';
+const tYellow = 'rgba(116, 66, 16, 1)';
 
-// Attack Types Pie Chart
+// Pass data from server to client-side JavaScript
+const attackTypesData = window.attackTypesData;
+const monthlyAttacksData = window.monthlyAttacksData;
+const topTriggersData = window.topTriggersData;
+
+// Attack Type Doughnut Chart
 const attackTypeCtx = document.getElementById('attackTypeChart').getContext('2d');
 new Chart(attackTypeCtx, {
-  type: 'pie',
+  type: 'doughnut',
   data: {
     labels: attackTypesData.map(type => type._id),
     datasets: [{
       data: attackTypesData.map(type => type.count),
-      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+      backgroundColor: [tRed, tOrange, tYellow],
+      borderColor: '#000000',
+      weight: 1,
     }]
   }
 });
