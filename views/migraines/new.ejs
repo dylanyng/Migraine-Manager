@@ -86,11 +86,17 @@
     
       function toggleMedicationDetails() {
         medicationDetails.classList.toggle('hidden', !medicationCheckbox.checked);
-      }
+    }
     
-      medicationCheckbox.addEventListener('change', toggleMedicationDetails);
-    
-      // Initial check in case the checkbox is checked by default
-      toggleMedicationDetails();
+    medicationCheckbox.addEventListener('change', toggleMedicationDetails);
+
+    // Initial check in case the checkbox is checked by default
+    toggleMedicationDetails();
     });
+
+    // Restrict future dates from selection
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date().toISOString().split('T')[0];
+    // Set the max attribute to today's date
+    document.getElementById('date').setAttribute('max', today);
 </script>
