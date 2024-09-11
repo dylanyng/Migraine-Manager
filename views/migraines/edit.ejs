@@ -27,8 +27,15 @@
             </div>
 
             <div>
-                <label for="painLevel" class="block text-sm font-medium leading-6">Pain Level</label>
-                <input type="range" id="painLevel" name="painLevel" min="0" max="4" step="1" value="<%= migraineEvent.painLevel %>" class="mt-2 block w-full">
+                <label for="pain-level" class="block text-sm font-medium leading-6">Pain Level</label>
+                <fieldset id="pain-level" class="grid mt-2 w-auto grid-cols-6 gap-2 rounded-xl bg-indigo-100 p-2">
+                    <% for (let i = 0; i <= 5; i++) { %>
+                        <div>
+                            <input type="radio" id="<%= i %>" value="<%= i %>" name="painLevel" class="peer hidden" <%= migraineEvent.painLevel == i ? 'checked' : '' %>/>
+                            <label for="<%= i %>" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-<%= ['green-600', 'yellow-400/90', 'yellow-500', 'orange-400', 'orange-600', 'red-800'][i] %> peer-checked:font-bold peer-checked:text-white"><%= i %></label>
+                        </div>
+                    <% } %>
+                </fieldset>
             </div>
 
             <div>
@@ -101,4 +108,12 @@
     const today = new Date().toISOString().split('T')[0];
     // Set the max attribute to today's date
     document.getElementById('date').setAttribute('max', today);
+
+    console.log("test")
+    // Set pain level
+    document.addEventListener('DOMContentLoaded', function() {
+        let painLvl = migraineEvent.painLevel;
+        console.log(`The pain level is: ${painLvl}`)
+});
+
 </script>
