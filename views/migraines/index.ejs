@@ -3,25 +3,26 @@
 <div class="container mx-auto px-6 py-8">
   <h2 class="text-3xl font-bold mb-8 text-center">Recorded Episodes</h2>
 
+
+
   <% if (migraineEvents.length > 0) { %>
-    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <% migraineEvents.forEach(function(event) { %>
-        <li class="migraine-item flex flex-col justify-between rounded-lg p-6 h-36 shadow-md transition-all duration-300 hover:shadow-lg
+        <li class="relative">
+          <div class="migraine-card flex flex-col justify-between rounded-lg p-6 h-36 shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer
                    <%= event.attackType === 'migraine' ? 'bg-red-900/50 hover:bg-red-900/70' : 
-                      event.attackType === 'headache' ? 'bg-orange-900/50 hover:bg-orange-900/70' : 'bg-yellow-900/50 hover:bg-yellow-900/70' %>">
-
-          <div class="flex flex-row justify-between">
-            <h3 class="text-xl font-semibold mb-2"><%= event.formattedDate %></h3>
-            <p class="text-lg mb-2 font-semibold capitalize"><%= event.attackType %></p>
+                      event.attackType === 'headache' ? 'bg-orange-900/50 hover:bg-orange-900/70' : 'bg-yellow-900/50 hover:bg-yellow-900/70' %>"
+               data-href="/migraines/<%= event._id %>">
+            <div class="flex flex-row justify-between">
+              <h3 class="text-xl font-semibold mb-2"><%= event.formattedDate %></h3>
+              <p class="text-lg mb-2 font-semibold capitalize"><%= event.attackType %></p>
+            </div>
+            
+            <div class="flex flex-row items-center justify-between">
+              <p class="">Pain Level: <%= event.painLevel %></p>
+              <a href="/migraines/edit/<%= event._id %>" class="edit-btn w-fit text-sm bg-midnight text-white px-2 py-1 rounded-md hover:bg-orange-400 hover:text-black transition-colors duration-300 z-10">Edit</a>
+            </div>
           </div>
-          
-          <div class="flex flex-row items-center justify-between">
-            <p class="">Pain Level: <%= event.painLevel %></p>
-
-            <a href="/migraines/<%= event._id %>" class="w-fit text-sm bg-midnight text-white px-2 py-1 rounded-md hover:bg-slate-800 transition-colors duration-300">Details</a>
-          </div>
-          
-
         </li>
       <% }); %>
     </ul>
@@ -33,3 +34,18 @@
     <a href="/migraines/new" class="bg-indigo-600 text-white px-6 py-3 rounded-md text-lg font-semibold hover:bg-indigo-500 transition-colors duration-300">Record New Episode</a>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.migraine-card');
+    
+    cards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        // If the click is not on the edit button, navigate to the details page
+        if (!e.target.closest('.edit-btn')) {
+          window.location.href = this.dataset.href;
+        }
+      });
+    });
+  });
+  </script>
