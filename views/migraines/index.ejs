@@ -8,6 +8,14 @@
     </form>
   </div>
 
+  
+  <div class="mt-8"></div>
+    <h3 class="text-xl font-semibold m-0 mb-4">Migraine History</h3>
+    <div class="bg-slate-950 w-fit flex p-2 m-0">
+      <div id="migraine-contribution-grid" class="content-center"></div>
+    </div>
+    
+  </div>
 </div>
 
 <div class="container mx-auto px-6 py-8">
@@ -26,7 +34,7 @@
           };
 
           const cardColor = attackTypeColors[event.attackType] || 'bg-blue-900/50 hover:bg-blue-900/70'; 
-        %>
+          %>
 
 <div class="migraine-card flex flex-col justify-between rounded-lg p-6 h-36 shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer <%= cardColor %>"
      data-href="/migraines/<%= event._id %>">
@@ -77,5 +85,12 @@
     
     // Set the max attribute to today's date
     dateInput.setAttribute('max', today);
+  });
+
+
+  // Grid
+  document.addEventListener('DOMContentLoaded', function() {
+    const migraineEvents = <%- JSON.stringify(migraineEvents) %>;
+    createMigraineContributionGrid('migraine-contribution-grid', migraineEvents);
   });
   </script>
