@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 const MigraineEventSchema = new mongoose.Schema({
   attackType: {
     type: String,
-    enum: ['headache', 'migraine', 'misc symptoms'],
-    default: 'migraine',
+    enum: ['headache', 'migraine', 'misc symptoms', 'missing'],
+    default: 'missing',
     required: true
   },
   date: {

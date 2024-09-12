@@ -1,18 +1,35 @@
 <%- contentFor('body') %>
 
+<div class="container mx-auto px-6 py-4">
+  <div>
+    <form class="flex justify-center" action="/migraines" method="POST">
+      <input type="date" id="date" name="date" required class="" hidden>
+      <button type="submit" class="w-1/3 rounded-md bg-gray-400/50 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-400/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Quick Record</button>
+    </form>
+  </div>
+
+</div>
+
 <div class="container mx-auto px-6 py-8">
   <h2 class="text-3xl font-bold mb-8 text-center">Recorded Episodes</h2>
-
-
 
   <% if (migraineEvents.length > 0) { %>
     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <% migraineEvents.forEach(function(event) { %>
         <li class="relative">
-          <div class="migraine-card flex flex-col justify-between rounded-lg p-6 h-36 shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer
-                   <%= event.attackType === 'migraine' ? 'bg-red-900/50 hover:bg-red-900/70' : 
-                      event.attackType === 'headache' ? 'bg-orange-900/50 hover:bg-orange-900/70' : 'bg-yellow-900/50 hover:bg-yellow-900/70' %>"
-               data-href="/migraines/<%= event._id %>">
+          <% 
+          const attackTypeColors = {
+            'migraine': 'bg-red-900/50 hover:bg-red-900/70',
+            'headache': 'bg-orange-900/50 hover:bg-orange-900/70',
+            'misc symptoms': 'bg-yellow-900/50 hover:bg-yellow-900/70',
+            'missing': 'bg-gray-400/30 hover:bg-gray-400/50 border-2 border-indigo-200'
+          };
+
+          const cardColor = attackTypeColors[event.attackType] || 'bg-blue-900/50 hover:bg-blue-900/70'; 
+        %>
+
+<div class="migraine-card flex flex-col justify-between rounded-lg p-6 h-36 shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer <%= cardColor %>"
+     data-href="/migraines/<%= event._id %>">
             <div class="flex flex-row justify-between">
               <h3 class="text-xl font-semibold mb-2"><%= event.formattedDate %></h3>
               <p class="text-lg mb-2 font-semibold capitalize"><%= event.attackType %></p>
@@ -47,5 +64,18 @@
         }
       });
     });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('date');
+    
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Set the default value to today's date
+    dateInput.value = today;
+    
+    // Set the max attribute to today's date
+    dateInput.setAttribute('max', today);
   });
   </script>
