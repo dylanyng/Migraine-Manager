@@ -2,7 +2,7 @@ function createMigraineContributionGrid(containerId, migraineEvents) {
     const container = document.getElementById(containerId);
     const today = new Date();
     const startDate = new Date(today);
-    startDate.setDate(today.getDate() - 181); // Or 363
+    startDate.setDate(today.getDate() - 181); // 181 Or 363
   
     const dateRange = [];
     for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
@@ -34,7 +34,7 @@ function createMigraineContributionGrid(containerId, migraineEvents) {
     }
   
     const weeks = [];
-    for (let i = 0; i < 26; i++) {
+    for (let i = 0; i < 26; i++) { //26 or 52
       weeks.push(dateRange.slice(i * 7, (i + 1) * 7));
     }
   

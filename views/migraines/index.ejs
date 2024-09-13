@@ -1,15 +1,28 @@
 <%- contentFor('body') %>
-
-<div class="container mx-auto px-6 py-4">
-  <div>
-    <form class="flex justify-center" action="/migraines" method="POST">
-      <input type="date" id="date" name="date" required class="" hidden>
-      <button type="submit" class="w-1/3 rounded-md bg-gray-400/50 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-400/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Quick Record</button>
+<!-- Hidden -->
+<div class="hidden overflow-x-auto md:flex md:flex-row md:hidden container mx-auto px-6 py-4">
+  <div class="flex flex-col justify-between md:w-2/5">
+    <form class=" action="/migraines" method="POST">
+      <input type="date" id="date" name="date" required class="hidden">
+      <input type="hidden" name="attackType" value="migraine">
+      <button type="submit" class="w-full rounded-md bg-red-900/50 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-900/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log Migraine</button>
+    </form>
+    
+    <form class="" action="/migraines" method="POST">
+      <input type="date" id="date" name="date" required class="hidden">
+      <input type="hidden" name="attackType" value="headache">
+      <button type="submit" class="w-full rounded-md bg-orange-900/50 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-900/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log Headache</button>
+    </form>
+    
+    <form class="" action="/migraines" method="POST">
+      <input type="date" id="date" name="date" required class="hidden">
+      <input type="hidden" name="attackType" value="misc symptoms">
+      <button type="submit" class="w-full rounded-md bg-yellow-900/50 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-900/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log Misc. Symptoms</button>
     </form>
   </div>
 
   
-  <div class="mt-8"></div>
+  <div class="md:w-2/5">
     <h3 class="text-xl font-semibold m-0 mb-4">Migraine History</h3>
     <div class="bg-slate-950 w-fit flex p-2 m-0">
       <div id="migraine-contribution-grid" class="content-center"></div>
@@ -86,6 +99,21 @@
     // Set the max attribute to today's date
     dateInput.setAttribute('max', today);
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+  const dateInputs = document.querySelectorAll('input[type="date"]');
+  
+  // Get today's date in YYYY-MM-DD format
+  const today = new Date().toLocaleString("sv").split(' ')[0];
+  
+  dateInputs.forEach(input => {
+    // Set the default value to today's date
+    input.value = today;
+    
+    // Set the max attribute to today's date
+    input.setAttribute('max', today);
+  });
+});
 
 
   // Grid

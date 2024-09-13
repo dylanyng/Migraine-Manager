@@ -129,11 +129,24 @@
         
         // Get today's date in YYYY-MM-DD format
         const today = new Date().toISOString().split('T')[0];
-        
+
+        // DEBUG
+        console.log(`Original today is ${today}`)
+        const currentTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const currentDate = new Date().toLocaleString('en-US', { timeZone: currentTimeZone });
+        const today2 = currentDate.split(',')[0].replace(/\//g, '-')
+        console.log(`today2: ${today2}`)
+
+        //const today3 = new Date().toLocaleString('en-US', { timeZone: currentTimeZone }).toISOString();
+        //console.log(`today3: ${today3}`)
+
+        const dt = new Date().toLocaleString("sv").split(' ')[0];
+        console.log(`dt: ${dt}`)
+
         // Set the default value to today's date
-        dateInput.value = today;
+        dateInput.value = dt; //date
         
         // Set the max attribute to today's date
-        dateInput.setAttribute('max', today);
+        dateInput.setAttribute('max', dt); //date
     });
 </script>

@@ -5,6 +5,7 @@ function detectTimezone() {
   if (timezoneInput) {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     timezoneInput.value = timezone;
+    console.log(timezone)
   }
 }
 if (document.readyState === 'loading') {
