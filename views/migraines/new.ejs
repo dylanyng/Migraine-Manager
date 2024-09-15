@@ -7,14 +7,37 @@
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form class="space-y-6" action="/migraines" method="POST">
+
+
+            <!-- New attack type -->
             <div>
-                <label for="attackType" class="block text-sm font-medium leading-6">Attack Type</label>
-                <select id="attackType" name="attackType" required class="bg-indigo-100 mt-2 block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    <option value="headache">Headache</option>
-                    <option value="migraine">Migraine</option>
-                    <option value="misc symptoms">Misc Symptoms</option>
-                </select>
+                <label for="pain-level" class="block text-sm font-medium leading-6">Attack Type</label>
+                <fieldset id="pain-level" class="grid mt-2 w-auto grid-cols-3 gap-1 rounded-xl bg-deadnight border-2 border-indigo-100  p-1">
+
+                    <div>
+                        <input type="radio" id="migraineAT" value="migraine" name="attackType" class="peer hidden" required checked/>
+                        <label for="migraineAT" class="block cursor-pointer select-none rounded-l p-2 text-center font-bold text-indigo-100 hover:bg-red-900/60 peer-checked:bg-red-800/90 peer-checked:hover:bg-red-800 peer-checked:font-bold peer-checked:text-white">Migraine</label>
+                    </div>
+    
+                    <div>
+                        <input type="radio" id="headacheAT" value="headache" name="attackType" class="peer hidden"/>
+                        <label for="headacheAT" class="block cursor-pointer select-none p-2 text-center font-bold text-indigo-100 hover:bg-orange-900/60 peer-checked:bg-orange-800/90 peer-checked:hover:bg-orange-800 peer-checked:font-bold peer-checked:text-white">Headache</label>
+                    </div>
+            
+                    <div>
+                        <input type="radio" id="miscSymptomsAT" value="misc symptoms" name="attackType" class="peer hidden" />
+                        <label for="miscSymptomsAT" class="block cursor-pointer select-none rounded-r p-2 text-center font-bold text-indigo-100 hover:bg-yellow-900/60 peer-checked:bg-yellow-800/90 peer-checked:hover:bg-yellow-800 peer-checked:font-bold peer-checked:text-white">Symptoms</label>
+                    </div>
+            
+                </fieldset>
             </div>
+
+
+
+
+
+
+            <!-- END new attack type -->
 
             <div>
                 <label for="date" class="block text-sm font-medium leading-6">Date</label>
