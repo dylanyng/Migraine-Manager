@@ -1,12 +1,45 @@
-// Custom colors to match tailwind colors from list view
+// Custom colors
 const dark = 'rgba(79, 70, 229, 1)';
 const medium = 'rgba(0, 152, 233, 1)';
 const light = 'rgba(170, 248, 209, 1)';
+const darkGray = '#4d4d4d';
+
 
 // Pass data from server to client-side JavaScript
 const attackTypesData = window.attackTypesData;
 const monthlyAttacksData = window.monthlyAttacksData;
 const topTriggersData = window.topTriggersData;
+
+
+const chartOptions = {
+  plugins: {
+    legend: {
+      labels: {
+        color: '#ffffff' 
+      }
+    }
+  },
+  scales: {
+    x: {
+      ticks: {
+        color: light
+      },
+      grid: {
+        color: darkGray
+      }
+    },
+    y: {
+      ticks: {
+        color: light 
+      },
+      grid: {
+        color: darkGray
+      }
+    }
+  }
+};
+
+
 
 // DOUGHNUT CHART
 // Attack Type 
@@ -18,10 +51,18 @@ new Chart(attackTypeCtx, {
     datasets: [{
       data: attackTypesData.map(type => type.count),
       backgroundColor: [light, medium, dark],
-      borderWidth: 2,
       borderColor: '#000000',
       weight: 1,
     }]
+  },
+  options: {
+    plugins: {
+      legend: {
+        labels: {
+          color: '#ffffff'
+        }
+      }
+    }
   }
 });
 
@@ -40,16 +81,32 @@ new Chart(topTriggersCtx, {
     }]
   },
   options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: {
-          stepSize: 1
+    
+    plugins: {
+      legend: {
+        labels: {
+          color: '#ffffff' 
         }
       }
     },
     responsive: true,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        ticks: {
+          color: light
+        }
+      },
+      y: {
+        ticks: {
+          color: light,
+          stepSize: 1
+        },
+        grid: {
+          color: darkGray
+        }
+      }
+    }
   }
 });
 
@@ -82,14 +139,5 @@ new Chart(monthlyAttacksCtx, {
       }
     ]
   },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: {
-          stepSize: 1
-        }
-      }
-    }
-  }
+  options: chartOptions
 });
