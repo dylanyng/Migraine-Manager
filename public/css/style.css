@@ -1030,6 +1030,27 @@ video {
   background-color: rgb(113 63 18 / 0.8);
 }
 
+.bg-deadnight {
+  --tw-bg-opacity: 1;
+  background-color: rgb(12 17 28 / var(--tw-bg-opacity));
+}
+
+.bg-red-900\/60 {
+  background-color: rgb(127 29 29 / 0.6);
+}
+
+.bg-orange-900\/70 {
+  background-color: rgb(124 45 18 / 0.7);
+}
+
+.bg-red-900\/70 {
+  background-color: rgb(127 29 29 / 0.7);
+}
+
+.bg-yellow-900\/70 {
+  background-color: rgb(113 63 18 / 0.7);
+}
+
 .p-1\.5 {
   padding: 0.375rem;
 }
@@ -1342,6 +1363,18 @@ html, body {
 
 .hover\:bg-yellow-900\/70:hover {
   background-color: rgb(113 63 18 / 0.7);
+}
+
+.hover\:bg-red-900\/90:hover {
+  background-color: rgb(127 29 29 / 0.9);
+}
+
+.hover\:bg-orange-900\/90:hover {
+  background-color: rgb(124 45 18 / 0.9);
+}
+
+.hover\:bg-yellow-900\/90:hover {
+  background-color: rgb(113 63 18 / 0.9);
 }
 
 .hover\:text-black:hover {

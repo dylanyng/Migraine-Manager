@@ -1,24 +1,25 @@
 <%- contentFor('body') %>
 
+<!-- Quck log -->
 <div class="flex flex-col container mx-auto px-6 py-4">
   <h3 class="text-xl font-semibold m-auto mb-4">Quick Log</h3>
-  <div class="grid m-auto w-fit grid-cols-3 gap-2 rounded-xl bg-slate-800 p-2">
+  <div class="grid m-auto w-fit grid-cols-3 gap-2 rounded-xl bg-deadnight p-2">
     <form class="md:" action="/migraines" method="POST">
       <input type="date" id="date" name="date" required class="hidden">
       <input type="hidden" name="attackType" value="migraine">
-      <button type="submit" class="w-full rounded-md bg-red-900/50 px-3 xs:py-4 py-1.5 md:px-10 md:py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-900/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Migraine</button>
+      <button type="submit" class="w-full rounded-md bg-red-900/70 px-3 xs:py-4 py-1.5 md:px-10 md:py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-900/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Migraine</button>
     </form>
     
     <form class="" action="/migraines" method="POST">
       <input type="date" id="date" name="date" required class="hidden">
       <input type="hidden" name="attackType" value="headache">
-      <button type="submit" class="w-full rounded-md bg-orange-900/50 px-3 xs:py-4 py-1.5 md:px-10 md:py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-900/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Headache</button>
+      <button type="submit" class="w-full rounded-md bg-orange-900/70 px-3 xs:py-4 py-1.5 md:px-10 md:py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-900/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Headache</button>
     </form>
     
     <form class="" action="/migraines" method="POST">
       <input type="date" id="date" name="date" required class="hidden">
       <input type="hidden" name="attackType" value="misc symptoms">
-      <button type="submit" class="w-full rounded-md bg-yellow-900/50 px-3 xs:py-4 py-1.5 md:px-10 md:py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-900/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Symptoms</button>
+      <button type="submit" class="w-full rounded-md bg-yellow-900/70 px-3 xs:py-4 py-1.5 md:px-10 md:py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-900/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Symptoms</button>
     </form>
   </div>
 
@@ -59,7 +60,8 @@
             </div>
             
             <div class="flex flex-row items-center justify-between">
-              <p class="">Pain Level: <%= event.painLevel %></p>
+              <!-- <p class="">Pain Level: <%= event.painLevel %></p> -->
+              <p class=""><%= event.painLevel === undefined ? "" : `Pain Level: ${event.painLevel}` %></p>
               <a href="/migraines/edit/<%= event._id %>" class="edit-btn w-fit text-sm bg-midnight text-white px-2 py-1 rounded-md hover:bg-orange-400 hover:text-black transition-colors duration-300 z-10">Edit</a>
             </div>
           </div>
