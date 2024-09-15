@@ -13,6 +13,7 @@ const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const migraineRoutes = require('./routes/migraines')
 const triggerRoutes = require('./routes/triggers');
+const medicationRoutes = require('./routes/medication')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 app.use('/', mainRoutes)
 app.use('/migraines', migraineRoutes)
 app.use('/triggers', triggerRoutes);
+app.use('/medication', medicationRoutes)
 
 // Error handler
 app.use(errorHandler)

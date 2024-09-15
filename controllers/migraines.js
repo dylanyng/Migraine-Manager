@@ -79,6 +79,13 @@ exports.createMigraineEvent = async (req, res, next) => {
     // Convert medication checkbox value to boolean
     req.body.medication = req.body.medication === 'on';
 
+    // Parse medications from JSON string to array of objects
+    if (req.body.medications) {
+      req.body.medications = JSON.parse(req.body.medications);
+    } else {
+      req.body.medications = [];
+    }
+
     // If medication is not checked, set medications to an empty array
     if (!req.body.medication) {
       req.body.medications = [];
@@ -97,8 +104,6 @@ exports.createMigraineEvent = async (req, res, next) => {
     // Convert and store the user-input date in UTC, using the user's timezone preference
     if (req.body.date) {
       const userTimezone = req.user.preferences.timezone || 'UTC';
-      
-      // Convert user's time zone to UTC before saving it to the database
       req.body.date = convertToUTC(req.body.date, userTimezone);
     }
 
@@ -156,9 +161,15 @@ exports.getEditMigraineForm = async (req, res, next) => {
 
 exports.updateMigraineEvent = async (req, res, next) => {
   try {
-    // Same logic to createMigraineEvent for handling form data
     // Convert medication checkbox value to boolean
     req.body.medication = req.body.medication === 'on';
+
+    // Parse medications from JSON string to array of objects
+    if (req.body.medications) {
+      req.body.medications = JSON.parse(req.body.medications);
+    } else {
+      req.body.medications = [];
+    }
 
     // If medication is not checked, set medications to an empty array
     if (!req.body.medication) {
@@ -178,7 +189,6 @@ exports.updateMigraineEvent = async (req, res, next) => {
     // Convert and store the user-input date in UTC, using the user's timezone preference
     if (req.body.date) {
       const userTimezone = req.user.preferences.timezone || 'UTC';
-      // Convert user's time zone to UTC before saving it to the database
       req.body.date = convertToUTC(req.body.date, userTimezone);
     }
 
