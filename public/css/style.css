@@ -1448,6 +1448,18 @@ html, body {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+@media (min-width: 375px) {
+  .xs\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .xs\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:mx-auto {
     margin-left: auto;
@@ -1509,6 +1521,15 @@ html, body {
     grid-column: span 2 / span 2;
   }
 
+  .md\:m-4 {
+    margin: 1rem;
+  }
+
+  .md\:mx-5 {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+  }
+
   .md\:mb-0 {
     margin-bottom: 0px;
   }
@@ -1527,6 +1548,10 @@ html, body {
 
   .md\:w-2\/5 {
     width: 40%;
+  }
+
+  .md\:w-3 {
+    width: 0.75rem;
   }
 
   .md\:grid-cols-2 {
@@ -1548,6 +1573,41 @@ html, body {
   .md\:py-24 {
     padding-top: 6rem;
     padding-bottom: 6rem;
+  }
+
+  .md\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .md\:px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .md\:px-11 {
+    padding-left: 2.75rem;
+    padding-right: 2.75rem;
+  }
+
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .md\:px-7 {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
+  .md\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .md\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 
   .md\:text-5xl {
