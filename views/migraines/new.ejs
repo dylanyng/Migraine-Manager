@@ -77,8 +77,8 @@
 
             <div>
                 <span class="block text-sm font-medium leading-6 mb-2">Pain Location</span>
-                <div class="space-y-2">
-                    <% ['left', 'right', 'front', 'back', 'entire head'].forEach(function(location) { %>
+                <div class="space-y-2 grid grid-cols-3 gap-2">
+                    <% ['left', 'right', 'front', 'back', 'entire head', 'other'].forEach(function(location) { %>
                         <div class="flex items-center">
                             <input type="checkbox" id="<%= location %>" name="painLocation" value="<%= location %>" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                             <label for="<%= location %>" class="ml-2 block text-sm"><%= location.charAt(0).toUpperCase() + location.slice(1) %></label>
