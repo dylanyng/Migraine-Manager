@@ -949,6 +949,11 @@ video {
   background-color: rgb(30 58 138 / 0.5);
 }
 
+.bg-deadnight {
+  --tw-bg-opacity: 1;
+  background-color: rgb(12 17 28 / var(--tw-bg-opacity));
+}
+
 .bg-gray-400\/30 {
   background-color: rgb(156 163 175 / 0.3);
 }
@@ -996,6 +1001,10 @@ video {
   background-color: rgb(124 45 18 / 0.5);
 }
 
+.bg-orange-900\/70 {
+  background-color: rgb(124 45 18 / 0.7);
+}
+
 .bg-orange-900\/80 {
   background-color: rgb(124 45 18 / 0.8);
 }
@@ -1004,13 +1013,12 @@ video {
   background-color: rgb(127 29 29 / 0.5);
 }
 
-.bg-red-900\/80 {
-  background-color: rgb(127 29 29 / 0.8);
+.bg-red-900\/70 {
+  background-color: rgb(127 29 29 / 0.7);
 }
 
-.bg-slate-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+.bg-red-900\/80 {
+  background-color: rgb(127 29 29 / 0.8);
 }
 
 .bg-slate-950 {
@@ -1026,29 +1034,12 @@ video {
   background-color: rgb(113 63 18 / 0.5);
 }
 
-.bg-yellow-900\/80 {
-  background-color: rgb(113 63 18 / 0.8);
-}
-
-.bg-deadnight {
-  --tw-bg-opacity: 1;
-  background-color: rgb(12 17 28 / var(--tw-bg-opacity));
-}
-
-.bg-red-900\/60 {
-  background-color: rgb(127 29 29 / 0.6);
-}
-
-.bg-orange-900\/70 {
-  background-color: rgb(124 45 18 / 0.7);
-}
-
-.bg-red-900\/70 {
-  background-color: rgb(127 29 29 / 0.7);
-}
-
 .bg-yellow-900\/70 {
   background-color: rgb(113 63 18 / 0.7);
+}
+
+.bg-yellow-900\/80 {
+  background-color: rgb(113 63 18 / 0.8);
 }
 
 .p-1\.5 {
@@ -1357,20 +1348,20 @@ html, body {
   background-color: rgb(124 45 18 / 0.7);
 }
 
-.hover\:bg-red-900\/70:hover {
-  background-color: rgb(127 29 29 / 0.7);
+.hover\:bg-orange-900\/90:hover {
+  background-color: rgb(124 45 18 / 0.9);
 }
 
-.hover\:bg-yellow-900\/70:hover {
-  background-color: rgb(113 63 18 / 0.7);
+.hover\:bg-red-900\/70:hover {
+  background-color: rgb(127 29 29 / 0.7);
 }
 
 .hover\:bg-red-900\/90:hover {
   background-color: rgb(127 29 29 / 0.9);
 }
 
-.hover\:bg-orange-900\/90:hover {
-  background-color: rgb(124 45 18 / 0.9);
+.hover\:bg-yellow-900\/70:hover {
+  background-color: rgb(113 63 18 / 0.7);
 }
 
 .hover\:bg-yellow-900\/90:hover {
