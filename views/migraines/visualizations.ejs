@@ -4,21 +4,25 @@
   <h1 class="text-3xl font-bold mb-8 text-center">Episode Reports</h1>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  
     <div>
       <h2 class="text-2xl font-bold mb-4">Attack Types</h2>
       <canvas id="attackTypeChart"></canvas>
     </div>
-
-    <div>
+  
+    <div class="flex flex-col">
+      <h2 class="text-2xl font-bold mb-4">Top Triggers</h2>
+      <div class="flex-grow">
+        <canvas id="topTriggersChart" class="h-full"></canvas>
+      </div>
+    </div>
+  
+    <div class="md:col-span-2">
       <h2 class="text-2xl font-bold mb-4">Monthly Attacks</h2>
       <canvas id="monthlyAttacksChart"></canvas>
     </div>
-
-    <div>
-      <h2 class="text-2xl font-bold mb-4">Top Triggers</h2>
-      <canvas id="topTriggersChart"></canvas>
-    </div>
   </div>
+
 </div>
 <script>
   window.attackTypesData = <%- JSON.stringify(attackTypes) %>;

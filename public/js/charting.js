@@ -1,14 +1,15 @@
 // Custom colors to match tailwind colors from list view
-const tRed = 'rgba(116, 42, 42, 1)';
-const tOrange = 'rgba(123, 52, 30, 1)';
-const tYellow = 'rgba(116, 66, 16, 1)';
+const dark = 'rgba(79, 70, 229, 1)';
+const medium = 'rgba(0, 152, 233, 1)';
+const light = 'rgba(170, 248, 209, 1)';
 
 // Pass data from server to client-side JavaScript
 const attackTypesData = window.attackTypesData;
 const monthlyAttacksData = window.monthlyAttacksData;
 const topTriggersData = window.topTriggersData;
 
-// Attack Type Doughnut Chart
+// DOUGHNUT CHART
+// Attack Type 
 const attackTypeCtx = document.getElementById('attackTypeChart').getContext('2d');
 new Chart(attackTypeCtx, {
   type: 'doughnut',
@@ -16,24 +17,26 @@ new Chart(attackTypeCtx, {
     labels: attackTypesData.map(type => type._id),
     datasets: [{
       data: attackTypesData.map(type => type.count),
-      backgroundColor: [tRed, tOrange, tYellow],
+      backgroundColor: [light, medium, dark],
+      borderWidth: 2,
       borderColor: '#000000',
       weight: 1,
     }]
   }
 });
 
-// Monthly Attacks Line Chart
-const monthlyAttacksCtx = document.getElementById('monthlyAttacksChart').getContext('2d');
-new Chart(monthlyAttacksCtx, {
-  type: 'line',
+
+// BAR CHART
+// Top Triggers
+const topTriggersCtx = document.getElementById('topTriggersChart').getContext('2d');
+new Chart(topTriggersCtx, {
+  type: 'bar',
   data: {
-    labels: monthlyAttacksData.map(month => month._id),
+    labels: topTriggersData.map(trigger => trigger._id),
     datasets: [{
-      label: 'Number of Attacks',
-      data: monthlyAttacksData.map(month => month.count),
-      borderColor: '#36A2EB',
-      fill: false
+      label: 'Occurrences',
+      data: topTriggersData.map(trigger => trigger.count),
+      backgroundColor: medium
     }]
   },
   options: {
@@ -44,21 +47,40 @@ new Chart(monthlyAttacksCtx, {
           stepSize: 1
         }
       }
-    }
+    },
+    responsive: true,
+    maintainAspectRatio: false
   }
 });
 
-// Top Triggers Bar Chart
-const topTriggersCtx = document.getElementById('topTriggersChart').getContext('2d');
-new Chart(topTriggersCtx, {
-  type: 'bar',
+
+// LINE CHART
+// Monthly Attacks
+const monthlyAttacksCtx = document.getElementById('monthlyAttacksChart').getContext('2d');
+new Chart(monthlyAttacksCtx, {
+  type: 'line',
   data: {
-    labels: topTriggersData.map(trigger => trigger._id),
-    datasets: [{
-      label: 'Occurrences',
-      data: topTriggersData.map(trigger => trigger.count),
-      backgroundColor: '#FFCE56'
-    }]
+    labels: monthlyAttacksData.map(month => month._id),
+    datasets: [
+      {
+        label: 'Migraine',
+        data: monthlyAttacksData.map(month => month.migraine),
+        borderColor: dark,
+        fill: false
+      },
+      {
+        label: 'Headache',
+        data: monthlyAttacksData.map(month => month.headache),
+        borderColor: medium,
+        fill: false
+      },
+      {
+        label: 'Misc Symptoms',
+        data: monthlyAttacksData.map(month => month.miscSymptoms),
+        borderColor: light,
+        fill: false
+      }
+    ]
   },
   options: {
     scales: {

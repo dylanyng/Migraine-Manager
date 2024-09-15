@@ -231,25 +231,73 @@ exports.getVisualizations = async (req, res) => {
     sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
     const monthlyAttacks = await MigraineEvent.aggregate([
-      { $match: { 
+      { 
+        $match: { 
           userId: req.user.id,
           date: { $gte: sixMonthsAgo }
         } 
       },
-      { $group: {
-          _id: { $dateToString: { format: "%Y-%m", date: "$date" } },
+      {
+        $group: {
+          _id: {
+            yearMonth: { $dateToString: { format: "%Y-%m", date: "$date" } },
+            attackType: "$attackType"
+          },
           count: { $sum: 1 }
         }
       },
-      { $sort: { _id: 1 } }
+      {
+        $group: {
+          _id: "$_id.yearMonth",
+          attackTypes: {
+            $push: {
+              type: "$_id.attackType",
+              count: "$count"
+            }
+          }
+        }
+      },
+      { $sort: { _id: 1 } },
+      {
+        $project: {
+          _id: 1,
+          migraine: {
+            $ifNull: [
+              { $arrayElemAt: [{ $filter: { input: "$attackTypes", as: "type", cond: { $eq: ["$$type.type", "migraine"] } } }, 0] },
+              { type: "migraine", count: 0 }
+            ]
+          },
+          headache: {
+            $ifNull: [
+              { $arrayElemAt: [{ $filter: { input: "$attackTypes", as: "type", cond: { $eq: ["$$type.type", "headache"] } } }, 0] },
+              { type: "headache", count: 0 }
+            ]
+          },
+          miscSymptoms: {
+            $ifNull: [
+              { $arrayElemAt: [{ $filter: { input: "$attackTypes", as: "type", cond: { $eq: ["$$type.type", "misc symptoms"] } } }, 0] },
+              { type: "misc symptoms", count: 0 }
+            ]
+          }
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          migraine: "$migraine.count",
+          headache: "$headache.count",
+          miscSymptoms: "$miscSymptoms.count"
+        }
+      }
     ]);
 
     const topTriggers = await MigraineEvent.aggregate([
       { $match: { userId: req.user.id } },
       { $unwind: '$triggers' },
+      { $match: { 'triggers': { $ne: '' } } }, // Ignoring no trigger entries
       { $group: { _id: '$triggers', count: { $sum: 1 } } },
       { $sort: { count: -1 } },
-      { $limit: 6 }
+      { $limit: 6 } 
     ]);
 
     res.render('migraines/visualizations', {
