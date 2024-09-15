@@ -12,6 +12,7 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const migraineRoutes = require('./routes/migraines')
+const triggerRoutes = require('./routes/triggers');
 
 require('dotenv').config({path: './config/.env'})
 
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
   
 app.use('/', mainRoutes)
 app.use('/migraines', migraineRoutes)
+app.use('/triggers', triggerRoutes);
 
 // Error handler
 app.use(errorHandler)
