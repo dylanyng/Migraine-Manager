@@ -44,12 +44,16 @@ function removeTrigger(trigger) {
 }
 
 function updateSelectedTriggers() {
-        selectedTriggersContainer.innerHTML = selectedTriggers.map(trigger => `
-            <span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded flex items-center">
-                ${trigger}
-                <button type="button" class="ml-1 text-indigo-600 hover:text-indigo-800" onclick="removeTrigger('${trigger}')">×</button>
-            </span>
-        `).join('');
+    if (!selectedTriggers || selectedTriggers.length === 0) {
+        selectedTriggersContainer.innerHTML = '';
+        return;
+    }
+    selectedTriggersContainer.innerHTML = selectedTriggers.map(trigger => `
+        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded flex items-center">
+            ${trigger}
+            <button type="button" class="ml-1 text-indigo-600 hover:text-indigo-800" onclick="removeTrigger('${trigger}')">×</button>
+        </span>
+    `).join('');
 }
 
 function updateHiddenInput() {
