@@ -314,12 +314,84 @@ exports.getVisualizations = async (req, res) => {
       { $limit: 6 } 
     ]);
 
+
+    const medicationData = await MigraineEvent.aggregate([
+      {
+        $match: {
+          userId: req.user.id,
+          date: { $gte: sixMonthsAgo },
+          'medications.name': { $exists: true, $ne: '' }
+        }
+      },
+      {
+        $unwind: '$medications'
+      },
+      {
+        $group: {
+          _id: {
+            yearMonth: { $dateToString: { format: "%Y-%m", date: "$date" } },
+            medication: '$medications.name'
+          },
+          totalQuantity: { $sum: '$medications.quantity' }
+        }
+      },
+      {
+        $sort: { totalQuantity: -1 }
+      },
+      {
+        $group: {
+          _id: '$_id.yearMonth',
+          medications: {
+            $push: {
+              name: '$_id.medication',
+              quantity: '$totalQuantity'
+            }
+          }
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          medications: { $slice: ['$medications', 3] }
+        }
+      },
+      {
+        $sort: { _id: 1 }
+      }
+    ]);
+
+    // New query for pain location pie chart
+    const painLocationData = await MigraineEvent.aggregate([
+      {
+        $match: { userId: req.user.id }
+      },
+      {
+        $unwind: '$painLocation'
+      },
+      {
+        $group: {
+          _id: '$painLocation',
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $match: {
+          count: { $gt: 0 }
+        }
+      },
+      {
+        $sort: { count: -1 }
+      }
+    ]);
+
     res.render('migraines/visualizations', {
       title: 'Migraine Visualizations',
       user: req.user,
       attackTypes,
       monthlyAttacks,
-      topTriggers
+      topTriggers,
+      medicationData,
+      painLocationData
     });
   } catch (err) {
     console.error(err);

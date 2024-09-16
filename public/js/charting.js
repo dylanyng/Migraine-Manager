@@ -66,6 +66,35 @@ new Chart(attackTypeCtx, {
   }
 });
 
+// DOUGHNUT CHART
+// Pain Location Doughnut Chart
+const painLocationCtx = document.getElementById('painLocationChart').getContext('2d');
+new Chart(painLocationCtx, {
+  type: 'doughnut',
+  data: {
+    labels: painLocationData.map(location => location._id),
+    datasets: [{
+      data: painLocationData.map(location => location.count),
+      backgroundColor: [light, medium, dark, '#FF6384', '#36A2EB', '#FFCE56'],
+      borderColor: '#000000',
+    }]
+  },
+  options: {
+    plugins: {
+      legend: {
+        labels: {
+          color: '#ffffff',
+          boxWidth: 15,
+          padding: 10,
+          font: {
+            size: 11
+          }
+        }
+      }
+    }
+  }
+});
+
 
 // BAR CHART
 // Top Triggers
@@ -81,7 +110,6 @@ new Chart(topTriggersCtx, {
     }]
   },
   options: {
-    
     plugins: {
       legend: {
         labels: {
@@ -90,17 +118,19 @@ new Chart(topTriggersCtx, {
       }
     },
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     scales: {
       x: {
         ticks: {
-          color: light
+          color: light,
         }
       },
       y: {
+        beginAtZero: true,
         ticks: {
           color: light,
-          stepSize: 1
+          stepSize: 2,
+          precision: 0
         },
         grid: {
           color: darkGray
@@ -141,3 +171,45 @@ new Chart(monthlyAttacksCtx, {
   },
   options: chartOptions
 });
+
+// BAR CHART
+// Medication Quantity 
+const medicationQuantityCtx = document.getElementById('medicationQuantityChart').getContext('2d');
+new Chart(medicationQuantityCtx, {
+  type: 'bar',
+  data: {
+    labels: medicationData.map(month => month._id),
+    datasets: [
+      {
+        label: medicationData[0]?.medications[0]?.name || 'Medication 1',
+        data: medicationData.map(month => month.medications[0]?.quantity || 0),
+        backgroundColor: light,
+      },
+      {
+        label: medicationData[0]?.medications[1]?.name || 'Medication 2',
+        data: medicationData.map(month => month.medications[1]?.quantity || 0),
+        backgroundColor: medium,
+      },
+      {
+        label: medicationData[0]?.medications[2]?.name || 'Medication 3',
+        data: medicationData.map(month => month.medications[2]?.quantity || 0),
+        backgroundColor: dark,
+      }
+    ]
+  },
+  options: {
+    ...chartOptions,
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+        ...chartOptions.scales.x
+      },
+      y: {
+        stacked: true,
+        ...chartOptions.scales.y
+      }
+    }
+  }
+});
+

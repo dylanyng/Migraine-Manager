@@ -1,31 +1,40 @@
 <%- contentFor('body') %>
 
-<div class="container mx-auto px-4 py-8">
+<div class="container mx-auto px-6 py-8">
   <h1 class="text-3xl font-bold mb-8 text-center">Reports</h1>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
   
     <div>
-      <h2 class="text-2xl font-bold mb-4">Attack Types</h2>
+      <h2 class="text-2xl font-bold mb-4 xs:text-center md:text-left">Attack Types</h2>
       <canvas id="attackTypeChart"></canvas>
     </div>
+
+    <div>
+      <h2 class="text-2xl font-bold mb-4 xs:text-center md:text-left">Pain Location</h2>
+      <canvas id="painLocationChart"></canvas>
+    </div>
   
-    <div class="flex flex-col">
-      <h2 class="text-2xl font-bold mb-4">Top Triggers</h2>
-      <div class="flex-grow">
-        <canvas id="topTriggersChart" class="h-full"></canvas>
-      </div>
+    <div>
+      <h2 class="text-2xl font-bold mb-4 xs:text-center md:text-left">Top Triggers</h2>
+      <canvas id="topTriggersChart" class="xs:w-full"></canvas>
+    </div>
+
+    <div>
+      <h2 class="text-2xl font-bold mb-4 xs:text-center md:text-left">Medication Taken</h2>
+      <canvas id="medicationQuantityChart"></canvas>
     </div>
   
     <div class="md:col-span-2">
-      <h2 class="text-2xl font-bold mb-4">Monthly Attacks</h2>
+      <h2 class="text-2xl font-bold mb-4 xs:text-center md:text-left">Monthly Attacks</h2>
       <canvas id="monthlyAttacksChart"></canvas>
     </div>
-  </div>
 
+  </div>
 </div>
 <script>
   window.attackTypesData = <%- JSON.stringify(attackTypes) %>;
   window.monthlyAttacksData = <%- JSON.stringify(monthlyAttacks) %>;
   window.topTriggersData = <%- JSON.stringify(topTriggers) %>;
+  window.medicationData = <%- JSON.stringify(medicationData) %>;
+  window.painLocationData = <%- JSON.stringify(painLocationData) %>;
 </script>
