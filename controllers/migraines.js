@@ -127,6 +127,10 @@ exports.getMigraineEvent = async (req, res, next) => {
     if (!migraineEvent) {
       return res.render('error', { error: 'Migraine event not found' })
     }
+    if (migraineEvent.triggers && migraineEvent.triggers.length > 0) {
+      // Insert space after each comma in trigger list
+      migraineEvent.triggers = migraineEvent.triggers.map(trigger => ` ${trigger}`);
+    }
     res.render('migraines/show', { 
       title: 'Migraine Event Details', 
       user: req.user, 

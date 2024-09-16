@@ -9,11 +9,15 @@
     <div class="p-6 space-y-4">
       <div class="flex justify-between items-center">
         <p class="text-lg font-semibold text-indigo-400 capitalize"><%= migraineEvent.attackType %></p>
+
+        <% if (migraineEvent.painLevel !== undefined) { %>
         <p class="text-lg font-semibold">Pain Level: <span class="text-indigo-400"><%= migraineEvent.painLevel %></span></p>
+        <% } %>
       </div>
       
       <p class="text-gray-300" hidden>Duration: <span class="font-medium" hidden><%= formatDuration(migraineEvent.duration) %></span></p>
       
+      <% if (migraineEvent.painLocation != "") { %>
       <div>
         <p class="text-gray-300 mb-1">Location:</p>
         <div class="flex flex-wrap gap-2">
@@ -22,6 +26,7 @@
           <% }); %>
         </div>
       </div>
+      <% } %>
       
       <div>
         <p class="text-gray-300 mb-1">Medication taken: <span class="font-medium"><%= migraineEvent.medication ? 'Yes' : 'No' %></span></p>
@@ -34,7 +39,7 @@
         <% } %>
       </div>
       
-      <% if (migraineEvent.triggers) { %>
+      <% if (migraineEvent.triggers != "") { %>
         <p class="text-gray-300">Triggers: <span class="font-medium"><%= migraineEvent.triggers %></span></p>
       <% } %>
       
