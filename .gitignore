@@ -5,6 +5,7 @@ config/.env
 .vscode/*
 settings.json
 repopack-output.txt
+generateDummyData.js
 public/.DS_Store
 public/assets/.DS_Store
 public/assets/images/.DS_Store
