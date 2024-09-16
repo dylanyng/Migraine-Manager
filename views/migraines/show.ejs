@@ -39,7 +39,7 @@
         <% } %>
       </div>
       
-      <% if (migraineEvent.triggers != "") { %>
+      <% if (migraineEvent.triggers && migraineEvent.triggers.length > 0 && migraineEvent.triggers.some(trigger => trigger.trim() !== "")) { %>
         <p class="text-gray-300">Triggers: <span class="font-medium"><%= migraineEvent.triggers %></span></p>
       <% } %>
       

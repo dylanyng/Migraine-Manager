@@ -45,6 +45,11 @@ const MigraineEventSchema = new mongoose.Schema({
     type: [String],
     required: false
   },
+  quickLog: {
+    type: Boolean,
+    default: false,
+    required: false
+  },
   userId: {
     type: String,
     required: true

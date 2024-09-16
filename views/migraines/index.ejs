@@ -7,18 +7,21 @@
     <form class="" action="/migraines" method="POST">
       <input type="date" id="date" name="date" required class="hidden">
       <input type="hidden" name="attackType" value="migraine">
+      <input type="hidden" name="quickLog" value="true">
       <button type="submit" class="w-full rounded-md bg-red-900/70 px-3 xs:py-4 py-1.5 md:px-10 md:py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-900/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Migraine</button>
     </form>
     
     <form class="" action="/migraines" method="POST">
       <input type="date" id="date" name="date" required class="hidden">
       <input type="hidden" name="attackType" value="headache">
+      <input type="hidden" name="quickLog" value="true">
       <button type="submit" class="w-full rounded-md bg-orange-900/70 px-3 xs:py-4 py-1.5 md:px-10 md:py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-900/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Headache</button>
     </form>
     
     <form class="" action="/migraines" method="POST">
       <input type="date" id="date" name="date" required class="hidden">
       <input type="hidden" name="attackType" value="misc symptoms">
+      <input type="hidden" name="quickLog" value="true">
       <button type="submit" class="w-full rounded-md bg-yellow-900/70 px-3 xs:py-4 py-1.5 md:px-10 md:py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-900/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Symptoms</button>
     </form>
   </div>
@@ -60,9 +63,13 @@
             </div>
             
             <div class="flex flex-row items-center justify-between">
-              <!-- <p class="">Pain Level: <%= event.painLevel %></p> -->
               <p class=""><%= event.painLevel === undefined ? "" : `Pain Level: ${event.painLevel}` %></p>
-              <a href="/migraines/edit/<%= event._id %>" class="edit-btn w-fit text-sm bg-midnight text-white px-2 py-1 rounded-md hover:bg-orange-400 hover:text-black transition-colors duration-300 z-10">Edit</a>
+
+            <% if (event.quickLog === true) { %>
+              <a href="/migraines/edit/<%= event._id %>" class="edit-btn w-fit text-sm bg-midnight text-white px-2 py-1 rounded-md hover:bg-orange-400 hover:text-black transition-colors duration-300 z-10">Add Details</a>
+            <% } else if (event.medication === true) { %>
+              <p class="text-2xl">💊</p>
+            <% } %>
             </div>
           </div>
         </li>
