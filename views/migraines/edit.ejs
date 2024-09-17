@@ -118,48 +118,20 @@
     </div>
 </div>
 
-<script src="/js/medication.js" type="text/javascript"></script>
-
 <script>
-// Pass the existing triggers, filtering out empty strings
+// Pass in existing triggers, filtering out empty strings
 window.existingTriggers = JSON.parse('<%- JSON.stringify(migraineEvent.triggers.filter(trigger => trigger.trim() !== "")) %>');
 
-
-// Pass the existing medication
+// Pass in existing medication
 window.existingMedications = JSON.parse('<%- JSON.stringify(migraineEvent.medications || []) %>');
-console.log('Existing medications:', window.existingMedications);
-
-// 
-document.addEventListener('DOMContentLoaded', function() {
-    const medicationCheckbox = document.getElementById('medication');
-    const medicationDetails = document.getElementById('medicationDetails');
-
-    function toggleMedicationDetails() {
-    medicationDetails.classList.toggle('hidden', !medicationCheckbox.checked);
-    }
-
-    medicationCheckbox.addEventListener('change', toggleMedicationDetails);
-
-    // Initial check to set the correct state
-    toggleMedicationDetails();
-});
-
 
 // Restrict future dates from selection
 // Get today's date in YYYY-MM-DD format
 const today = new Date().toISOString().split('T')[0];
 // Set the max attribute to today's date
 document.getElementById('date').setAttribute('max', today);
-
 </script>
 
+<script src="/js/medDetailsToggle.js" type="text/javascript"></script>
+<script src="/js/medication.js" type="text/javascript"></script>
 <script src="/js/triggers.js" type="text/javascript"></script>
-
-<script>
-    console.log('All scripts loaded');
-    
-    // Ensure the medication details are visible if medications exist
-    if (window.existingMedications.length > 0) {
-        document.getElementById('medicationDetails').classList.remove('hidden');
-    }
-</script>

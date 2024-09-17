@@ -1,3 +1,4 @@
+let pastMedications = [];
 let selectedMedications = window.existingMedications || [];
 const medicationCheckbox = document.getElementById('medication');
 const medicationDetails = document.getElementById('medicationDetails');
@@ -7,6 +8,28 @@ const medDoseInput = document.getElementById('medDose');
 const medQuantityInput = document.getElementById('medQuantity');
 const addMedicationBtn = document.getElementById('addMedication');
 const medicationSuggestions = document.getElementById('medicationSuggestions');
+
+// Event Listeners
+medicationCheckbox.addEventListener('change', () => {
+    toggleMedicationDetails();
+    if (!medicationCheckbox.checked) {
+        selectedMedications = [];
+        updateMedicationList();
+    }
+  });
+  addMedicationBtn.addEventListener('click', () => addMedication({
+      name: medNameInput.value,
+      dose: medDoseInput.value,
+      quantity: parseInt(medQuantityInput.value, 10)
+  }));
+  medNameInput.addEventListener('input', showSuggestions);
+  
+  // Close suggestions when clicking outside
+  document.addEventListener('click', (e) => {
+      if (!medNameInput.contains(e.target) && !medicationSuggestions.contains(e.target)) {
+          medicationSuggestions.classList.add('hidden');
+      }
+  });
 
 // Fetch past medications from the server
 async function fetchPastMedications() {
@@ -22,7 +45,6 @@ async function fetchPastMedications() {
     }
 }
 
-let pastMedications = [];
 fetchPastMedications().then(medications => {
     pastMedications = medications;
     updateMedicationList();
@@ -100,28 +122,6 @@ function selectMedication(name, dose, quantity) {
     medQuantityInput.value = quantity;
     medicationSuggestions.classList.add('hidden');
 }
-
-// Event Listeners
-medicationCheckbox.addEventListener('change', () => {
-  toggleMedicationDetails();
-  if (!medicationCheckbox.checked) {
-      selectedMedications = [];
-      updateMedicationList();
-  }
-});
-addMedicationBtn.addEventListener('click', () => addMedication({
-    name: medNameInput.value,
-    dose: medDoseInput.value,
-    quantity: parseInt(medQuantityInput.value, 10)
-}));
-medNameInput.addEventListener('input', showSuggestions);
-
-// Close suggestions when clicking outside
-document.addEventListener('click', (e) => {
-    if (!medNameInput.contains(e.target) && !medicationSuggestions.contains(e.target)) {
-        medicationSuggestions.classList.add('hidden');
-    }
-});
 
 // Initialize
 toggleMedicationDetails();
