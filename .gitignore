@@ -1,11 +1,22 @@
+# Dependencies
 node_modules
-.DS_Store
-config/.env
+
+# env files
 .env
-.vscode/*
-settings.json
-repopack-output.txt
-generateDummyData.js
+config/.env
+
+# OS-generated files
+.DS_Store
 public/.DS_Store
 public/assets/.DS_Store
 public/assets/images/.DS_Store
+
+# IDE directories and files
+.vscode/*
+settings.json
+
+# Temporary files
+repopack-output.txt
+
+# Script files
+generateDummyData.js
