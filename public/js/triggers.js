@@ -5,9 +5,6 @@ const selectedTriggersContainer = document.getElementById('selectedTriggers');
 const triggerSuggestions = document.getElementById('triggerSuggestions');
 const triggersHiddenInput = document.getElementById('triggers');
 
-// DEBUG
-console.log(`Line 9 Selected Triggers: ${selectedTriggers.value}`)
-
 // Fetch past triggers from the server
 async function fetchPastTriggers() {
     try {
