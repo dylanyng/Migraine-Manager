@@ -1,9 +1,26 @@
+let pastTriggers = [];
 let selectedTriggers = window.existingTriggers || [];
 const triggerInput = document.getElementById('triggerInput');
 const addTriggerBtn = document.getElementById('addTrigger');
 const selectedTriggersContainer = document.getElementById('selectedTriggers');
 const triggerSuggestions = document.getElementById('triggerSuggestions');
 const triggersHiddenInput = document.getElementById('triggers');
+
+// Event listeners
+triggerInput.addEventListener('input', (e) => showSuggestions(e.target.value));
+addTriggerBtn.addEventListener('click', () => addTrigger(triggerInput.value));
+triggerInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        addTrigger(triggerInput.value);
+    }
+});
+// Close suggestions when clicking outside
+document.addEventListener('click', (e) => {
+    if (!triggerInput.contains(e.target) && !triggerSuggestions.contains(e.target)) {
+        triggerSuggestions.classList.add('hidden');
+    }
+});
 
 // Fetch past triggers from the server
 async function fetchPastTriggers() {
@@ -19,10 +36,10 @@ async function fetchPastTriggers() {
     }
 }
 
-let pastTriggers = [];
+// Update UI with pre-populated triggers
 fetchPastTriggers().then(triggers => {
     pastTriggers = triggers;
-    updateSelectedTriggers(); // Update the UI with pre-populated triggers
+    updateSelectedTriggers(); 
 });
 
 function addTrigger(trigger) {
@@ -41,16 +58,12 @@ function removeTrigger(trigger) {
 }
 
 function updateSelectedTriggers() {
-    if (!selectedTriggers || selectedTriggers.length === 0) {
-        selectedTriggersContainer.innerHTML = '';
-        return;
-    }
-    selectedTriggersContainer.innerHTML = selectedTriggers.map(trigger => `
-        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded flex items-center">
+    selectedTriggersContainer.innerHTML = selectedTriggers.map(trigger => 
+        `<span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded flex items-center">
             ${trigger}
             <button type="button" class="ml-1 text-indigo-600 hover:text-indigo-800" onclick="removeTrigger('${trigger}')">×</button>
-        </span>
-    `).join('');
+         </span>`
+    ).join('') || '';
 }
 
 function updateHiddenInput() {
@@ -72,22 +85,6 @@ function showSuggestions(input) {
         triggerSuggestions.classList.add('hidden');
     }
 }
-
-triggerInput.addEventListener('input', (e) => showSuggestions(e.target.value));
-addTriggerBtn.addEventListener('click', () => addTrigger(triggerInput.value));
-triggerInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        addTrigger(triggerInput.value);
-    }
-});
-
-// Close suggestions when clicking outside
-document.addEventListener('click', (e) => {
-    if (!triggerInput.contains(e.target) && !triggerSuggestions.contains(e.target)) {
-        triggerSuggestions.classList.add('hidden');
-    }
-});
 
 // Initialize the UI with pre-populated triggers
 updateSelectedTriggers();
