@@ -84,8 +84,6 @@
   </div>
 </div>
 
-
-<!-- JS -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const cards = document.querySelectorAll('.migraine-card');
@@ -100,26 +98,24 @@
     });
   });
 
-  // Set Quick Log date to today
-  document.addEventListener('DOMContentLoaded', function() {
+// Set Quick Log date to today
+document.addEventListener('DOMContentLoaded', function() {
   const dateInputs = document.querySelectorAll('input[type="date"]');
   
   // Get today's date in YYYY-MM-DD format
   const today = new Date().toLocaleString("sv").split(' ')[0];
   
+  // Set the default value to today's date
   dateInputs.forEach(input => {
-    // Set the default value to today's date
     input.value = today;
-    
-    // Set the max attribute to today's date
-    input.setAttribute('max', today);
   });
 });
 
+// Grid
+document.addEventListener('DOMContentLoaded', function() {
+  const migraineEvents = <%- JSON.stringify(migraineEvents) %>;
+  createMigraineContributionGrid('migraine-contribution-grid', migraineEvents);
+});
+</script>
 
-  // Grid
-  document.addEventListener('DOMContentLoaded', function() {
-    const migraineEvents = <%- JSON.stringify(migraineEvents) %>;
-    createMigraineContributionGrid('migraine-contribution-grid', migraineEvents);
-  });
-  </script>
+<script src="/js/grid.js" type="text/javascript"></script>
