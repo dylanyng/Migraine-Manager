@@ -76,6 +76,41 @@
             </div>
 
             <div>
+                <label for="start-location" class="block text-sm font-medium leading-6">Where did it start?</label>
+                <fieldset id="start-location" class="grid mt-2 w-auto grid-cols-6 gap-1 rounded-xl bg-indigo-100 p-2">
+                    <div class="m-auto">
+                        <input type="radio" id="home" value="home" name="startLocation" class="peer hidden"/>
+                        <label for="home" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">home</label>
+                    </div>
+
+                    <div class="m-auto">
+                        <input type="radio" id="bed" value="bed" name="startLocation" class="peer hidden" />
+                        <label for="bed" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">bed</label>
+                    </div>
+    
+                    <div class="m-auto">
+                        <input type="radio" id="work" value="work" name="startLocation" class="peer hidden"/>
+                        <label for="work" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">work</label>
+                    </div>
+
+                    <div class="m-auto">
+                        <input type="radio" id="school" value="school" name="startLocation" class="peer hidden" />
+                        <label for="school" class="block cursor-pointer  select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">school</label>
+                    </div>
+            
+                    <div class="m-auto">
+                        <input type="radio" id="transit" value="transit" name="startLocation" class="peer hidden" />
+                        <label for="transit" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">transit</label>
+                    </div>
+
+                    <div class="m-auto">
+                        <input type="radio" id="out" value="out" name="startLocation" class="peer hidden" />
+                        <label for="out" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">out</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div>
                 <span class="block text-sm font-medium leading-6 mb-2">Pain Location</span>
                 <ul class="grid mt-2 w-auto grid-cols-3 gap-2 rounded-xl bg-indigo-100 p-2">
                     <% ['left', 'front', 'right', 'other', 'back', 'entire head'].forEach(function(location) { %>

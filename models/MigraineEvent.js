@@ -26,6 +26,11 @@ const MigraineEventSchema = new mongoose.Schema({
     enum: ['left', 'right', 'front', 'back', 'entire head', 'other'],
     required: false
   },
+  startLocation: {
+    type: [String],
+    enum: ['home', 'work', 'bed', 'school', 'transit', 'out'],
+    required: false
+  },
   notes: {
     type: String,
     required: false

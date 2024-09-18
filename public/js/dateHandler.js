@@ -10,6 +10,6 @@ function setDateAsToday() {
 }
 
 // Restrict future dates from selection
-function restrictFutureDates() {
-  dateInput.setAttribute('max', today);
+function restrictFutureDates(onElement = dateInput) {
+  onElement.setAttribute('max', today);
 }
