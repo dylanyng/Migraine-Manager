@@ -12,5 +12,12 @@ module.exports = {
             user: req.user,
             layout: false // Do not use layout.ejs
         });
+    },
+    getThankYou: (req, res) => {
+        res.render('thank-you', { 
+            title: 'Thank You', 
+            user: req.user,
+            layout: false // Do not use layout.ejs
+        });
     }
 }

@@ -594,10 +594,6 @@ video {
   }
 }
 
-.visible {
-  visibility: visible;
-}
-
 .absolute {
   position: absolute;
 }

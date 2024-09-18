@@ -19,6 +19,8 @@ router.post('/signup', (req, res, next) => authController.postSignup(req, res, n
 
 // Contact
 router.get('/contact', (req, res, next) => homeController.getContact(req, res, next));
+router.get('/thank-you', (req, res, next) => homeController.getThankYou(req, res, next));
+
 
 // Route for updating user profiles
 router.put('/update-profile', ensureAuth, (req, res, next) => userController.updateProfile(req, res, next));
