@@ -88,20 +88,16 @@
 
             <div>
                 <span class="block text-sm font-medium leading-6 mb-2">Pain Location</span>
-                <ul class="grid mt-2 w-auto grid-cols-3 gap-2 rounded-xl bg-indigo-100 p-2">
-                    <% ['left', 'front', 'right', 'other', 'back', 'entire head'].forEach(function(location) { %>
-                        <li class="inline-flex py-2 px-1 text-sm font-medium border text-gray-600 -mt-px rounded-lg first:mt-0 sm:-ml-px sm:mt-0">
-                            <div class="relative flex items-start w-full">
-                                <div class="flex items-center h-5">
-                                    <input id="<%= location %>" name="painLocation" type="checkbox" value="<%= location %>" 
-                                    <%= migraineEvent.painLocation.includes(location) ? 'checked' : '' %>
-                                    class="w-5 text-red-600 cursor-pointer h-5 border border-gray-300 rounded-md">
-                                </div>
-                                <label for="<%= location %>" class="ml-3.5 block text-sm font-semibold text-indigo-900 cursor-pointer"><%= location.charAt(0).toUpperCase() + location.slice(1) %></label>
-                            </div>
-                        </li>
+                <div class="space-y-2 grid grid-cols-3 gap-2">
+                    <% ['left', 'right', 'front', 'back', 'entire head', 'other'].forEach(function(location) { %>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="<%= location %>" name="painLocation" value="<%= location %>" 
+                                   <%= migraineEvent.painLocation.includes(location) ? 'checked' : '' %>
+                                   class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                            <label for="<%= location %>" class="ml-2 block text-sm"><%= location.charAt(0).toUpperCase() + location.slice(1) %></label>
+                        </div>
                     <% }); %>
-                </ul>
+                </div>
             </div>
 
             <div>
