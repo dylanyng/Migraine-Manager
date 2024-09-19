@@ -42,6 +42,12 @@
       <% if (migraineEvent.triggers && migraineEvent.triggers.length > 0 && migraineEvent.triggers.some(trigger => trigger.trim() !== "")) { %>
         <p class="text-gray-300">Triggers: <span class="font-medium"><%= migraineEvent.triggers %></span></p>
       <% } %>
+
+      <% if (migraineEvent.startLocation && migraineEvent.startLocation.length > 0) { %>
+        <p class="text-gray-300">Episode start location: <span class="font-medium"><%= migraineEvent.startLocation %></span></p>
+        <% console.log(migraineEvent.startLocation) %>
+
+      <% } %>
       
       <% if (migraineEvent.notes) { %>
         <div>
