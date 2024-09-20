@@ -788,6 +788,14 @@ video {
   width: 1.25rem;
 }
 
+.w-\[calc\(33\.33\%-0\.33rem\)\] {
+  width: calc(33.33% - 0.33rem);
+}
+
+.w-\[calc\(33\.33\%-0\.35rem\)\] {
+  width: calc(33.33% - 0.35rem);
+}
+
 .w-auto {
   width: auto;
 }
@@ -1257,11 +1265,6 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .font-bold {

@@ -53,35 +53,35 @@
 
             <div>
                 <label for="start-location" class="block text-sm font-medium leading-6">Where did it start?</label>
-                <fieldset id="start-location" class="grid mt-2 w-auto grid-cols-6 gap-1 rounded-xl bg-indigo-100 p-2">
-                    <div class="m-auto">
-                        <input type="radio" id="home" value="home" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'home' ? 'checked' : '' %>/>
-                        <label for="home" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">home</label>
+                <fieldset id="start-location" class="flex flex-wrap mt-2 w-full gap-2 rounded-xl bg-indigo-100 p-2">
+                    <div class="w-[calc(33.33%-0.33rem)] flex">
+                        <input type="radio" id="home" value="home" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'out' ? 'checked' : '' %>/>
+                        <label for="home" class="flex-grow cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 hover:bg-indigo-200 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">home</label>
                     </div>
-
-                    <div class="m-auto">
-                        <input type="radio" id="bed" value="bed" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'bed' ? 'checked' : '' %>/>
-                        <label for="bed" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">bed</label>
+                
+                    <div class="w-[calc(33.33%-0.35rem)] flex">
+                        <input type="radio" id="bed" value="bed" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'out' ? 'checked' : '' %>/>
+                        <label for="bed" class="flex-grow cursor5pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 hover:bg-indigo-200 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">bed</label>
                     </div>
-    
-                    <div class="m-auto">
-                        <input type="radio" id="work" value="work" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'work' ? 'checked' : '' %>/>
-                        <label for="work" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">work</label>
+                
+                    <div class="w-[calc(33.33%-0.35rem)] flex">
+                        <input type="radio" id="work" value="work" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'out' ? 'checked' : '' %>/>
+                        <label for="work" class="flex-grow cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 hover:bg-indigo-200 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">work</label>
                     </div>
-
-                    <div class="m-auto">
-                        <input type="radio" id="school" value="school" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'school' ? 'checked' : '' %>/>
-                        <label for="school" class="block cursor-pointer  select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">school</label>
+                
+                    <div class="w-[calc(33.33%-0.35rem)] flex">
+                        <input type="radio" id="school" value="school" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'out' ? 'checked' : '' %>/>
+                        <label for="school" class="flex-grow cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 hover:bg-indigo-200 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">school</label>
                     </div>
-            
-                    <div class="m-auto">
-                        <input type="radio" id="transit" value="transit" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'transit' ? 'checked' : '' %>/>
-                        <label for="transit" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">transit</label>
+                
+                    <div class="w-[calc(33.33%-0.35rem)] flex">
+                        <input type="radio" id="transit" value="transit" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'out' ? 'checked' : '' %>/>
+                        <label for="transit" class="flex-grow cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 hover:bg-indigo-200 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">transit</label>
                     </div>
-
-                    <div class="m-auto">
+                
+                    <div class="w-[calc(33.33%-0.35rem)] flex">
                         <input type="radio" id="out" value="out" name="startLocation" class="peer hidden" <%= migraineEvent.startLocation == 'out' ? 'checked' : '' %>/>
-                        <label for="out" class="block cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">out</label>
+                        <label for="out" class="flex-grow cursor-pointer select-none rounded-xl p-2 text-center font-bold text-indigo-600 hover:bg-indigo-200 peer-checked:bg-indigo-600 peer-checked:font-bold peer-checked:text-white">out</label>
                     </div>
                 </fieldset>
             </div>
@@ -93,11 +93,11 @@
                         <li class="inline-flex py-2 px-1 text-sm font-medium border text-gray-600 -mt-px rounded-lg first:mt-0 sm:-ml-px sm:mt-0">
                             <div class="relative flex items-start w-full">
                                 <div class="flex items-center h-5">
-                                    <input id="<%= location %>" name="painLocation" type="checkbox" value="<%= location %>" 
-                                    <%= migraineEvent.painLocation.includes(location) ? 'checked' : '' %>
-                                    class="w-5 text-red-600 cursor-pointer h-5 border border-gray-300 rounded-md">
+                                    <input id="<%= location %>" name="painLocation" type="checkbox" value="<%= location %>"
+                                    class="w-5 text-red-600 cursor-pointer h-5 border border-gray-300 rounded-md" 
+                                    <%= migraineEvent.painLocation.includes(location) ? 'checked' : '' %> >
                                 </div>
-                                <label for="<%= location %>" class="ml-3.5 block text-sm font-semibold text-indigo-900 cursor-pointer"><%= location.charAt(0).toUpperCase() + location.slice(1) %></label>
+                                <label for="<%= location %>" class="ml-1 block text-sm font-semibold text-indigo-900 cursor-pointer"><%= location.charAt(0).toUpperCase() + location.slice(1) %></label>
                             </div>
                         </li>
                     <% }); %>
