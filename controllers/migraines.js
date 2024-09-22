@@ -1,4 +1,5 @@
 const MigraineEvent = require('../models/MigraineEvent')
+const getWeather = require('../services/weatherService')
 
 // Convert date to UTC
 function convertToUTC(dateString, timezone) {
@@ -107,7 +108,9 @@ exports.createMigraineEvent = async (req, res, next) => {
       req.body.date = convertToUTC(req.body.date, userTimezone);
     }
 
-    await MigraineEvent.create({ ...req.body, userId: req.user.id })
+    const weatherData = getWeather.getWeatherData();
+
+    await MigraineEvent.create({ ...req.body, weather: weatherData, userId: req.user.id })
     req.flash('success', 'Migraine event recorded successfully')
     res.redirect('/migraines')
   } catch (err) {
