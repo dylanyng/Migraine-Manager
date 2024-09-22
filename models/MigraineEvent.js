@@ -55,6 +55,24 @@ const MigraineEventSchema = new mongoose.Schema({
     default: false,
     required: false
   },
+  weather: {
+    conditions: {
+      type: String,
+      required: false,
+    },
+    humidity: {
+      type: Number,
+      required: false,
+    },
+    pressure: {
+      type: Number,
+      required: false,
+    },
+    temperature: {
+      type: Number,
+      required: false,
+    }
+  },
   userId: {
     type: String,
     required: true
