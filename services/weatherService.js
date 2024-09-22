@@ -1,4 +1,9 @@
-const fetch = require('node-fetch');
+// Dynamic import of node-fetch
+let fetch;
+(async () => {
+  fetch = (await import('node-fetch')).default;
+})();
+
 const BASE_URL = process.env.WEATHER_API_BASE_URL;
 const API_KEY = process.env.WEATHER_API_KEY;
 
