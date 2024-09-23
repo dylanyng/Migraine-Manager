@@ -108,9 +108,8 @@ exports.createMigraineEvent = async (req, res, next) => {
       req.body.date = convertToUTC(req.body.date, userTimezone);
     }
 
-    const weatherData = getWeather.getWeatherData();
-
-    await MigraineEvent.create({ ...req.body, weather: weatherData, userId: req.user.id })
+    // Get users location, and pass it in the getWeather.getWeatherData(<here>)
+    await MigraineEvent.create({ ...req.body, weather: getWeather.getWeatherData(), userId: req.user.id })
     req.flash('success', 'Migraine event recorded successfully')
     res.redirect('/migraines')
   } catch (err) {

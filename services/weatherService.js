@@ -16,6 +16,9 @@ async function getWeatherData(location) {
     } else if (typeof location === 'string') {
       // Use city,state format
       url = `${BASE_URL}city=${encodeURIComponent(location)}&key=${API_KEY}`;
+    } else if (typeof location === 'number') {
+      // Use zip code format
+      url = `${BASE_URL}postal_code=${encodeURIComponent(location)}&key=${API_KEY}`;
     } else {
       throw new Error('Invalid location format');
     }
