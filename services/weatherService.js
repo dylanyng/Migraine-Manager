@@ -4,6 +4,7 @@ let fetch;
   fetch = (await import('node-fetch')).default;
 })();
 
+// Weatherbit environment variables
 const BASE_URL = process.env.WEATHER_API_BASE_URL;
 const API_KEY = process.env.WEATHER_API_KEY;
 
@@ -28,7 +29,8 @@ async function getWeatherData(location) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    
+    console.log(`Base URL: ${BASE_URL}`)
+    console.log(data)
     return {
       conditions: data.data[0].weather.description,
       humidity: data.data[0].rh,

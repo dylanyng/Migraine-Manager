@@ -109,7 +109,8 @@ exports.createMigraineEvent = async (req, res, next) => {
     }
 
     // Get users location, and pass it in the getWeather.getWeatherData(<here>)
-    await MigraineEvent.create({ ...req.body, weather: getWeather.getWeatherData(), userId: req.user.id })
+    // Temporarily hard coding zip code
+    await MigraineEvent.create({ ...req.body, weather: getWeather.getWeatherData(30303), userId: req.user.id })
     req.flash('success', 'Migraine event recorded successfully')
     res.redirect('/migraines')
   } catch (err) {

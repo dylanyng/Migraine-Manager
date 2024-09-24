@@ -1,3 +1,6 @@
+// Dotenv config
+require('dotenv').config({path: './config/.env'})
+
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const app = express()
@@ -14,8 +17,6 @@ const mainRoutes = require('./routes/main')
 const migraineRoutes = require('./routes/migraines')
 const triggerRoutes = require('./routes/triggers');
 const medicationRoutes = require('./routes/medication')
-
-require('dotenv').config({path: './config/.env'})
 
 // Passport config
 require('./config/passport')(passport)
