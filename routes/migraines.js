@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const migraineController = require('../controllers/migraines')
 const { ensureAuth } = require('../middleware/auth')
+const migraineController = require('../controllers/migraines')
 
 router.get('/visualizations', ensureAuth, migraineController.getVisualizations);
 

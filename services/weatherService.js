@@ -11,15 +11,11 @@ const API_KEY = process.env.WEATHER_API_KEY;
 async function getWeatherData(location) {
   try {
     let url;
-    if (typeof location === 'object' && 'latitude' in location && 'longitude' in location) {
-      // Use latitude and longitude
+    console.log(`Location: ${location}`)
+    if ('latitude' in location && 'longitude' in location) {
       url = `${BASE_URL}lat=${location.latitude}&lon=${location.longitude}&key=${API_KEY}`;
-    } else if (typeof location === 'string') {
-      // Use city,state format
-      url = `${BASE_URL}city=${encodeURIComponent(location)}&key=${API_KEY}`;
-    } else if (typeof location === 'number') {
-      // Use zip code format
-      url = `${BASE_URL}postal_code=${encodeURIComponent(location)}&key=${API_KEY}`;
+    } else if ('zipCode' in location) {
+      url = `${BASE_URL}postal_code=${location.zipCode}&key=${API_KEY}`;
     } else {
       throw new Error('Invalid location format');
     }
@@ -29,8 +25,7 @@ async function getWeatherData(location) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(`Base URL: ${BASE_URL}`)
-    console.log(data)
+    console.log(`Conditions data: ${data.data[0].weather.description}`)
     return {
       conditions: data.data[0].weather.description,
       humidity: data.data[0].rh,
@@ -39,7 +34,7 @@ async function getWeatherData(location) {
     };
   } catch (error) {
     console.error('Error fetching weather data:', error);
-    return null;
+    throw error;
   }
 }
 

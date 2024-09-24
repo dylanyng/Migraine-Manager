@@ -108,16 +108,26 @@ exports.createMigraineEvent = async (req, res, next) => {
       req.body.date = convertToUTC(req.body.date, userTimezone);
     }
 
-    // Get users location, and pass it in the getWeather.getWeatherData(<here>)
-    // Temporarily hard coding zip code
-    await MigraineEvent.create({ ...req.body, weather: getWeather.getWeatherData(30303), userId: req.user.id })
-    req.flash('success', 'Migraine event recorded successfully')
-    res.redirect('/migraines')
+    const weatherData = {
+      conditions: req.body.weather.conditions,
+      humidity: req.body.weather.humidity,
+      pressure: req.body.weather.pressure,
+      temperature: req.body.weather.temperature
+    }
+
+    await MigraineEvent.create({ 
+      ...req.body, 
+      weather: weatherData, 
+      userId: req.user.id 
+    })
+
+    req.flash('success', 'Migraine event recorded successfully');
+    res.redirect('/migraines');
   } catch (err) {
-      console.error(err)
-      next(err);
-      req.flash('error', 'An error occurred while recording the migraine event')
-      res.redirect('/migraines/new')
+    console.error(err);
+    next(err);
+    req.flash('error', 'An error occurred while recording the migraine event');
+    res.redirect('/migraines/new');
   }
 }
 

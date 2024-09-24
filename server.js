@@ -17,6 +17,7 @@ const mainRoutes = require('./routes/main')
 const migraineRoutes = require('./routes/migraines')
 const triggerRoutes = require('./routes/triggers');
 const medicationRoutes = require('./routes/medication')
+const weatherRoutes = require('./routes/weather')
 
 // Passport config
 require('./config/passport')(passport)
@@ -57,6 +58,7 @@ app.use('/', mainRoutes)
 app.use('/migraines', migraineRoutes)
 app.use('/triggers', triggerRoutes);
 app.use('/medication', medicationRoutes)
+app.use('/weather', weatherRoutes);
 
 // Error handler
 app.use(errorHandler)
