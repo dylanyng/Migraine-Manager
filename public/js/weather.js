@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const zipCodeInput = document.getElementById('zipCode');
     const weatherDataDisplay = document.getElementById('weatherDataDisplay');
     const weatherInfo = document.getElementById('weatherInfo');
+
+    function toFahrenheit(c) {
+        return Number(c) * 1.8 + 32;
+    }
     
     getLocationWeatherBtn.addEventListener('click', function() {
         if ("geolocation" in navigator) {
@@ -45,9 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function displayWeatherData(data) {
-        let fahrenheit = Number(data.temperature) * 1.8 + 32;
         weatherInfo.innerHTML = `
-            <p>Temperature: ${fahrenheit}°C</p>
+            <p>Temperature: ${toFahrenheit(data.temperature)}°F</p>
             <p>Conditions: ${data.conditions}</p>
             <p>Humidity: ${data.humidity}%</p>
             <p>Pressure: ${data.pressure} hPa</p>
