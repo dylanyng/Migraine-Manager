@@ -45,8 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function displayWeatherData(data) {
+        let fahrenheit = Number(data.temperature) * 1.8 + 32;
         weatherInfo.innerHTML = `
-            <p>Temperature: ${data.temperature}°C</p>
+            <p>Temperature: ${fahrenheit}°C</p>
             <p>Conditions: ${data.conditions}</p>
             <p>Humidity: ${data.humidity}%</p>
             <p>Pressure: ${data.pressure} hPa</p>
