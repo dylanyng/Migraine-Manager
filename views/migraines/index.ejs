@@ -68,6 +68,14 @@
                 <p>location: <%= event.startLocation[0] %></p>
               <% } %>
             </div>
+
+            <!-- Weather on card -->
+            <div class="w-full mb-2 text-sm">
+              <% if (event.weather) { %>
+                <p> <%= event.weather.conditions %></p>
+                <p><%= Number(event.weather.pressure/33.864) %>inHg</p>
+              <% } %>
+            </div>
             
             <div class="flex flex-row items-center justify-between">
               <p class=""><%= event.painLevel === undefined ? "" : `Pain Level: ${event.painLevel}` %></p>

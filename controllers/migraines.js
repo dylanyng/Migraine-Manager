@@ -115,6 +115,8 @@ exports.createMigraineEvent = async (req, res, next) => {
       temperature: req.body.weather.temperature
     }
 
+    console.log(weatherData);
+
     await MigraineEvent.create({ 
       ...req.body, 
       weather: weatherData, 

@@ -25,7 +25,7 @@ async function getWeatherData(location) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(`Conditions data: ${data.data[0].weather.description}`)
+    console.log(`Conditions data: ${data.data[0].rh}`)
     return {
       conditions: data.data[0].weather.description,
       humidity: data.data[0].rh,
