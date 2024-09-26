@@ -108,11 +108,14 @@ exports.createMigraineEvent = async (req, res, next) => {
       req.body.date = convertToUTC(req.body.date, userTimezone);
     }
 
-    const weatherData = {
-      conditions: req.body.weather.conditions,
-      humidity: req.body.weather.humidity,
-      pressure: req.body.weather.pressure,
-      temperature: req.body.weather.temperature
+    let weatherData = null;
+    if (req.body.weather) {
+      weatherData = {
+        conditions: req.body.weather.conditions,
+        humidity: req.body.weather.humidity,
+        pressure: req.body.weather.pressure,
+        temperature: req.body.weather.temperature
+      };
     }
 
     console.log(weatherData);
