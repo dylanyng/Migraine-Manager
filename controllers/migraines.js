@@ -130,9 +130,7 @@ exports.createMigraineEvent = async (req, res, next) => {
     res.redirect('/migraines');
   } catch (err) {
     console.error(err);
-    next(err);
-    req.flash('error', 'An error occurred while recording the migraine event');
-    res.redirect('/migraines/new');
+    return next(err);
   }
 }
 
@@ -158,7 +156,7 @@ exports.getMigraineEvent = async (req, res, next) => {
   } catch (err) {
     console.error(err)
     req.flash('error', 'An error occurred while retrieving the migraine event.')
-    next(err);
+    return next(err);
   }
 }
 
@@ -177,7 +175,7 @@ exports.getEditMigraineForm = async (req, res, next) => {
   } catch (err) {
     console.error(err)
     req.flash('error', 'An error occurred while retrieving the migraine event.')
-    next(err);
+    return next(err);
   }
 }
 
