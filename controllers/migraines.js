@@ -42,10 +42,27 @@ exports.getMigraineEvents = async (req, res, next) => {
       const userTimezone = req.user.preferences.timezone || 'UTC';
 
       const formattedEvents = migraineEvents.map(event => {
-        const formattedDate = formatInUserTimezone(event.date, userTimezone);
+      const formattedDate = formatInUserTimezone(event.date, userTimezone);
+      const eventObject = event.toObject();
+
+        // Convert pressure from hPa to inHg and round to nearest hundredth
+        function convertPressure(hPa) {
+          let inHg = hPa * 0.02952998;
+          return Math.round(inHg * 100) / 100;
+        }
+        
+        // Extract weather data
+        const weather = eventObject.weather ? {
+          conditions: eventObject.weather.conditions,
+          humidity: eventObject.weather.humidity,
+          pressure: convertPressure(eventObject.weather.pressure),
+          temperature: eventObject.weather.temperature
+        } : null;
+  
         return {
-          ...event.toObject(),
-          formattedDate
+          ...eventObject,
+          formattedDate,
+          weather // Include the weather data in the formatted event
         };
       });
 
@@ -250,6 +267,7 @@ exports.deleteMigraineEvent = async (req, res, next) => {
   }
 }
 
+// Charts
 exports.getVisualizations = async (req, res) => {
   try {
     const attackTypes = await MigraineEvent.aggregate([

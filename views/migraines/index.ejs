@@ -73,7 +73,7 @@
             <div class="w-full mb-2 text-sm">
               <% if (event.weather) { %>
                 <p> <%= event.weather.conditions %></p>
-                <p><%= Number(event.weather.pressure/33.864) %>inHg</p>
+                <p> <%= event.weather.pressure %> inHg</p>
               <% } %>
             </div>
             
