@@ -25,16 +25,6 @@
       <button type="submit" class="w-full rounded-md bg-yellow-900/70 px-3 xs:py-4 py-1.5 md:px-10 md:py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-900/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Symptoms</button>
     </form>
   </div>
-
-  <!-- HIDDEN -->
-  <!-- Grid View -->
-  <div class="md:w-2/5 hidden">
-    <h3 class="text-xl font-semibold m-0 mb-4">Migraine History</h3>
-    <div class="bg-slate-950 w-fit flex p-2 m-0">
-      <div id="migraine-contribution-grid" class="content-center"></div>
-    </div>
-    
-  </div>
 </div>
 
 <div class="container mx-auto px-6 py-8">
@@ -43,7 +33,7 @@
   <% if (migraineEvents.length > 0) { %>
     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <% migraineEvents.forEach(function(event) { %>
-        <li class="relative">
+      <li class="relative">
           <% 
           const attackTypeColors = {
             'migraine': 'bg-red-900/50 hover:bg-red-900/70',
@@ -55,39 +45,39 @@
           const cardColor = attackTypeColors[event.attackType] || 'bg-blue-900/50 hover:bg-blue-900/70'; 
           %>
 
-<div class="migraine-card flex flex-col justify-between rounded-lg p-6 h-44 shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer <%= cardColor %>"
-     data-href="/migraines/<%= event._id %>">
-            <div class="flex flex-row justify-between">
-              <h3 class="text-xl font-semibold mb-2"><%= event.formattedDate %></h3>
-              <p class="text-lg mb-2 font-semibold capitalize"><%= event.attackType === "misc symptoms" ? "symptoms" : event.attackType %></p>
-            </div>
+        <div class="migraine-card flex flex-col justify-between rounded-lg p-6 h-44 shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer <%= cardColor %>"
+        data-href="/migraines/<%= event._id %>">
+          <div class="flex flex-row justify-between">
+            <h3 class="text-xl font-semibold mb-2"><%= event.formattedDate %></h3>
+            <p class="text-lg mb-2 font-semibold capitalize"><%= event.attackType === "misc symptoms" ? "symptoms" : event.attackType %></p>
+          </div>
 
-            <!-- Hidden -->
-            <div class="w-full mb-2 text-sm hidden">
-              <% if (event.startLocation.length > 0 && event.startLocation[0].trim() !== "") { %>
-                <p>location: <%= event.startLocation[0] %></p>
-              <% } %>
-            </div>
+          <!-- Hidden -->
+          <div class="w-full mb-2 text-sm hidden">
+            <% if (event.startLocation.length > 0 && event.startLocation[0].trim() !== "") { %>
+              <p>location: <%= event.startLocation[0] %></p>
+            <% } %>
+          </div>
 
-            <!-- Weather on card -->
-            <div class="w-full mb-2 text-sm">
-              <% if (event.weather) { %>
-                <p> <%= event.weather.conditions %></p>
-                <p> <%= event.weather.pressure %> inHg</p>
-              <% } %>
-            </div>
+          <!-- Weather on card -->
+          <div class="w-full mb-2 text-sm">
+            <% if (event.weather) { %>
+              <p> <%= event.weather.conditions %></p>
+              <p> <%= event.weather.pressure %> inHg</p>
+            <% } %>
+          </div>
             
-            <div class="flex flex-row items-center justify-between">
-              <p class="font-bold"><%= event.painLevel === undefined ? "" : `Pain Level: ${event.painLevel}` %></p>
+          <div class="flex flex-row items-center justify-between">
+            <p class="font-bold"><%= event.painLevel === undefined ? "" : `Pain Level: ${event.painLevel}` %></p>
 
             <% if (event.quickLog === true) { %>
               <a href="/migraines/edit/<%= event._id %>" class="edit-btn w-fit text-sm bg-midnight text-white px-2 py-1 rounded-md hover:bg-orange-400 hover:text-black transition-colors duration-300 z-10">Add Details</a>
             <% } else if (event.medication === true) { %>
               <img src="/assets/images/svg/rx.svg" alt="RX" class="h-5 w-auto">
             <% } %>
-            </div>
           </div>
-        </li>
+        </div>
+      </li>
       <% }); %>
     </ul>
   <% } else { %>
