@@ -55,7 +55,7 @@
           const cardColor = attackTypeColors[event.attackType] || 'bg-blue-900/50 hover:bg-blue-900/70'; 
           %>
 
-<div class="migraine-card flex flex-col justify-between rounded-lg p-6 h-40 shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer <%= cardColor %>"
+<div class="migraine-card flex flex-col justify-between rounded-lg p-6 h-44 shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer <%= cardColor %>"
      data-href="/migraines/<%= event._id %>">
             <div class="flex flex-row justify-between">
               <h3 class="text-xl font-semibold mb-2"><%= event.formattedDate %></h3>
@@ -78,7 +78,7 @@
             </div>
             
             <div class="flex flex-row items-center justify-between">
-              <p class=""><%= event.painLevel === undefined ? "" : `Pain Level: ${event.painLevel}` %></p>
+              <p class="font-bold"><%= event.painLevel === undefined ? "" : `Pain Level: ${event.painLevel}` %></p>
 
             <% if (event.quickLog === true) { %>
               <a href="/migraines/edit/<%= event._id %>" class="edit-btn w-fit text-sm bg-midnight text-white px-2 py-1 rounded-md hover:bg-orange-400 hover:text-black transition-colors duration-300 z-10">Add Details</a>
