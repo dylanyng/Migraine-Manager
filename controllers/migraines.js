@@ -36,6 +36,11 @@ function formatDuration(minutes) {
   return result || 'Less than a minute';
 }
 
+// Convert celsius to fahrenheit
+function toFahrenheit(c) {
+  return Number(c) * 1.8 + 32;
+}
+
 exports.getMigraineEvents = async (req, res, next) => {
   try {
       const migraineEvents = await MigraineEvent.find({ userId: req.user.id }).sort({ date: -1 })
@@ -56,7 +61,7 @@ exports.getMigraineEvents = async (req, res, next) => {
           conditions: eventObject.weather.conditions,
           humidity: eventObject.weather.humidity,
           pressure: convertPressure(eventObject.weather.pressure),
-          temperature: eventObject.weather.temperature
+          temperature: toFahrenheit(eventObject.weather.temperature)
         } : null;
   
         return {
