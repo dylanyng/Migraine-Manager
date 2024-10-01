@@ -30,7 +30,7 @@ The dashboard provides an overview of recent activity as well as the ability to 
 While the current version of Migraine Manager is functional and user-friendly, there are several optimizations planned for future iterations:
 
 - [x] Implement data visualization features to help users better understand their migraine patterns and trends over time.
-- [ ] Implement retrieval of weather data using an API to keep track of weather conditions associated with migraine attacks for 
+- [x] Implement retrieval of weather data using an API to keep track of weather conditions associated with migraine attacks for 
 - [ ] Add a user settings page for updating user preferences
 - [ ] Implement a reminder system for logging migraines
 
