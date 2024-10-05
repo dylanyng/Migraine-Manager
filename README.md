@@ -46,7 +46,7 @@ Building Migraine Manager reinforced the idea that technology can have a meaning
 
 ---
 
-## Installation
+## Installation:
 
 `npm install`
 
