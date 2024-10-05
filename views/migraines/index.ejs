@@ -55,16 +55,16 @@
           <!-- Hidden -->
           <div class="w-full mb-2 text-sm">
             <% if (event.startLocation.length > 0 && event.startLocation[0].trim() !== "") { %>
-              <p class="capitalize font-semibold"> <%= event.startLocation[0] %></p>
+              <p class="capitalize font-semibold">Started: <%= event.startLocation[0] %></p>
             <% } %>
           </div>
 
           <!-- Weather on card -->
           <div class="w-full mb-2 text-xs">
             <% if (event.weather) { %>
-              <span class="font-mono inline"><%= event.weather.pressure %>inHg</span>
+              <span class="font-mono inline"><%= event.weather.temperature %>°F</span>
               <span class="font-mono inline"> • </span>
-              <span class="font-mono inline"><%= event.weather.temperature %>°</span>
+              <span class="font-mono inline"><%= event.weather.pressure %>inHg</span>
               <p class="font-mono"> <%= event.weather.conditions %></p>
             <% } %>
           </div>
