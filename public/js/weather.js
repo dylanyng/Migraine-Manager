@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return Number(c) * 1.8 + 32;
     }
 
+    // Convert hPa from weatherbit to inHg, to display to the user
     function convertPressure(hPa) {
         let inHg = hPa * 0.02952998;
         return Math.round(inHg * 100) / 100;
