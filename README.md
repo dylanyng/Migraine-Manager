@@ -85,5 +85,3 @@ Building Migraine Manager reinforced the idea that technology can have a meaning
 ## 🚀 Run
 
 `npm start`
-
-tailwind: run `npm run build:css` in a separate terminal
