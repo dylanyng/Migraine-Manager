@@ -36,9 +36,10 @@ function formatDuration(minutes) {
   return result || 'Less than a minute';
 }
 
-// Convert celsius to fahrenheit
+// Convert celsius to fahrenheit and round to the nearest tenth
 function toFahrenheit(c) {
-  return Number(c) * 1.8 + 32;
+  let f = Number(c) * 1.8 + 32;
+  return Math.round(f * 100) / 100;
 }
 
 exports.getMigraineEvents = async (req, res, next) => {
@@ -63,7 +64,7 @@ exports.getMigraineEvents = async (req, res, next) => {
           pressure: convertPressure(eventObject.weather.pressure),
           temperature: toFahrenheit(eventObject.weather.temperature)
         } : null;
-  
+        
         return {
           ...eventObject,
           formattedDate,

@@ -45,26 +45,27 @@
           const cardColor = attackTypeColors[event.attackType] || 'bg-blue-900/50 hover:bg-blue-900/70'; 
           %>
 
-        <div class="migraine-card flex flex-col justify-between rounded-lg p-6 h-44 shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer <%= cardColor %>"
+        <div class="migraine-card flex flex-col justify-between rounded-lg p-5 h-44 shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer <%= cardColor %>"
         data-href="/migraines/<%= event._id %>">
           <div class="flex flex-row justify-between">
             <h3 class="text-xl font-semibold mb-2"><%= event.formattedDate %></h3>
             <p class="text-lg mb-2 font-semibold capitalize"><%= event.attackType === "misc symptoms" ? "symptoms" : event.attackType %></p>
           </div>
 
-          <!-- Hidden -->
           <div class="w-full mb-2 text-sm">
             <% if (event.startLocation.length > 0 && event.startLocation[0].trim() !== "") { %>
-              <p class="capitalize font-semibold"> <%= event.startLocation[0] %></p>
+              <p class="capitalize font-semibold">Started: <%= event.startLocation[0] %></p>
+            <% } else {%>
+              <p class="capitalize font-semibold">&nbsp;</p>
             <% } %>
           </div>
 
           <!-- Weather on card -->
-          <div class="w-full mb-2 text-xs">
+          <div class="w-full text-xs">
             <% if (event.weather) { %>
-              <span class="font-mono inline"><%= event.weather.pressure %>inHg</span>
+              <span class="font-mono inline"><%= event.weather.temperature %>°F</span>
               <span class="font-mono inline"> • </span>
-              <span class="font-mono inline"><%= event.weather.temperature %>°</span>
+              <span class="font-mono inline"><%= event.weather.pressure %>inHg</span>
               <p class="font-mono"> <%= event.weather.conditions %></p>
             <% } %>
           </div>

@@ -4,9 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const weatherDataDisplay = document.getElementById('weatherDataDisplay');
     const weatherInfo = document.getElementById('weatherInfo');
 
+    // Convert celsius to fahrenheit
     function toFahrenheit(c) {
         return Number(c) * 1.8 + 32;
     }
+
+    // Convert hPa from weatherbit to inHg, to display to the user
+    function convertPressure(hPa) {
+        let inHg = hPa * 0.02952998;
+        return Math.round(inHg * 100) / 100;
+      }
     
     getLocationWeatherBtn.addEventListener('click', function() {
         if ("geolocation" in navigator) {
@@ -53,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p>Temperature: ${toFahrenheit(data.temperature)}°F</p>
             <p>Conditions: ${data.conditions}</p>
             <p>Humidity: ${data.humidity}%</p>
-            <p>Pressure: ${data.pressure} hPa</p>
+            <p>Pressure: ${convertPressure(data.pressure)}inHg</p>
         `;
         weatherDataDisplay.classList.remove('hidden');
 

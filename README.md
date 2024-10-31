@@ -1,4 +1,4 @@
-# Migraine Manager
+# 🧠 Migraine Manager
 
 Migraine Manager is a full stack web application designed to help users track and manage their migraine episodes. It provides an intuitive interface for logging migraine events, including details such as pain level, duration, and potential triggers, and much more.
 
@@ -8,7 +8,7 @@ Migraine Manager is a full stack web application designed to help users track an
 
 ---
 
-## How It's Made:
+## 🛠️ How It's Made:
 
 **Tech used:** HTML, EJS, JavaScript, Tailwind CSS, Node.js, Express.js, MongoDB
 
@@ -25,20 +25,20 @@ MM features a clean, intuitive UI with color-coded events for quick visual recog
 
 The dashboard provides an overview of recent activity as well as the ability to log an episode in one click.
 
-## Future Optimizations & Features:
+## 🌟 Future Optimizations & Features:
 
 While the current version of Migraine Manager is functional and user-friendly, there are several optimizations planned for future iterations:
 
-- [x] Implement data visualization features to help users better understand their migraine patterns and trends over time.
-- [x] Implement retrieval of weather data using an API to keep track of weather conditions associated with migraine attacks for 
-- [ ] Add a user settings page for updating user preferences
-- [ ] Implement a reminder system for logging migraines
+- ✅ Implement data visualization features to help users better understand their migraine patterns and trends over time.
+- ✅ Implement retrieval of weather data using an API to keep track of weather conditions associated with migraine attacks for 
+- 🔲 Add a user settings page for updating user preferences
+- 🔲 Implement a reminder system for logging migraines
 
-## Lessons Learned:
+## 📝 Lessons Learned:
 
 - Simplifying data entry and providing clear, actionable insights is crucial for user engagement. 
 - Handling date and time data across different timezones presented unique challenges, emphasizing the importance of consistent data handling and display.
-- Implementing secure user authentication and data privacy measures when dealing with personal health information.
+- Implementing secure user authentication and data privacy measures is paramount when dealing with personal health information.
 - The value of modular code architecture in facilitating easier updates and maintenance of the application.
 - The power of CSS frameworks like Tailwind in rapidly developing a consistent and responsive UI.
 
@@ -46,12 +46,13 @@ Building Migraine Manager reinforced the idea that technology can have a meaning
 
 ---
 
-## Install
+## Installation:
 
 `npm install`
 
 ### Dependencies:
 - bcrypt: password hashing
+- chart.js: data visualization
 - connect-mongo: MongoDB session store
 - dotenv: environment variable management
 - ejs: templating
@@ -64,6 +65,7 @@ Building Migraine Manager reinforced the idea that technology can have a meaning
 - mongoose: MongoDB object modeling
 - morgan: HTTP request logging
 - nodemon: auto-restarting server
+- node-fetch: HTTP requests
 - passport: authentication
 - passport-local: local authentication strategy
 - validator: data validation
@@ -75,11 +77,11 @@ Building Migraine Manager reinforced the idea that technology can have a meaning
 - Create a `.env` file in config folder and add the following as `key = value`
   - PORT = 2121 (can be any port example: 3000)
   - DB_STRING = `your database URI`
+  - WEATHER_API_BASE_URL = https://api.weatherbit.io/v2.0/current?
+  - WEATHER_API_KEY = `your weatherbit API key`
 
 ---
 
-## Run
+## 🚀 Run
 
 `npm start`
-
-If changing styling: run `npm run build:css` in a separate terminal
