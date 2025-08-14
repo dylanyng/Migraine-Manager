@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Migraine Manager — Clarity for every episode</title>
+    <meta
+      name="description"
+      content="Capture episodes in seconds, uncover patterns over time, and stay on top of what matters. Private, fast, and built for everyday use."
+    />
+
+    <meta property="og:title" content="Migraine Manager" />
+    <meta
+      property="og:description"
+      content="Capture episodes in seconds, uncover patterns over time, and stay on top of what matters."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/jpeg/landing.jpeg" />
+    <meta name="theme-color" content="#0f172a" />
+
+    <link rel="icon" href="/assets/images/svg/logo.svg" />
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen bg-midnight text-slate-100 antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-slate-800 focus:px-4 focus:py-2"
+      >Skip to content</a
+    >
+
+    <!-- Top Nav -->
+    <header
+      class="sticky top-0 z-40 border-b border-white/10 bg-midnight"
+      role="banner"
+    >
+      <div
+        class="mx-auto max-w-7xl px-6 lg:px-8 h-16 flex items-center justify-between"
+      >
+        <a href="/" class="flex items-center space-x-2">
+          <img
+            src="/assets/images/svg/logo.svg"
+            alt="Migraine Manager"
+            class="h-8 w-8"
+          />
+          <span class="text-white text-lg font-semibold"
+            >Migraine Manager</span
+          >
+        </a>
+
+        <nav
+          class="hidden md:flex items-center gap-8 text-sm text-slate-300"
+          aria-label="Primary"
+        >
+          <a href="#features" class="hover:text-white transition-colors"
+            >Features</a
+          >
+          <a href="#how-it-works" class="hover:text-white transition-colors"
+            >How it works</a
+          >
+          <a href="#privacy" class="hover:text-white transition-colors"
+            >Privacy</a
+          >
+          <a href="/contact" class="hover:text-white transition-colors"
+            >Contact</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="/login"
+            class="inline-flex items-center justify-center rounded-md border border-indigo-500/50 px-3 py-2 text-sm font-medium text-indigo-300 hover:text-white hover:border-indigo-400 hover:bg-indigo-500/10 transition"
+            >Log in</a
+          >
+          <a
+            href="/signup"
+            class="inline-flex items-center justify-center rounded-md bg-indigo-500 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-400 transition focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            >Get started</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Hero -->
+      <section class="relative overflow-hidden">
+        <div
+          class="absolute inset-0 -z-10 bg-gradient-to-b from-indigo-900/10 to-transparent"
+          aria-hidden="true"
+        ></div>
+
+        <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-16 md:pt-24 pb-10">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 gap-x-16 items-center"
+          >
+            <div class="lg:col-span-6">
+              <div
+                class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 mb-6"
+              >
+                <span
+                  class="h-2 w-2 rounded-full bg-emerald-400"
+                  aria-hidden="true"
+                ></span>
+                <span class="text-xs text-slate-300"
+                  >Private by design. No ads.</span
+                >
+              </div>
+
+              <h1
+                class="text-4xl md:text-5xl font-bold tracking-tight text-white"
+              >
+                Clarity for every episode.
+              </h1>
+              <p class="mt-4 text-lg text-slate-300 leading-relaxed">
+                Capture episodes in seconds, uncover patterns, and stay one step
+                ahead. Clean, fast, and built for everyday use.
+              </p>
+
+              <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                <a
+                  href="/signup"
+                  class="inline-flex items-center justify-center rounded-md bg-indigo-500 px-6 py-3 text-base font-semibold text-white hover:bg-indigo-400 transition focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                  >Create an account</a
+                >
+                <a
+                  href="#features"
+                  class="inline-flex items-center justify-center rounded-md border border-white/10 px-6 py-3 text-base font-medium text-white hover:bg-white/5 transition"
+                  >Explore features</a
+                >
+              </div>
+            </div>
+
+            <div class="lg:col-span-6">
+              <div
+                class="relative mx-auto w-full max-w-2xl rounded-xl bg-slate-900/50 ring-1 ring-white/10 shadow-2xl"
+              >
+                <img
+                  src="/assets/images/jpeg/landing.jpeg"
+                  alt="Dashboard overview"
+                  class="w-full h-auto rounded-xl"
+                />
+                <div
+                  class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/5"
+                  aria-hidden="true"
+                ></div>
+              </div>
+              <p class="mt-3 text-center text-xs text-slate-400">
+                Example interface showcasing logging, calendar, and trends.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="py-16 md:py-24 bg-slate-900/30">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white">
+              Everything you need to stay in control
+            </h2>
+            <p class="mt-4 text-slate-300">
+              Designed for speed. Log quickly, see patterns clearly,
+              and act with confidence.
+            </p>
+          </div>
+
+          <div
+            class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="mt-1 rounded-lg bg-indigo-500/10 p-2 ring-1 ring-indigo-500/30"
+              >
+                <svg
+                  class="h-6 w-6 text-indigo-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3.75 5.25h16.5m-12 4.5h12M3.75 9.75h.008M3.75 14.25h.008m3.742 0h8.25M3.75 18.75h16.5"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white">Lightning-fast logging</h3>
+                <p class="mt-1 text-sm text-slate-300">
+                  Record episodes in seconds with sensible defaults and clean
+                  forms.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div
+                class="mt-1 rounded-lg bg-indigo-500/10 p-2 ring-1 ring-indigo-500/30"
+              >
+                <svg
+                  class="h-6 w-6 text-indigo-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M8.25 6.75h12m-12 4.5h12m-12 4.5h12M3.75 6.75h.008M3.75 11.25h.008M3.75 15.75h.008"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white">Triggers & symptoms</h3>
+                <p class="mt-1 text-sm text-slate-300">
+                  Track what leads up to an episode and what follows to spot
+                  patterns.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div
+                class="mt-1 rounded-lg bg-indigo-500/10 p-2 ring-1 ring-indigo-500/30"
+              >
+                <svg
+                  class="h-6 w-6 text-indigo-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M6.75 3.75v3.5m10.5-3.5v3.5M3.75 9.75h16.5m-13 2.5h3.5v7h-3.5v-7zm6 0h6v7h-6v-7z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white">Calendar & timeline</h3>
+                <p class="mt-1 text-sm text-slate-300">
+                  See episodes across weeks and months to understand cadence.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div
+                class="mt-1 rounded-lg bg-indigo-500/10 p-2 ring-1 ring-indigo-500/30"
+              >
+                <svg
+                  class="h-6 w-6 text-indigo-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 3v18h18M7 13l3 3 7-7"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white">Analytics & trends</h3>
+                <p class="mt-1 text-sm text-slate-300">
+                  Surface correlations by time of day, duration, intensity, and
+                  more.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div
+                class="mt-1 rounded-lg bg-indigo-500/10 p-2 ring-1 ring-indigo-500/30"
+              >
+                <svg
+                  class="h-6 w-6 text-indigo-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3.75 6.75l7.5-3 9 3-9 3-7.5-3zM3.75 12l7.5 3 9-3M3.75 17.25l7.5 3 9-3"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white">Context that matters</h3>
+                <p class="mt-1 text-sm text-slate-300">
+                  Add context like sleep or weather to see what may influence
+                  episodes.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div
+                class="mt-1 rounded-lg bg-indigo-500/10 p-2 ring-1 ring-indigo-500/30"
+              >
+                <svg
+                  class="h-6 w-6 text-indigo-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M15 17h5l-1.4-1.4a2 2 0 01-.6-1.4V11a6 6 0 00-4-5.66V5a2 2 0 10-4 0v.34A6 6 0 006 11v3.2c0 .53-.21 1.05-.6 1.46L4 17h5m6 0v1a3 3 0 11-6 0v-1"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white">Flexible reminders</h3>
+                <p class="mt-1 text-sm text-slate-300">
+                  Gentle nudges to log and review so nothing gets missed.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How it works -->
+      <section id="how-it-works" class="py-16 md:py-24">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white">
+              How it works
+            </h2>
+            <p class="mt-4 text-slate-300">
+              Three simple steps from episode to insight.
+            </p>
+          </div>
+
+          <div
+            class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10"
+          >
+            <div class="rounded-xl border border-white/10 p-6 bg-white/5">
+              <div
+                class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-white font-semibold"
+              >
+                1
+              </div>
+              <h3 class="mt-4 font-semibold text-white">
+                Log the essentials
+              </h3>
+              <p class="mt-2 text-sm text-slate-300">
+                Duration, intensity, and any triggers or symptoms—captured in
+                seconds.
+              </p>
+            </div>
+            <div class="rounded-xl border border-white/10 p-6 bg-white/5">
+              <div
+                class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-white font-semibold"
+              >
+                2
+              </div>
+              <h3 class="mt-4 font-semibold text-white">
+                Track over time
+              </h3>
+              <p class="mt-2 text-sm text-slate-300">
+                Use the calendar and timeline to visualize patterns across days,
+                weeks, and months.
+              </p>
+            </div>
+            <div class="rounded-xl border border-white/10 p-6 bg-white/5">
+              <div
+                class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-white font-semibold"
+              >
+                3
+              </div>
+              <h3 class="mt-4 font-semibold text-white">
+                Act with insight
+              </h3>
+              <p class="mt-2 text-sm text-slate-300">
+                Identify correlations and make informed adjustments with clear,
+                at‑a‑glance analytics.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Privacy -->
+      <section id="privacy" class="py-16 md:py-24 bg-slate-900/30">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start"
+          >
+            <div>
+              <h2 class="text-3xl md:text-4xl font-bold text-white">
+                Privacy and control, by default
+              </h2>
+              <p class="mt-4 text-slate-300">
+                Your data is yours. Manage what you track, export anytime, and
+                keep everything organized in one place.
+              </p>
+
+              <ul class="mt-6 space-y-3 text-sm text-slate-300">
+                <li class="flex items-start gap-2">
+                  <svg
+                    class="mt-0.5 h-5 w-5 text-emerald-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M4.5 12.75l6 6 9-13.5"
+                    />
+                  </svg>
+                  You control what’s logged and when.
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg
+                    class="mt-0.5 h-5 w-5 text-emerald-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M4.5 12.75l6 6 9-13.5"
+                    />
+                  </svg>
+                  Export your records whenever you need them.
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg
+                    class="mt-0.5 h-5 w-5 text-emerald-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M4.5 12.75l6 6 9-13.5"
+                    />
+                  </svg>
+                  Secure sign‑in and HTTPS across the app.
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="rounded-xl border border-white/10 bg-white/5 p-6"
+            >
+              <h3 class="text-white font-semibold">What people like</h3>
+              <ul class="mt-4 space-y-4 text-sm text-slate-300">
+                <li>
+                  “Takes seconds to log and I can actually see what’s changing
+                  over time.”
+                </li>
+                <li>
+                  “The calendar view makes it obvious when patterns show up.”
+                </li>
+                <li>“Thoughtful design. No clutter, just signal.”</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="py-16 md:py-24">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
+            Start tracking with confidence
+          </h2>
+          <p class="mt-4 text-slate-300">
+            Set up in minutes. Log your next episode with clarity.
+          </p>
+          <div class="mt-8">
+            <a
+              href="/signup"
+              class="inline-flex items-center justify-center rounded-md bg-indigo-500 px-8 py-3 text-base font-semibold text-white hover:bg-indigo-400 transition focus:outline-none focus:ring-2 focus:ring-indigo-300"
+              >Create an account</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10">
+      <div
+        class="mx-auto max-w-7xl px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4"
+      >
+        <p class="text-sm text-slate-400">
+          &copy; 2025 Migraine Manager. All rights reserved.
+        </p>
+        <nav class="flex items-center gap-6 text-sm text-slate-300">
+          <a href="/privacy" class="hover:text-white transition">Privacy</a>
+          <a href="/terms" class="hover:text-white transition">Terms</a>
+          <a href="/contact" class="hover:text-white transition"
+            >Contact</a
+          >
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
