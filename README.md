@@ -2,7 +2,7 @@
 
 Migraine Manager is a full stack web application designed to help users track and manage their migraine episodes. It provides an intuitive interface for logging migraine events, including details such as pain level, duration, and potential triggers, and much more.
 
-**Link to project:** COMING SOON
+**Link to project:** [migramanage.com](https://migramanage.com/)
 
 ![Landing Page](public/assets/images/jpeg/landing.png)
 
