@@ -193,8 +193,8 @@
               </ul>
             </div>
 
-            <!-- Dashboard mockup -->
-            <!-- Right side of the hero: fixed‑size 3x3 demo cards with edge fades -->
+<!-- Dashboard preview -->
+            <!-- Right side: fixed-size 3x3 demo cards with edge fades -->
             <div class="relative">
               <div
                 class="relative rounded-3xl border border-slate-800 bg-midnight shadow-2xl
@@ -203,7 +203,7 @@
               >
                 <div class="relative w-[704px] h-[448px]">
                   <% 
-                    // Demo data
+                    // Demo data with varying date gaps (3–14 days apart)
                     const attackTypeColors = {
                       migraine: "bg-red-900/50",
                       headache: "bg-orange-900/50",
@@ -213,11 +213,11 @@
                     const demoTypes = [
                       "migraine",
                       "headache",
-                      "misc symptoms",
+                      "migraine",
                       "migraine",
                       "headache",
                       "misc symptoms",
-                      "migraine",
+                      "misc symptoms",
                       "headache",
                       "misc symptoms",
                     ];
@@ -233,6 +233,18 @@
                       { t: "71", p: "30.0", c: "Calm" },
                       { t: "69", p: "30.1", c: "Drizzle" },
                     ];
+                    // generate date labels
+                    const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+                    let current = new Date();
+                    const dateLabels = [];
+                    for (let i = 0; i < 9; i++) {
+                      dateLabels.push(
+                        `${monthNames[current.getMonth()]} ${current.getDate()}`
+                      );
+                      // subtract random 3–14 days
+                      const gap = 3 + Math.floor(Math.random() * 12);
+                      current.setDate(current.getDate() - gap);
+                    }
                   %>
 
                   <ul
@@ -243,10 +255,10 @@
                         const type = demoTypes[i];
                         const color =
                           attackTypeColors[type] || "bg-blue-900/50 border border-slate-700/30";
-                        const day = 10 + i;
+                        const dateLabel = dateLabels[i];
                         const start = demoStarts[i % demoStarts.length];
                         const w = demoWeather[i];
-                        const pain = 2 + ((i * 3) % 7);
+                        const pain = Math.min(5, 2 + ((i * 3) % 7));
                     %>
                     <li class="w-[220px] h-[140px]">
                       <div
@@ -254,7 +266,7 @@
                           shadow-md <%= color %>"
                       >
                         <div class="flex items-start justify-between">
-                          <h3 class="text-base font-semibold mb-1">Aug <%= day %></h3>
+                          <h3 class="text-base font-semibold mb-1"><%= dateLabel %></h3>
                           <p class="text-sm font-semibold capitalize truncate max-w-[90px]">
                             <%= type === "misc symptoms" ? "symptoms" : type %>
                           </p>
@@ -282,7 +294,7 @@
                   </ul>
                 </div>
 
-                <!-- Edge fades to imply continuation of the grid -->
+                <!-- Edge fades -->
                 <div
                   class="pointer-events-none absolute inset-x-0 bottom-0 h-20
                     bg-gradient-to-t from-slate-900 to-transparent"
