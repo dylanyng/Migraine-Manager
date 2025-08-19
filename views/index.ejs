@@ -159,14 +159,14 @@
                     class="w-5 h-5 text-sky-400"
                     fill="none"
                     stroke="currentColor"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 26 24"
                     aria-hidden="true"
                   >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+                      d="M3 15a4 4 0 014-4h1a6 6 0 0112 0h1a4 4 0 010 8H7a4 4 0 01-4-4z"
                     />
                   </svg>
                   Weather-aware
@@ -183,10 +183,9 @@
                     aria-hidden="true"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 8v4l3 3"
+                      fill="none" stroke="currentColor" stroke-linecap="round"
+                      stroke-linejoin="round" stroke-width="2"
+                      d="M3 16l4-4l3 3l6-6l4 4"
                     />
                   </svg>
                   Clear trends
@@ -194,7 +193,7 @@
               </ul>
             </div>
 
-            <!-- Hero mockup -->
+            <!-- Dashboard mockup -->
             <!-- Right side of the hero: fixed‑size 3x3 demo cards with edge fades -->
             <div class="relative">
               <div
@@ -202,10 +201,9 @@
                   overflow-hidden p-3 sm:p-4"
                 aria-hidden="true"
               >
-                <!-- Fixed design canvas so cards never shrink; overflow is faded -->
                 <div class="relative w-[704px] h-[448px]">
                   <% 
-                    // Demo-only data (no user data is read)
+                    // Demo data
                     const attackTypeColors = {
                       migraine: "bg-red-900/50",
                       headache: "bg-orange-900/50",
@@ -469,33 +467,35 @@
             </div>
 
             <!-- Feature 6 -->
+            <!-- Feature 6: Custom Triggers -->
             <div
               class="group rounded-2xl p-7 border border-slate-800
                 bg-slate-900 hover:border-sky-500/40 transition-colors"
             >
               <div
                 class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center
-                  justify-center mb-5"
+                  justify-center mb-5 group-hover:bg-sky-500/20 transition-colors"
               >
                 <svg
-                  class="w-6 h-6 text-sky-400"
+                  class="w-6 h-6 text-sky-400 group-hover:text-sky-300 transition-colors"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2m10-10V7a4 4 0 00-8 0v4h8z"
-                  />
+                <path
+                  fill="none" stroke="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="2"
+                  d="M5 12l6.5-6.5a2 2 0 012.828 0L21 12v6a2 2 0 01-2 2h-6
+                    a2 2 0 01-1.414-.586L5 14a2 2 0 010-2.828z
+                    M9 9h.01"
+                />
                 </svg>
               </div>
-              <h3 class="text-lg font-semibold mb-2">Privacy & security</h3>
+              <h3 class="text-lg font-semibold mb-2">Custom triggers</h3>
               <p class="text-slate-300">
-                End‑to‑end encryption in transit and at rest. Your data stays
-                yours—private by default.
+                Create and manage your own trigger tags—food, sleep, stress, activity—
+                and apply them to entries so you pinpoint exactly what sparks each episode.
               </p>
             </div>
           </div>
@@ -534,7 +534,7 @@
             >
               <div class="text-sky-400 font-semibold mb-2">Step 3</div>
               <h3 class="text-xl font-semibold mb-2">Stay proactive</h3>
-              <p class="text-slate-300">
+              <p class="text-slate-300 mb-3">
                 Use reminders and weather context to plan your day with fewer
                 surprises.
               </p>
@@ -569,45 +569,17 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-midnight border-t border-slate-700 py-12">
+    <footer class="bg-midnight py-12">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div class="md:col-span-1">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <img src="/assets/images/svg/logo.svg" alt="Migraine Manager" class="h-8 w-auto">
-                        <span class="text-white font-bold">Migraine Manager</span>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-4">
-                        Empowering individuals to take control of their migraine journey through advanced tracking and analytics.
-                    </p>
-                </div>
-
-                <div>
-                    <h3 class="text-white font-semibold mb-4">Product</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#features" class="text-slate-400 hover:text-white transition-colors">Features</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-white font-semibold mb-4">Company</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">About</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="/contact" class="text-slate-400 hover:text-white transition-colors">Contact</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Careers</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-slate-400 text-sm">&copy; 2025 Migraine Manager</p>
-                <div class="flex items-center space-x-4 mt-4 md:mt-0">
-                    <span class="text-slate-400 text-sm">
-                      Created by <a class="hover:text-slate-300" href="https://dylanyoung.me/">Dylan Young</a>
-                    </span>
-                </div>
-            </div>
+          <div class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+              <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                <span class="text-slate-400 text-sm">
+                  Created by <a class="hover:text-slate-300" href="https://dylanyoung.me/">Dylan Young</a>
+                </span>
+              </div>
+              <p class="text-slate-400 text-sm">&copy; 2025 Migraine Manager</p>
+              <a href="/contact" class="text-slate-400 hover:text-white transition-colors">Contact</a>
+          </div>
         </div>
     </footer>
   </body>
