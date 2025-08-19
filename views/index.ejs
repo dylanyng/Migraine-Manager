@@ -1,90 +1,598 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Migraine Manager</title>
-</head>
-<body class="text-slate-100 bg-midnight">
-    <header class="bg-midnight py-4 px-6">
-        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
-            <div class="flex items-center space-x-1 mb-4 sm:mb-0">
-                <img src="/assets/images/svg/logo.svg" alt="Migraine Manager App" class="h-16 w-auto">
-                <span class="text-white text-xl font-semibold">Migraine Manager</span>
-            </div>
-            <div class="flex items-center space-x-2 sm:space-x-4">
-                <a href="/login" class="bg-transparent hover:bg-indigo-500 text-indigo-500 hover:text-white font-semibold py-2 px-3 sm:px-4 rounded-md border border-indigo-500 transition duration-300 text-sm sm:text-base">Log In</a>
-                <a href="/signup" class="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-2 px-3 sm:px-4 rounded-md transition duration-300 text-sm sm:text-base">Sign Up</a>
-            </div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <title>Migraine Manager — Migraine Tracking & Analytics</title>
+
+    <meta name="description" content="Track migraine episodes with precise logging, weather correlation, and clear analytics to spot patterns and stay ahead."/>
+    <link rel="canonical" href="https://your-domain.com" />
+
+    <meta property="og:title" content="Migraine Manager" />
+    <meta property="og:description" content="Track migraine episodes with precise logging, weather correlation, and clear analytics to spot patterns and stay ahead."/>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://your-domain.com" />
+    <meta property="og:image" content="/assets/images/jpeg/landing.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0f172a" />
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+    <style>
+      body {
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      /* Focus ring for keyboard users */
+      :focus-visible {
+        outline: 2px solid #38bdf8;
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+
+  <body class="text-slate-100 bg-midnight">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4
+        focus:z-50 focus:bg-slate-800 focus:text-white focus:px-4 focus:py-2
+        focus:rounded-md"
+      >Skip to content</a
+    >
+
+    <!-- Navigation --> 
+    <header
+      class="bg-midnight/95 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50"
+      role="banner"
+    >
+      <div class="container mx-auto px-6 py-4">
+        <nav
+          class="flex items-center justify-between"
+          aria-label="Primary navigation"
+        >
+          <a href="/" class="flex items-center space-x-3">
+            <img
+              src="/assets/images/svg/logo.svg"
+              alt="Migraine Manager logo"
+              class="h-9 w-auto"
+            />
+            <span class="text-white text-xl font-semibold tracking-tight"
+              >Migraine Manager</span
+            >
+          </a>
+
+          <div class="flex items-center space-x-6">
+            <a
+              href="#features"
+              class="text-slate-300 hover:text-white transition-colors"
+              >Features</a
+            >
+            <a
+              href="/login"
+              class="text-slate-300 hover:text-white transition-colors"
+              >Log In</a
+            >
+            <a
+              href="/signup"
+              class="bg-sky-600 hover:bg-sky-500 text-white font-medium
+                py-2.5 px-5 rounded-lg transition-colors"
+              >Sign Up</a
+            >
+          </div>
+        </nav>
+      </div>
     </header>
 
-    <div class="flex flex-col min-h-screen">
-        <!-- Hero Section -->
-        <header class="py-16 md:py-24">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-1/2 mb-8 md:mb-0">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Manage Your Migraines with Ease</h1>
-                <p class="text-xl mb-8">Track, analyze, and take control of your migraine symptoms with our intuitive app.</p>
-                <div class="flex space-x-4">
-                <a href="/signup" class="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-3 px-20 rounded-md transition duration-300">Get Started</a>
+    <main id="main">
+      <!-- Hero -->
+      <section class="relative">
+        <div class="container mx-auto px-6 py-20 lg:py-28">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+              <div class="space-y-4">
+                <h1
+                  class="text-4xl lg:text-6xl font-extrabold leading-tight
+                    tracking-tight"
+                >
+                  Take control of your
+                  <span class="text-sky-400">migraine tracking</span>
+                </h1>
+                <p class="text-xl text-slate-300 leading-relaxed max-w-xl">
+                  Log episodes in seconds. Correlate with weather. See clear
+                  trends and patterns so you can understand what triggers your
+                  worst days.
+                </p>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="/signup"
+                  class="bg-sky-600 hover:bg-sky-500 text-white font-semibold
+                    py-3.5 px-7 rounded-lg transition-colors text-center"
+                  >Get started</a
+                >
+                <a
+                  href="#features"
+                  class="border border-slate-700 hover:border-slate-600
+                    text-slate-200 hover:text-white font-semibold py-3.5 px-7
+                    rounded-lg transition-colors text-center"
+                  >Learn more</a
+                >
+              </div>
+
+              <!-- Quick points -->
+              <ul
+                class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6"
+                aria-label="Highlights"
+              >
+                <li
+                  class="flex items-center gap-3 text-slate-300 border
+                    border-slate-800 rounded-lg px-4 py-3"
+                >
+                  <svg
+                    class="w-5 h-5 text-sky-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Quick logging
+                </li>
+                <li
+                  class="flex items-center gap-3 text-slate-300 border
+                    border-slate-800 rounded-lg px-4 py-3"
+                >
+                  <svg
+                    class="w-5 h-5 text-sky-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 26 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 15a4 4 0 014-4h1a6 6 0 0112 0h1a4 4 0 010 8H7a4 4 0 01-4-4z"
+                    />
+                  </svg>
+                  Weather-aware
+                </li>
+                <li
+                  class="flex items-center gap-3 text-slate-300 border
+                    border-slate-800 rounded-lg px-4 py-3"
+                >
+                  <svg
+                    class="w-5 h-5 text-sky-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill="none" stroke="currentColor" stroke-linecap="round"
+                      stroke-linejoin="round" stroke-width="2"
+                      d="M3 16l4-4l3 3l6-6l4 4"
+                    />
+                  </svg>
+                  Clear trends
+                </li>
+              </ul>
+            </div>
+
+<!-- Dashboard preview -->
+            <!-- Right side: fixed-size 3x3 demo cards with edge fades -->
+            <div class="relative">
+              <div
+                class="relative rounded-3xl border border-slate-800 bg-midnight shadow-2xl
+                  overflow-hidden p-3 sm:p-4"
+                aria-hidden="true"
+              >
+                <div class="relative w-[704px] h-[448px]">
+                  <% 
+                    // Demo data with varying date gaps (3–14 days apart)
+                    const attackTypeColors = {
+                      migraine: "bg-red-900/50",
+                      headache: "bg-orange-900/50",
+                      "misc symptoms": "bg-yellow-900/50",
+                      missing: "bg-gray-400/30 border border-slate-500/30",
+                    };
+                    const demoTypes = [
+                      "migraine",
+                      "headache",
+                      "migraine",
+                      "migraine",
+                      "headache",
+                      "misc symptoms",
+                      "misc symptoms",
+                      "headache",
+                      "misc symptoms",
+                    ];
+                    const demoStarts = ["home", "work", "gym", "commute", "home", "work"];
+                    const demoWeather = [
+                      { t: "72", p: "29.9", c: "Overcast" },
+                      { t: "68", p: "30.1", c: "Light rain" },
+                      { t: "79", p: "29.7", c: "Humid" },
+                      { t: "74", p: "29.8", c: "Cloudy" },
+                      { t: "70", p: "30.0", c: "Clear" },
+                      { t: "66", p: "30.2", c: "Breezy" },
+                      { t: "73", p: "29.9", c: "Partly cloudy" },
+                      { t: "71", p: "30.0", c: "Calm" },
+                      { t: "69", p: "30.1", c: "Drizzle" },
+                    ];
+                    // generate date labels
+                    const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+                    let current = new Date();
+                    const dateLabels = [];
+                    for (let i = 0; i < 9; i++) {
+                      dateLabels.push(
+                        `${monthNames[current.getMonth()]} ${current.getDate()}`
+                      );
+                      // subtract random 3–14 days
+                      const gap = 3 + Math.floor(Math.random() * 12);
+                      current.setDate(current.getDate() - gap);
+                    }
+                  %>
+
+                  <ul
+                    class="grid gap-4 grid-cols-[repeat(3,220px)] auto-rows-[140px]
+                      pointer-events-none select-none"
+                  >
+                    <% for (let i = 0; i < 9; i++) {
+                        const type = demoTypes[i];
+                        const color =
+                          attackTypeColors[type] || "bg-blue-900/50 border border-slate-700/30";
+                        const dateLabel = dateLabels[i];
+                        const start = demoStarts[i % demoStarts.length];
+                        const w = demoWeather[i];
+                        const pain = Math.min(5, 2 + ((i * 3) % 7));
+                    %>
+                    <li class="w-[220px] h-[140px]">
+                      <div
+                        class="flex h-full w-full flex-col justify-between rounded-lg p-4
+                          shadow-md <%= color %>"
+                      >
+                        <div class="flex items-start justify-between">
+                          <h3 class="text-base font-semibold mb-1"><%= dateLabel %></h3>
+                          <p class="text-sm font-semibold capitalize truncate max-w-[90px]">
+                            <%= type === "misc symptoms" ? "symptoms" : type %>
+                          </p>
+                        </div>
+
+                        <div class="w-full mb-1 text-xs">
+                          <p class="capitalize font-semibold truncate">
+                            Started: <%= start %>
+                          </p>
+                        </div>
+
+                        <div class="w-full text-[11px] leading-4">
+                          <span class="font-mono inline"><%= w.t %>°F</span>
+                          <span class="font-mono inline"> • </span>
+                          <span class="font-mono inline"><%= w.p %>inHg</span>
+                          <p class="font-mono truncate"><%= w.c %></p>
+                        </div>
+
+                        <div class="mt-auto flex items-center justify-between">
+                          <p class="text-sm font-bold">Pain Level: <%= pain %></p>
+                        </div>
+                      </div>
+                    </li>
+                    <% } %>
+                  </ul>
                 </div>
+
+                <!-- Edge fades -->
+                <div
+                  class="pointer-events-none absolute inset-x-0 bottom-0 h-20
+                    bg-gradient-to-t from-slate-900 to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 w-16
+                    bg-gradient-to-l from-slate-900 to-transparent"
+                ></div>
+              </div>
             </div>
-            <div class="md:w-1/2">
-                <img src="/assets/images/svg/logo.svg" alt="Migraine Manager App" class="w-full max-w-sm mx-auto">
-            </div>
-            </div>
+          </div>
         </div>
-        </header>
-    
-        <!-- Features Section -->
-        <section class="py-16 bg-gray-800">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">Key Features</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="text-center">
-                <svg class="w-12 h-12 mx-auto mb-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                <h3 class="text-xl font-semibold mb-2">Easy Tracking</h3>
-                <p>Log your migraine events quickly and effortlessly.</p>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="py-20 bg-midnight">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-14">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">
+              Everything you need to understand your migraines
+            </h2>
+            <p class="text-lg text-slate-300 max-w-3xl mx-auto">
+              Simple, reliable tools that make logging effortless and trends
+              obvious.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div
+              class="group rounded-2xl p-7 border border-slate-800
+                bg-slate-900 hover:border-sky-500/40 transition-colors"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center
+                  justify-center mb-5"
+              >
+                <svg
+                  class="w-6 h-6 text-sky-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Fast, structured logging</h3>
+              <p class="text-slate-300">
+                Capture pain level, duration, triggers, and notes in seconds
+                with an interface designed for low-light comfort.
+              </p>
             </div>
-            <div class="text-center">
-                <svg class="w-12 h-12 mx-auto mb-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                <h3 class="text-xl font-semibold mb-2">Insightful Analytics</h3>
-                <p>Gain valuable insights from your migraine data.</p>
+
+            <!-- Feature 2 -->
+            <div
+              class="group rounded-2xl p-7 border border-slate-800
+                bg-slate-900 hover:border-sky-500/40 transition-colors"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center
+                  justify-center mb-5"
+              >
+                <svg
+                  class="w-6 h-6 text-sky-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 19a8 8 0 100-16 8 8 0 000 16z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Trends & patterns</h3>
+              <p class="text-slate-300">
+                Visualize frequency, timing, and intensity to understand how
+                episodes change over time.
+              </p>
             </div>
-            <div class="text-center">
-                <svg class="w-12 h-12 mx-auto mb-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                <h3 class="text-xl font-semibold mb-2">Smart Reminders</h3>
-                <p>Set customized alerts for medication and triggers.</p>
+
+            <!-- Feature 3 -->
+            <div
+              class="group rounded-2xl p-7 border border-slate-800
+                bg-slate-900 hover:border-sky-500/40 transition-colors"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center
+                  justify-center mb-5"
+              >
+                <svg
+                  class="w-6 h-6 text-sky-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Weather correlation</h3>
+              <p class="text-slate-300">
+                Automatically track barometric pressure, humidity, and
+                temperature alongside your logs.
+              </p>
             </div>
+
+            <!-- Feature 4 -->
+            <div
+              class="group rounded-2xl p-7 border border-slate-800
+                bg-slate-900 hover:border-sky-500/40 transition-colors"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center
+                  justify-center mb-5"
+              >
+                <svg
+                  class="w-6 h-6 text-sky-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Helpful reminders</h3>
+              <p class="text-slate-300">
+                Set reminders for logging, hydration, sleep routines, and other
+                habits you want to track.
+              </p>
             </div>
+
+            <!-- Feature 5 -->
+            <div
+              class="group rounded-2xl p-7 border border-slate-800
+                bg-slate-900 hover:border-sky-500/40 transition-colors"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center
+                  justify-center mb-5"
+              >
+                <svg
+                  class="w-6 h-6 text-sky-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Clean exports</h3>
+              <p class="text-slate-300">
+                Download your data as CSV or PDF for your own records—whenever
+                you need it.
+              </p>
+            </div>
+
+            <!-- Feature 6 -->
+            <!-- Feature 6: Custom Triggers -->
+            <div
+              class="group rounded-2xl p-7 border border-slate-800
+                bg-slate-900 hover:border-sky-500/40 transition-colors"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center
+                  justify-center mb-5 group-hover:bg-sky-500/20 transition-colors"
+              >
+                <svg
+                  class="w-6 h-6 text-sky-400 group-hover:text-sky-300 transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                <path
+                  fill="none" stroke="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="2"
+                  d="M5 12l6.5-6.5a2 2 0 012.828 0L21 12v6a2 2 0 01-2 2h-6
+                    a2 2 0 01-1.414-.586L5 14a2 2 0 010-2.828z
+                    M9 9h.01"
+                />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Custom triggers</h3>
+              <p class="text-slate-300">
+                Create and manage your own trigger tags—food, sleep, stress, activity—
+                and apply them to entries so you pinpoint exactly what sparks each episode.
+              </p>
+            </div>
+          </div>
         </div>
-        </section>
-    
-        <!-- CTA Section -->
-        <section class="py-16">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-4">Ready to Take Control?</h2>
-            <p class="text-xl mb-8">Join thousands of users who have improved their quality of life with Migraine Manager.</p>
-            <a href="/signup" class="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold py-3 px-6 rounded-md transition duration-300">Create An Account</a>
-        </div>
-        </section>
-    
-        <footer class="py-8 mt-auto">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-            <p>&copy; 2024 Migraine Manager</p>
-            <nav class="flex space-x-4 mt-4 md:mt-0">
-                <a href="#" class="hover:text-indigo-400 transition duration-300" hidden>Privacy Policy</a>
-                <a href="#" class="hover:text-indigo-400 transition duration-300" hidden>Terms of Service</a>
-                <a href="/contact" class="hover:text-indigo-400 transition duration-300">Contact Us</a>
-            </nav>
+      </section>
+
+      <!-- How it works -->
+      <section class="py-20 bg-slate-900">
+        <div class="container mx-auto px-6">
+          <div class="grid lg:grid-cols-3 gap-8">
+            <div
+              class="rounded-2xl p-6 border border-slate-800 bg-slate-900
+                h-full"
+            >
+              <div class="text-sky-400 font-semibold mb-2">Step 1</div>
+              <h3 class="text-xl font-semibold mb-2">Log what matters</h3>
+              <p class="text-slate-300">
+                Record pain level, duration, aura, sleep, hydration, and other
+                factors in a few taps.
+              </p>
             </div>
+            <div
+              class="rounded-2xl p-6 border border-slate-800 bg-slate-900
+                h-full"
+            >
+              <div class="text-sky-400 font-semibold mb-2">Step 2</div>
+              <h3 class="text-xl font-semibold mb-2">See the trends</h3>
+              <p class="text-slate-300">
+                Spot recurring triggers and timings with clear charts and
+                summaries.
+              </p>
+            </div>
+            <div
+              class="rounded-2xl p-6 border border-slate-800 bg-slate-900
+                h-full"
+            >
+              <div class="text-sky-400 font-semibold mb-2">Step 3</div>
+              <h3 class="text-xl font-semibold mb-2">Stay proactive</h3>
+              <p class="text-slate-300 mb-3">
+                Use reminders and weather context to plan your day with fewer
+                surprises.
+              </p>
+            </div>
+          </div>
         </div>
-        </footer>
-    </div>
-</body>
+      </section>
+
+      <!-- CTA -->
+      <section class="py-20">
+        <div class="container mx-auto px-6">
+          <div
+            class="text-center rounded-3xl border border-slate-800 bg-midnight
+              px-6 py-16"
+          >
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">
+              Start tracking in minutes
+            </h2>
+            <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
+              Build a consistent record, understand your patterns, and make
+              better day‑to‑day decisions.
+            </p>
+            <a
+              href="/signup"
+              class="inline-block bg-sky-600 hover:bg-sky-500 text-white
+                font-semibold py-3.5 px-7 rounded-lg transition-colors"
+              >Create your account</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-midnight py-12">
+        <div class="container mx-auto px-6">
+          <div class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+              <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                <span class="text-slate-400 text-sm">
+                  Created by <a class="hover:text-slate-300" href="https://dylanyoung.me/">Dylan Young</a>
+                </span>
+              </div>
+              <p class="text-slate-400 text-sm">&copy; 2025 Migraine Manager</p>
+              <a href="/contact" class="text-slate-400 hover:text-white transition-colors">Contact</a>
+          </div>
+        </div>
+    </footer>
+  </body>
 </html>
