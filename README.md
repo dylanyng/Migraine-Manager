@@ -4,7 +4,7 @@ Migraine Manager is a full stack web application designed to help users track an
 
 **Link to project:** COMING SOON
 
-![Landing Page](public/assets/images/jpeg/landing.jpeg)
+![Landing Page](public/assets/images/jpeg/landing.png)
 
 ---
 
@@ -31,7 +31,8 @@ While the current version of Migraine Manager is functional and user-friendly, t
 
 - ✅ Implement data visualization features to help users better understand their migraine patterns and trends over time.
 - ✅ Implement retrieval of weather data using an API to keep track of weather conditions associated with migraine attacks for 
-- 🔲 Add a user settings page for updating user preferences
+- 🔲 Implement Google OAuth
+- 🔲 Implement CSV data exporting
 - 🔲 Implement a reminder system for logging migraines
 
 ## 📝 Lessons Learned:
@@ -75,7 +76,7 @@ Building Migraine Manager reinforced the idea that technology can have a meaning
 ## Things to add
 
 - Create a `.env` file in config folder and add the following as `key = value`
-  - PORT = 2121 (can be any port example: 3000)
+  - PORT = 3000
   - DB_STRING = `your database URI`
   - WEATHER_API_BASE_URL = https://api.weatherbit.io/v2.0/current?
   - WEATHER_API_KEY = `your weatherbit API key`
