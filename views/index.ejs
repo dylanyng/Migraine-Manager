@@ -3,23 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
     <title>Migraine Manager — Migraine Tracking & Analytics</title>
 
-    <meta
-      name="description"
-      content="Track migraine episodes with precise logging, weather correlation, and clear analytics to spot patterns and stay ahead."
-    />
+    <meta name="description" content="Track migraine episodes with precise logging, weather correlation, and clear analytics to spot patterns and stay ahead."/>
     <link rel="canonical" href="https://your-domain.com" />
 
     <meta property="og:title" content="Migraine Manager" />
-    <meta
-      property="og:description"
-      content="Track migraine episodes with precise logging, weather correlation, and clear analytics to spot patterns and stay ahead."
-    />
+    <meta property="og:description" content="Track migraine episodes with precise logging, weather correlation, and clear analytics to spot patterns and stay ahead."/>
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://your-domain.com" />
     <meta property="og:image" content="/assets/images/jpeg/landing.jpeg" />
@@ -27,15 +18,8 @@
     <meta name="theme-color" content="#0f172a" />
 
     <link rel="stylesheet" href="/css/style.css" />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 
     <style>
       body {
@@ -53,7 +37,7 @@
     </style>
   </head>
 
-  <body class="text-slate-100 bg-slate-900">
+  <body class="text-slate-100 bg-midnight">
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4
@@ -62,7 +46,7 @@
       >Skip to content</a
     >
 
-    <!-- Navigation -->
+    <!-- Navigation --> 
     <header
       class="bg-slate-900/95 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50"
       role="banner"
@@ -165,7 +149,7 @@
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fast logging
+                  Quick logging
                 </li>
                 <li
                   class="flex items-center gap-3 text-slate-300 border
@@ -211,43 +195,105 @@
             </div>
 
             <!-- Hero mockup -->
+            <!-- Right side of the hero: fixed‑size 3x3 demo cards with edge fades -->
             <div class="relative">
               <div
-                class="relative rounded-3xl p-6 lg:p-8 shadow-2xl
-                  border border-slate-800 bg-slate-900"
+                class="relative rounded-3xl border border-slate-800 bg-slate-900 shadow-2xl
+                  overflow-hidden p-3 sm:p-4"
                 aria-hidden="true"
               >
-                <div class="space-y-5">
-                  <div class="flex items-center gap-2 mb-4">
-                    <span class="w-3 h-3 bg-slate-700 rounded-full"></span>
-                    <span class="w-3 h-3 bg-slate-700 rounded-full"></span>
-                    <span class="w-3 h-3 bg-slate-700 rounded-full"></span>
-                  </div>
-                  <div class="bg-slate-800 rounded-lg h-4 w-3/4"></div>
-                  <div class="bg-slate-800 rounded-lg h-4 w-1/2"></div>
+                <!-- Fixed design canvas so cards never shrink; overflow is faded -->
+                <div class="relative w-[704px] h-[448px]">
+                  <% 
+                    // Demo-only data (no user data is read)
+                    const attackTypeColors = {
+                      migraine: "bg-red-900/50",
+                      headache: "bg-orange-900/50",
+                      "misc symptoms": "bg-yellow-900/50",
+                      missing: "bg-gray-400/30 border border-slate-500/30",
+                    };
+                    const demoTypes = [
+                      "migraine",
+                      "headache",
+                      "misc symptoms",
+                      "migraine",
+                      "headache",
+                      "misc symptoms",
+                      "migraine",
+                      "headache",
+                      "misc symptoms",
+                    ];
+                    const demoStarts = ["home", "work", "gym", "commute", "home", "work"];
+                    const demoWeather = [
+                      { t: "72", p: "29.9", c: "Overcast" },
+                      { t: "68", p: "30.1", c: "Light rain" },
+                      { t: "79", p: "29.7", c: "Humid" },
+                      { t: "74", p: "29.8", c: "Cloudy" },
+                      { t: "70", p: "30.0", c: "Clear" },
+                      { t: "66", p: "30.2", c: "Breezy" },
+                      { t: "73", p: "29.9", c: "Partly cloudy" },
+                      { t: "71", p: "30.0", c: "Calm" },
+                      { t: "69", p: "30.1", c: "Drizzle" },
+                    ];
+                  %>
 
-                  <div
-                    class="rounded-xl h-36 flex items-center justify-center
-                      border border-slate-800 bg-slate-900"
+                  <ul
+                    class="grid gap-4 grid-cols-[repeat(3,220px)] auto-rows-[140px]
+                      pointer-events-none select-none"
                   >
-                    <img
-                      src="/assets/images/svg/logo.svg"
-                      alt=""
-                      class="h-14 w-auto opacity-90"
-                    />
-                  </div>
+                    <% for (let i = 0; i < 9; i++) {
+                        const type = demoTypes[i];
+                        const color =
+                          attackTypeColors[type] || "bg-blue-900/50 border border-slate-700/30";
+                        const day = 10 + i;
+                        const start = demoStarts[i % demoStarts.length];
+                        const w = demoWeather[i];
+                        const pain = 2 + ((i * 3) % 7);
+                    %>
+                    <li class="w-[220px] h-[140px]">
+                      <div
+                        class="flex h-full w-full flex-col justify-between rounded-lg p-4
+                          shadow-md <%= color %>"
+                      >
+                        <div class="flex items-start justify-between">
+                          <h3 class="text-base font-semibold mb-1">Aug <%= day %></h3>
+                          <p class="text-sm font-semibold capitalize truncate max-w-[90px]">
+                            <%= type === "misc symptoms" ? "symptoms" : type %>
+                          </p>
+                        </div>
 
-                  <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-slate-800 rounded-lg h-16"></div>
-                    <div class="bg-slate-800 rounded-lg h-16"></div>
-                  </div>
+                        <div class="w-full mb-1 text-xs">
+                          <p class="capitalize font-semibold truncate">
+                            Started: <%= start %>
+                          </p>
+                        </div>
+
+                        <div class="w-full text-[11px] leading-4">
+                          <span class="font-mono inline"><%= w.t %>°F</span>
+                          <span class="font-mono inline"> • </span>
+                          <span class="font-mono inline"><%= w.p %>inHg</span>
+                          <p class="font-mono truncate"><%= w.c %></p>
+                        </div>
+
+                        <div class="mt-auto flex items-center justify-between">
+                          <p class="text-sm font-bold">Pain Level: <%= pain %></p>
+                        </div>
+                      </div>
+                    </li>
+                    <% } %>
+                  </ul>
                 </div>
+
+                <!-- Edge fades to imply continuation of the grid -->
+                <div
+                  class="pointer-events-none absolute inset-x-0 bottom-0 h-20
+                    bg-gradient-to-t from-slate-900 to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 w-16
+                    bg-gradient-to-l from-slate-900 to-transparent"
+                ></div>
               </div>
-              <div
-                class="absolute -inset-x-6 -inset-y-6 -z-10 rounded-[2rem]
-                  border border-slate-800/60"
-                aria-hidden="true"
-              ></div>
             </div>
           </div>
         </div>
@@ -523,207 +569,76 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-12">
-      <div class="container mx-auto px-6">
-        <div class="grid md:grid-cols-4 gap-8 mb-10">
-          <div class="md:col-span-1">
-            <div class="flex items-center space-x-3 mb-4">
-              <img
-                src="/assets/images/svg/logo.svg"
-                alt="Migraine Manager"
-                class="h-8 w-auto"
-              />
-              <span class="text-white font-semibold">Migraine Manager</span>
-            </div>
-            <p class="text-slate-400 text-sm mb-4">
-              A focused toolkit for logging, understanding, and managing
-              migraine episodes day to day.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="text-slate-400 hover:text-sky-400 transition-colors"
-                aria-label="Facebook"
-              >
-                <svg
-                  class="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </a>
-              <a
-                href="#"
-                class="text-slate-400 hover:text-sky-400 transition-colors"
-                aria-label="Twitter"
-              >
-                <svg
-                  class="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178
-                    0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0
-                    01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0
-                    01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0
-                    01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0
-                    012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0
-                    01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0
-                    012 18.407a11.616 11.616 0 006.29 1.84"
-                  />
-                </svg>
-              </a>
-              <a
-                href="#"
-                class="text-slate-400 hover:text-sky-400 transition-colors"
-                aria-label="GitHub"
-              >
-                <svg
-                  class="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079
-                    3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937
-                    1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911
-                    2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992
-                    3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245
-                    3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409
-                    5.199 0 1.033.394 2.143.889 2.741.097.118.112.221.083.343-.09.375-.293
-                    1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646
-                    0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607
-                    7.462-6.233 7.462-1.214 0-2.357-.629-2.751-1.378l-.748 2.853c-.271
-                    1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624
-                    0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
+    <footer class="bg-slate-900 border-t border-slate-700 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-1">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="/assets/images/svg/logo.svg" alt="Migraine Manager" class="h-8 w-auto">
+                        <span class="text-white font-bold">Migraine Manager</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-4">
+                        Empowering individuals to take control of their migraine journey through advanced tracking and analytics.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.097.118.112.221.083.343-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.751-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
 
-          <div
-            class="grid md:grid-cols-3 gap-8 text-sm text-slate-400 mb-8"
-            aria-label="Footer navigation"
-          >
-            <div>
-              <h3 class="text-white font-semibold mb-3">Product</h3>
-              <ul class="space-y-2">
-                <li>
-                  <a href="#features" class="hover:text-white transition-colors"
-                    >Features</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Analytics</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Integrations</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Mobile App</a
-                  >
-                </li>
-              </ul>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#features" class="text-slate-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Analytics</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Integrations</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Mobile App</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="/contact" class="text-slate-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Security</a></li>
+                    </ul>
+                </div>
             </div>
 
-            <div>
-              <h3 class="text-white font-semibold mb-3">Company</h3>
-              <ul class="space-y-2">
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >About</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Blog</a
-                  >
-                </li>
-                <li>
-                  <a href="/contact" class="hover:text-white transition-colors"
-                    >Contact</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Careers</a
-                  >
-                </li>
-              </ul>
+            <div class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-slate-400 text-sm">&copy; 2025 Migraine Manager</p>
+                <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                    <span class="text-slate-400 text-sm">
+                      Created by <a class="hover:text-slate-300" href="https://dylanyoung.me/">Dylan Young</a>
+                    </span>
+                </div>
             </div>
-
-            <div>
-              <h3 class="text-white font-semibold mb-3">Support</h3>
-              <ul class="space-y-2">
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Help Center</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Privacy Policy</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Terms of Service</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Security</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div
-            class="border-t border-slate-800 pt-6 flex flex-col md:flex-row
-              justify-between items-center gap-4"
-          >
-            <p class="text-slate-400 text-sm">
-              &copy; 2024 Migraine Manager. All rights reserved.
-            </p>
-            <div class="flex items-center gap-2 text-slate-400 text-sm">
-              <span>Made with</span>
-              <svg
-                class="w-4 h-4 text-rose-500"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3.172 5.172a4 4 0 015.656 0L10
-                  6.343l1.172-1.171a4 4 0 115.656 5.656L10
-                  17.657l-6.828-6.829a4 4 0 010-5.656z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span>for people managing migraines</span>
-            </div>
-          </div>
         </div>
-      </div>
     </footer>
   </body>
 </html>
