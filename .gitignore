@@ -20,3 +20,6 @@ repopack-output.txt
 
 # Script files
 generateDummyData.js
+
+# CSS build file
+public/css/style.css
