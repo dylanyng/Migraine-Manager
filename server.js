@@ -53,15 +53,17 @@ app.use((req, res, next) => {
   res.locals.messages = req.flash()
   next()
 })
-  
-app.use('/', mainRoutes)
-app.use('/migraines', migraineRoutes)
+
+// Setup routes
+app.use('/', mainRoutes);
+app.use('/auth', require('./routes/auth'));
+app.use('/migraines', migraineRoutes);
 app.use('/triggers', triggerRoutes);
-app.use('/medication', medicationRoutes)
+app.use('/medication', medicationRoutes);
 app.use('/weather', weatherRoutes);
 
 // Error handler
-app.use(errorHandler)
+app.use(errorHandler);
  
 app.listen(process.env.PORT, ()=>{
     console.log(`Server running on port ${process.env.PORT}`)
