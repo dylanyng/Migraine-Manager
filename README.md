@@ -1,8 +1,8 @@
 # 🧠 Migraine Manager
 
-Migraine Manager is a full stack web application designed to help users track and manage their migraine episodes. It provides an intuitive interface for logging migraine events, including details such as pain level, duration, and potential triggers, and much more.
+Migraine Manager is a full stack web application designed to help users track and manage their migraine episodes. It provides an intuitive interface for logging migraine events, including details such as pain level, duration, potential triggers, and more.
 
-**Link to project:** [migraine-manager.com](https://www.migraine-manager.com/)
+[migraine-manager.com](https://www.migraine-manager.com/)
 
 ![Landing Page](public/assets/images/jpeg/landing.png)
 
@@ -32,19 +32,17 @@ While the current version of Migraine Manager is functional and user-friendly, t
 - ✅ Data visualization features to help users better understand their migraine patterns and trends over time
 - ✅ Retrieval of weather data using an API to keep track of weather conditions associated with migraine attacks for 
 - 🔲 Google OAuth
-- 🔲 A calendar view to help users see patterns in episodes and keep track of medication
 - 🔲 CSV data exporting
 - 🔲 A reminder system for logging migraines and preventative medication
+- 🔲 A calendar view to help users see patterns in episodes and keep track of medication
 
 ## 📝 Lessons Learned:
 
 - Simplifying data entry and providing clear, actionable insights is crucial for user engagement. 
-- Handling date and time data across different timezones presented unique challenges, emphasizing the importance of consistent data handling and display.
-- Implementing secure user authentication and data privacy measures is paramount when dealing with personal health information.
 - The value of modular code architecture in facilitating easier updates and maintenance of the application.
 - The power of CSS frameworks like Tailwind in rapidly developing a consistent and responsive UI.
 
-Building Migraine Manager reinforced the idea that technology can have a meaningful impact on people's daily lives, especially in managing health conditions. It has been rewarding to create a tool that can potentially improve the quality of life for those dealing with migraines.
+Building Migraine Manager reinforced the idea that technology can have a meaningful impact on people's daily lives, especially in managing health conditions. It has been rewarding to create a tool that can improve the quality of life for those dealing with migraines.
 
 ---
 
