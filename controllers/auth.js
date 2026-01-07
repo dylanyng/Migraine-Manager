@@ -79,6 +79,7 @@ const User = require('../models/User')
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
     const user = new User({
+      userName: req.body.userName,
       email: req.body.email,
       password: req.body.password,
       // Include default preferences in the signup process
@@ -98,7 +99,8 @@ const User = require('../models/User')
     })
   
     User.findOne({$or: [
-      {email: req.body.email}
+      {email: req.body.email},
+      {userName: req.body.userName}
     ]}, (err, existingUser) => {
       if (err) { return next(err) }
       if (existingUser) {
