@@ -15,9 +15,6 @@ public/assets/images/.DS_Store
 .vscode/*
 settings.json
 
-# Temporary files
-repopack-output.txt
-
 # Script files
 scripts/
 
