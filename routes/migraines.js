@@ -4,6 +4,7 @@ const { ensureAuth } = require('../middleware/auth')
 const migraineController = require('../controllers/migraines')
 
 router.get('/visualizations', ensureAuth, migraineController.getVisualizations);
+router.get('/export', ensureAuth, (req, res, next) => migraineController.exportMigrainesCSV(req, res, next));
 
 router.get('/', ensureAuth, (req, res, next) => migraineController.getMigraineEvents(req, res, next));
 router.get('/index', ensureAuth, (req, res, next) => migraineController.getMigraineEvents(req, res, next));

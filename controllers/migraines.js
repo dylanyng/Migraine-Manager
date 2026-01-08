@@ -273,6 +273,129 @@ exports.deleteMigraineEvent = async (req, res, next) => {
   }
 }
 
+// CSV Export
+exports.exportMigrainesCSV = async (req, res, next) => {
+  try {
+    const migraineEvents = await MigraineEvent.find({ userId: req.user.id }).sort({ date: 1 });
+    const userTimezone = req.user.preferences.timezone || 'UTC';
+
+    // Define CSV headers
+    const headers = [
+      'Date',
+      'Attack Type',
+      'Pain Level',
+      'Pain Location',
+      'Duration (minutes)',
+      'Start Location',
+      'Medication',
+      'Medications List',
+      'Triggers',
+      'Weather Conditions',
+      'Weather Humidity',
+      'Weather Pressure (hPa)',
+      'Weather Temperature (°C)',
+      'Notes',
+      'Quick Log',
+      'Created At',
+      'Updated At'
+    ];
+
+    // Helper function to escape CSV fields
+    const escapeCSV = (field) => {
+      if (field === null || field === undefined) return '';
+      const str = String(field);
+      // If field contains comma, quote, or newline, wrap in quotes and escape quotes
+      if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+        return `"${str.replace(/"/g, '""')}"`;
+      }
+      return str;
+    };
+
+    // Helper function to format date in user's timezone
+    const formatDateForCSV = (date) => {
+      if (!date) return '';
+      const options = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZone: userTimezone
+      };
+      return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
+    };
+
+    // Convert events to CSV rows
+    const csvRows = migraineEvents.map(event => {
+      const eventObj = event.toObject();
+      
+      // Format date in user's timezone
+      const formattedDate = formatDateForCSV(eventObj.date);
+      
+      // Convert pressure from hPa to inHg for CSV (or keep original)
+      const pressure = eventObj.weather?.pressure ? 
+        (Math.round(eventObj.weather.pressure * 100) / 100) : '';
+      
+      // Convert temperature from Celsius to Fahrenheit
+      const tempC = eventObj.weather?.temperature || '';
+      const tempF = tempC ? (Math.round(toFahrenheit(tempC) * 100) / 100) : '';
+      
+      // Format arrays as comma-separated strings
+      const painLocation = Array.isArray(eventObj.painLocation) ? 
+        eventObj.painLocation.join('; ') : '';
+      const startLocation = Array.isArray(eventObj.startLocation) ? 
+        eventObj.startLocation.join('; ') : '';
+      const triggers = Array.isArray(eventObj.triggers) ? 
+        eventObj.triggers.join('; ') : '';
+      
+      // Format medications array
+      const medicationsList = Array.isArray(eventObj.medications) && eventObj.medications.length > 0 ?
+        eventObj.medications.map(med => 
+          `${med.name || ''}${med.dose ? ` (${med.dose})` : ''}${med.quantity ? ` x${med.quantity}` : ''}`
+        ).join('; ') : '';
+      
+      return [
+        escapeCSV(formattedDate),
+        escapeCSV(eventObj.attackType || ''),
+        escapeCSV(eventObj.painLevel !== undefined ? eventObj.painLevel : ''),
+        escapeCSV(painLocation),
+        escapeCSV(eventObj.duration || ''),
+        escapeCSV(startLocation),
+        escapeCSV(eventObj.medication ? 'Yes' : 'No'),
+        escapeCSV(medicationsList),
+        escapeCSV(triggers),
+        escapeCSV(eventObj.weather?.conditions || ''),
+        escapeCSV(eventObj.weather?.humidity || ''),
+        escapeCSV(pressure),
+        escapeCSV(tempC ? `${tempC}°C (${tempF}°F)` : ''),
+        escapeCSV(eventObj.notes || ''),
+        escapeCSV(eventObj.quickLog ? 'Yes' : 'No'),
+        escapeCSV(formatDateForCSV(eventObj.createdAt)),
+        escapeCSV(formatDateForCSV(eventObj.updatedAt))
+      ];
+    });
+
+    // Combine headers and rows
+    const csvContent = [
+      headers.join(','),
+      ...csvRows.map(row => row.join(','))
+    ].join('\n');
+
+    // Set response headers for CSV download
+    const filename = `migraine-data-export-${new Date().toISOString().split('T')[0]}.csv`;
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    
+    // Send CSV content
+    res.send(csvContent);
+  } catch (err) {
+    console.error(err);
+    req.flash('error', 'An error occurred while exporting migraine data.');
+    next(err);
+  }
+};
+
 // Charts
 exports.getVisualizations = async (req, res) => {
   try {
