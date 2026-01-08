@@ -31,8 +31,8 @@ While the current version of Migraine Manager is functional and user-friendly, t
 
 - ✅ Data visualization features to help users better understand their migraine patterns and trends over time
 - ✅ Retrieval of weather data using an API to keep track of weather conditions associated with migraine attacks for 
+- ✅ CSV data exporting
 - 🔲 Google OAuth
-- 🔲 CSV data exporting
 - 🔲 A reminder system for logging migraines and preventative medication
 - 🔲 A calendar view to help users see patterns in episodes and keep track of medication
 
