@@ -29,12 +29,12 @@ The dashboard provides an overview of recent activity as well as the ability to 
 
 While the current version of Migraine Manager is functional and user-friendly, there are several optimizations planned for future iterations:
 
-- ✅ Data visualization features to help users better understand their migraine patterns and trends over time
-- ✅ Retrieval of weather data using an API to keep track of weather conditions associated with migraine attacks for 
-- ✅ CSV data exporting
-- 🔲 Google OAuth
-- 🔲 A reminder system for logging migraines and preventative medication
-- 🔲 A calendar view to help users see patterns in episodes and keep track of medication
+- [x] Data visualization features to help users better understand their migraine patterns and trends over time
+- [x] Retrieval of weather data using an API to keep track of weather conditions associated with migraine attacks for 
+- [x] CSV data exporting
+- [ ] Google OAuth
+- [ ] A reminder system for logging migraines and preventative medication
+- [ ] A calendar view to help users see patterns in episodes and keep track of medication
 
 ## 📝 Lessons Learned:
 
@@ -54,6 +54,7 @@ Building Migraine Manager reinforced the idea that technology can have a meaning
 - bcrypt: password hashing
 - chart.js: data visualization
 - connect-mongo: MongoDB session store
+- dayjs: timezone date parsing and formatting
 - dotenv: environment variable management
 - ejs: templating
 - express: server framework
