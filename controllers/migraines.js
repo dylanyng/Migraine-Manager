@@ -1,24 +1,21 @@
-const MigraineEvent = require('../models/MigraineEvent')
-const getWeather = require('../services/weatherService')
+const MigraineEvent = require('../models/MigraineEvent');
+const getWeather = require('../services/weatherService');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+const timezone = require('dayjs/plugin/timezone');
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 // Convert date to UTC
 function convertToUTC(dateString, timezone) {
-  const date = new Date(dateString);
-  const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-  return utcDate;
+  const dateInUserTimezone = dayjs.tz(`${dateString} 00:00:00`, timezone)
+  return dateInUserTimezone.utc().toDate(); // Convert to Date object for MongoDB
 }
 
-// Format date in user's timezone
 function formatInUserTimezone(date, timezone) {
   // MM-DD-YYYY formatting
-  const options = { 
-    year: 'numeric', 
-    month: '2-digit', 
-    day: '2-digit', 
-    timeZone: timezone 
-  };
-  const formatted = new Intl.DateTimeFormat('en-US', options).format(date);
-  return formatted;
+  return dayjs(date).tz(timezone).format('MM-DD-YYYY');
 }
 
 // Format migraine duration time
