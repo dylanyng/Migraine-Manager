@@ -33,18 +33,18 @@
         <% if (messages.error) { %>
             <% if (Array.isArray(messages.error)) { %>
                 <% messages.error.forEach(function(err) { %>
-                    <div class="mb-4 p-4 rounded-md bg-red-900/50 border border-red-500/50 text-red-200 text-sm">
+                    <div class="p-4 rounded-md bg-red-900/50 border border-red-500/50 text-red-200 text-sm">
                         <%= err.msg %>
                     </div>
                 <% }); %>
             <% } else { %>
-                <div class="mb-4 p-4 rounded-md bg-red-900/50 border border-red-500/50 text-red-200 text-sm">
+                <div class="p-4 rounded-md bg-red-900/50 border border-red-500/50 text-red-200 text-sm">
                     <%= messages.error %>
                 </div>
             <% } %>
         <% } %>
         <% if (messages.success) { %>
-            <div class="mb-4 p-4 rounded-md bg-emerald-900/50 border border-emerald-500/50 text-emerald-200 text-sm">
+            <div class="p-4 rounded-md bg-emerald-900/50 border border-emerald-500/50 text-emerald-200 text-sm">
                 <%= messages.success %>
             </div>
         <% } %>
