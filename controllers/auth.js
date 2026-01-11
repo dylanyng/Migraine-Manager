@@ -9,6 +9,7 @@ const User = require('../models/User')
     res.render('login', {
       title: 'Login',
       user: req.user,
+      messages: res.locals.messages,
       layout: false // Do not use layout.ejs
     })
   }
@@ -19,7 +20,7 @@ const User = require('../models/User')
     if (validator.isEmpty(req.body.password)) validationErrors.push({ msg: 'Password cannot be blank.' })
   
     if (validationErrors.length) {
-      req.flash('errors', validationErrors)
+      req.flash('error', validationErrors)
       return res.redirect('/login')
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
@@ -27,7 +28,7 @@ const User = require('../models/User')
     passport.authenticate('local', (err, user, info) => {
       if (err) { return next(err) }
       if (!user) {
-        req.flash('errors', info)
+        req.flash('error', info)
         return res.redirect('/login')
       }
       req.logIn(user, (err) => {
@@ -62,7 +63,8 @@ const User = require('../models/User')
     res.render('signup', {
       title: 'Create Account',
       user: req.user,
-      layout: false // Do not use layour.ejs
+      messages: res.locals.messages,
+      layout: false // Do not use layout.ejs
     })
   }
   
@@ -73,7 +75,7 @@ const User = require('../models/User')
     if (req.body.password !== req.body.confirmPassword) validationErrors.push({ msg: 'Passwords do not match' })
   
     if (validationErrors.length) {
-      req.flash('errors', validationErrors)
+      req.flash('error', validationErrors)
       return res.redirect('../signup')
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
@@ -104,7 +106,8 @@ const User = require('../models/User')
     ]}, (err, existingUser) => {
       if (err) { return next(err) }
       if (existingUser) {
-        req.flash('errors', { msg: 'Account with that email address or username already exists.' })
+        console.log('Existing user found, setting flash message')
+        req.flash('error', { msg: 'Account with that email address or username already exists.' })
         return res.redirect('../signup')
       }
       user.save((err) => {

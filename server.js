@@ -48,9 +48,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash())
-// Make flash messages available in all views
 app.use((req, res, next) => {
-  res.locals.messages = req.flash()
+  if (req.accepts('html')) {
+    res.locals.messages = req.flash()
+  }
   next()
 })
   

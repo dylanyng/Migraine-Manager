@@ -38,21 +38,29 @@
             </div>
         </header>
     
+
         <!-- Container for flash messages -->
-        <div class="container">
+        <div class="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
             <% if (messages.error) { %>
                 <% if (Array.isArray(messages.error)) { %>
                     <% messages.error.forEach(function(err) { %>
-                        <div class="alert alert-danger"><%= err %></div>
+                        <div class="p-4 rounded-md bg-red-900/50 border border-red-500/50 text-red-200 text-sm">
+                            <%= err.msg %>
+                        </div>
                     <% }); %>
                 <% } else { %>
-                    <div class="alert alert-danger"><%= messages.error %></div>
+                    <div class="mb-4 p-4 rounded-md bg-red-900/50 border border-red-500/50 text-red-200 text-sm">
+                        <%= messages.error %>
+                    </div>
                 <% } %>
             <% } %>
             <% if (messages.success) { %>
-                <div class="alert alert-success"><%= messages.success %></div>
+                <div class="mb-4 p-4 rounded-md bg-emerald-900/50 border border-emerald-500/50 text-emerald-200 text-sm">
+                    <%= messages.success %>
+                </div>
             <% } %>
         </div>
+
     
 
         <main class="flex-grow">
