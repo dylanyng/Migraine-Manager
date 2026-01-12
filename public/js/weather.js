@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function convertPressure(hPa) {
         let inHg = hPa * 0.02952998;
         return Math.round(inHg * 100) / 100;
-      }
+    }
     
     getLocationWeatherBtn.addEventListener('click', function() {
         if ("geolocation" in navigator) {

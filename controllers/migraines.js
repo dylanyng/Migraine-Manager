@@ -171,7 +171,7 @@ exports.getMigraineEvent = async (req, res, next) => {
       title: 'Migraine Event Details', 
       user: req.user, 
       migraineEvent: migraineEvent,
-      formatDuration: formatDuration
+      // formatDuration: formatDuration
     })
   } catch (err) {
     console.error(err)
@@ -282,7 +282,7 @@ exports.exportMigrainesCSV = async (req, res, next) => {
       'Attack Type',
       'Pain Level',
       'Pain Location',
-      'Duration (minutes)',
+      //'Duration (minutes)',
       'Start Location',
       'Medication',
       'Medications List',
@@ -332,7 +332,7 @@ exports.exportMigrainesCSV = async (req, res, next) => {
       
       // Convert pressure from hPa to inHg for CSV (or keep original)
       const pressure = eventObj.weather?.pressure ? 
-        (Math.round(eventObj.weather.pressure * 100) / 100) : '';
+        (Math.round((eventObj.weather.pressure * 0.02952998) * 100) / 100) : '';
       
       // Convert temperature from Celsius to Fahrenheit
       const tempC = eventObj.weather?.temperature || '';
@@ -357,7 +357,7 @@ exports.exportMigrainesCSV = async (req, res, next) => {
         escapeCSV(eventObj.attackType || ''),
         escapeCSV(eventObj.painLevel !== undefined ? eventObj.painLevel : ''),
         escapeCSV(painLocation),
-        escapeCSV(eventObj.duration || ''),
+        //escapeCSV(eventObj.duration || ''),
         escapeCSV(startLocation),
         escapeCSV(eventObj.medication ? 'Yes' : 'No'),
         escapeCSV(medicationsList),
@@ -365,7 +365,7 @@ exports.exportMigrainesCSV = async (req, res, next) => {
         escapeCSV(eventObj.weather?.conditions || ''),
         escapeCSV(eventObj.weather?.humidity || ''),
         escapeCSV(pressure),
-        escapeCSV(tempC ? `${tempC}°C (${tempF}°F)` : ''),
+        escapeCSV(tempC ? `${tempC}C (${tempF}F)` : ''),
         escapeCSV(eventObj.notes || ''),
         escapeCSV(eventObj.quickLog ? 'Yes' : 'No'),
         escapeCSV(formatDateForCSV(eventObj.createdAt)),
