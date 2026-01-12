@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/style.css",
     "build:css:watch": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/style.css --watch",
-    "build": "npm run build:css"
+    "build": "npm run build:css",
+    "watch": "npm run build:css:watch"
   },
   "author": "Dylan Young",
   "license": "MIT",
