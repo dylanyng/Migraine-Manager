@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const weatherDataDisplay = document.getElementById('weatherDataDisplay');
     const weatherInfo = document.getElementById('weatherInfo');
 
-    // Convert celsius to fahrenheit
-    function toFahrenheit(c) {
-        return Number(c) * 1.8 + 32;
-    }
+// Convert celsius to fahrenheit
+function toFahrenheit(c) {
+    return Math.round(Number(c) * 1.8 + 32);
+}
 
     // Convert hPa from weatherbit to inHg, to display to the user
     function convertPressure(hPa) {
