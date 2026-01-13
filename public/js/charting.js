@@ -1,8 +1,8 @@
-// Custom colors
-const dark = 'rgba(79, 70, 229, 1)';
-const medium = 'rgba(0, 152, 233, 1)';
-const light = 'rgba(170, 248, 209, 1)';
-const darkGray = '#4d4d4d';
+// Custom colors - Colorblind-safe palette optimized for dark backgrounds
+const dark = 'rgba(67, 56, 202, 1)'; // indigo-700 - darker blue, distinguishable
+const medium = 'rgba(245, 158, 11, 1)'; // amber-500 - orange/amber, colorblind-safe contrast
+const light = 'rgba(125, 211, 252, 1)'; // sky-300 - soft light blue, not too bright
+const darkGray = 'rgba(71, 85, 105, 1)'; // slate-600 - neutral gray for grids
 
 
 // Pass data from server to client-side JavaScript
@@ -75,7 +75,7 @@ new Chart(painLocationCtx, {
     labels: painLocationData.map(location => location._id),
     datasets: [{
       data: painLocationData.map(location => location.count),
-      backgroundColor: [light, medium, dark, '#FF6384', '#36A2EB', '#FFCE56'],
+      backgroundColor: [light, medium, dark, 'rgba(34, 197, 94, 1)', 'rgba(139, 92, 246, 1)', 'rgba(202, 138, 4, 1)'], // green-500, violet-500, amber-600 - colorblind-safe, not too bright
       borderColor: '#000000',
     }]
   },
