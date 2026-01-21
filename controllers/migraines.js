@@ -33,10 +33,10 @@ function formatDuration(minutes) {
   return result || 'Less than a minute';
 }
 
-// Convert celsius to fahrenheit and round to the nearest tenth
+// Convert celsius to fahrenheit and round to the nearest whole number
 function toFahrenheit(c) {
   let f = Number(c) * 1.8 + 32;
-  return Math.round(f * 100) / 100;
+  return Math.round(f);
 }
 
 exports.getMigraineEvents = async (req, res, next) => {
@@ -160,6 +160,11 @@ exports.getMigraineEvent = async (req, res, next) => {
       _id: req.params.id, 
       userId: req.user.id 
     })
+    // Convert pressure from hPa to inHg and round to nearest hundredth
+    function convertPressure(hPa) {
+      let inHg = hPa * 0.02952998;
+      return Math.round(inHg * 100) / 100;
+    }
     if (!migraineEvent) {
       return res.render('error', { error: 'Migraine event not found' })
     }
@@ -167,11 +172,16 @@ exports.getMigraineEvent = async (req, res, next) => {
       // Insert space after each comma in trigger list
       migraineEvent.triggers = migraineEvent.triggers.map(trigger => ` ${trigger}`);
     }
+    if (migraineEvent.weather?.temperature) {
+      migraineEvent.weather.temperature = toFahrenheit(migraineEvent.weather.temperature)
+    }
+    if (migraineEvent.weather?.pressure) {
+      migraineEvent.weather.pressure = convertPressure(migraineEvent.weather.pressure)
+    }
     res.render('migraines/show', { 
       title: 'Migraine Event Details', 
       user: req.user, 
       migraineEvent: migraineEvent,
-      // formatDuration: formatDuration
     })
   } catch (err) {
     console.error(err)

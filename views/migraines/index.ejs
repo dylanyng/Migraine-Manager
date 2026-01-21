@@ -65,7 +65,7 @@
           <!-- Weather on card -->
           <div class="w-full text-xs">
             <% if (event.weather) { %>
-              <span class="font-mono inline"><%= Math.round(event.weather.temperature) %>°F</span>
+              <span class="font-mono inline"><%= event.weather.temperature %>°F</span>
               <span class="font-mono inline"> • </span>
               <span class="font-mono inline"><%= event.weather.pressure %>inHg</span>
               <p class="font-mono"> <%= event.weather.conditions %></p>
