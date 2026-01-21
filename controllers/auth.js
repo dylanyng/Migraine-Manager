@@ -87,19 +87,8 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
-    // Include default preferences in the signup process
     preferences: {
-      defaultPainScale: 0,
-      reminderFrequency: 'none',
       timezone: req.body.timezone || 'UTC'
-    },
-    commonMedications: [],
-    commonTriggers: [],
-    currentStreak: 0,
-    longestStreak: 0,
-    notificationSettings: {
-      email: { enabled: false, frequency: 'weekly' },
-      push: { enabled: false, frequency: 'daily' }
     }
   })
 
