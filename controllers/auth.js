@@ -17,7 +17,6 @@ exports.getLogin = (req, res) => {
 exports.postLogin = (req, res, next) => {
   const validationErrors = []
   
-  // Ensure email exists and is valid
   if (req.body.email && !validator.isEmail(req.body.email)) {
     validationErrors.push({ msg: 'Please enter a valid email address.' })
   }
