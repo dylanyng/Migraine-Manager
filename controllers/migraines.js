@@ -18,62 +18,47 @@ function formatInUserTimezone(date, timezone) {
   return dayjs(date).tz(timezone).format('MM-DD-YYYY');
 }
 
-// Format migraine duration time
-function formatDuration(minutes) {
-  const hours = Math.floor(minutes / 60);
-  const remainingMinutes = minutes % 60;
-  let result = '';
-  if (hours > 0) {
-    result += `${hours} hour${hours > 1 ? 's' : ''}`;
-  }
-  if (remainingMinutes > 0) {
-    if (result) result += ' ';
-    result += `${remainingMinutes} minute${remainingMinutes > 1 ? 's' : ''}`;
-  }
-  return result || 'Less than a minute';
-}
-
 // Convert celsius to fahrenheit and round to the nearest whole number
 function toFahrenheit(c) {
   let f = Number(c) * 1.8 + 32;
   return Math.round(f);
 }
 
+// Convert pressure from hPa to inHg and round to nearest hundredth
+function convertPressure(hPa) {
+  let inHg = hPa * 0.02952998;
+  return Math.round(inHg * 100) / 100;
+}
+
 exports.getMigraineEvents = async (req, res, next) => {
   try {
-      const migraineEvents = await MigraineEvent.find({ userId: req.user.id }).sort({ date: -1 })
-      const userTimezone = req.user.preferences.timezone || 'UTC';
+    const migraineEvents = await MigraineEvent.find({ userId: req.user.id }).sort({ date: -1 })
+    const userTimezone = req.user.preferences.timezone || 'UTC';
 
-      const formattedEvents = migraineEvents.map(event => {
+    const formattedEvents = migraineEvents.map(event => {
       const formattedDate = formatInUserTimezone(event.date, userTimezone);
       const eventObject = event.toObject();
+          
+      // Extract weather data
+      const weather = eventObject.weather ? {
+        conditions: eventObject.weather.conditions,
+        humidity: eventObject.weather.humidity,
+        pressure: convertPressure(eventObject.weather.pressure),
+        temperature: toFahrenheit(eventObject.weather.temperature)
+      } : null;
+      
+      return {
+        ...eventObject,
+        formattedDate,
+        weather // Include the weather data in the formatted event
+      };
+    });
 
-        // Convert pressure from hPa to inHg and round to nearest hundredth
-        function convertPressure(hPa) {
-          let inHg = hPa * 0.02952998;
-          return Math.round(inHg * 100) / 100;
-        }
-        
-        // Extract weather data
-        const weather = eventObject.weather ? {
-          conditions: eventObject.weather.conditions,
-          humidity: eventObject.weather.humidity,
-          pressure: convertPressure(eventObject.weather.pressure),
-          temperature: toFahrenheit(eventObject.weather.temperature)
-        } : null;
-        
-        return {
-          ...eventObject,
-          formattedDate,
-          weather // Include the weather data in the formatted event
-        };
-      });
-
-      res.render('migraines/index', { 
-        title: 'Migraine Events', 
-        user: req.user, 
-        migraineEvents: formattedEvents 
-      })
+    res.render('migraines/index', { 
+      title: 'Migraine Events', 
+      user: req.user, 
+      migraineEvents: formattedEvents 
+    })
   } catch (err) {
       console.error(err)
       req.flash('error', 'An error occurred while retrieving migraine events.')
@@ -160,11 +145,6 @@ exports.getMigraineEvent = async (req, res, next) => {
       _id: req.params.id, 
       userId: req.user.id 
     })
-    // Convert pressure from hPa to inHg and round to nearest hundredth
-    function convertPressure(hPa) {
-      let inHg = hPa * 0.02952998;
-      return Math.round(inHg * 100) / 100;
-    }
     if (!migraineEvent) {
       return res.render('error', { error: 'Migraine event not found' })
     }
